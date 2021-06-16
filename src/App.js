@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import React from 'react'
+import { createGlobalStyle } from 'styled-components'
 
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
@@ -9,22 +10,27 @@ import Nav from './components/common/Nav'
 import NotFound from './components/common/NotFound'
 import NotAuthorized from './components/common/NotAuthorized'
 
+const GlobalStyle = createGlobalStyle`
+  a {
+    text-decoration: none;
+  }
+`
+
 function App() {
 
 
   return (
     <Router>
+      <GlobalStyle />
       <Nav />
       <ToastContainer />
-    
-      <h1>Hello World</h1>
-      <h3>I am Zenith</h3>
+
       
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/sprints/new" component={NewSprint} />
+        {/* <Route path="/sprints/new" component={NewSprint} />
         <Route path="/sprints/:sprintId" component={SprintShow} />
-        <Route path="/sprints" component={SprintsIndex} />
+        <Route path="/sprints" component={SprintsIndex} /> */}
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
         
