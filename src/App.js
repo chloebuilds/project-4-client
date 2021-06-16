@@ -1,13 +1,41 @@
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 import React from 'react'
+
+import Register from './components/auth/Register'
+import Login from './components/auth/Login'
+import Home from './components/common/Home'
+import Nav from './components/common/Nav'
+import NotFound from './components/common/NotFound'
+import NotAuthorized from './components/common/NotAuthorized'
 
 function App() {
 
 
   return (
-    <>
+    <Router>
+      <Nav />
+      <ToastContainer />
+    
       <h1>Hello World</h1>
       <h3>I am Zenith</h3>
-    </>
+      
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/sprints/new" component={NewSprint} />
+        <Route path="/sprints/:sprintId" component={SprintShow} />
+        <Route path="/sprints" component={SprintsIndex} />
+        <Route path="/register" component={Register} />
+        <Route path="/login" component={Login} />
+        
+        {/* for any page not found */}
+        <Route path="/unauthorized" component={NotAuthorized} />
+        <Route exact path="*" component={NotFound} />
+
+      </Switch>
+      
+    </Router>
+  
   )
 }
 
