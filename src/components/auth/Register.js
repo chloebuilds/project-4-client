@@ -13,11 +13,12 @@ function Register() {
     email: '',
     password: '',
     passwordConfirmation: '',
+    avatar: '',
   })
 
   const handleSubmit = async event => {
     event.preventDefault()
-
+    console.log(formData)
     try {
       await registerUser(formData)
       toast.dark('🚀 You have registered!', {
@@ -37,72 +38,85 @@ function Register() {
   }
 
   return (
-    <section className="user-forms">
-      <section className="form-container">
-        <h1 className="user-form">Create a new account</h1>
-        <form className="user-form" onSubmit={handleSubmit} setError={setError}>
-          <div>
-            <input
-              className="user-form user-info"
-              placeholder="Username"
-              onChange={handleChange}
-              name="username"
-              value={formData.username}
-            />
-            {formErrors.username && (
-              <p>{formErrors.username}</p>
-            )}
-          </div>
-          <div>
-            <input
-              className="user-form user-info"
-              placeholder="Email"
-              onChange={handleChange}
-              name="email"
-              value={formData.email}
-            />
-            {formErrors.email && (
-              <p>{formErrors.email}</p>
-            )}
-          </div>
-          <div>
-            <input
-              className="user-form user-info"
-              type="password"
-              placeholder="Password"
-              onChange={handleChange}
-              name="password"
-              value={formData.password}
-            />
-            {formErrors.password && (
-              <p>{formErrors.password}</p>
-            )}
-          </div>
-          <div>
-            <input
-              className="user-form user-info"
-              type="password"
-              placeholder="Password Confirmation"
-              onChange={handleChange}
-              name="passwordConfirmation"
-              value={formData.passwordConfirmation}
-            />
-            {formErrors.passwordConfirmation && (
-              <p className="user-form">{formErrors.passwordConfirmation}</p>
-            )}
-          </div>
-          {error && <p>{error}</p>}
-          <div>
-            <button type="submit" className="user-form submit-button">
+    <section>
+      <h1>Create a new account</h1>
+      <form onSubmit={handleSubmit} setError={setError}>
+        <div>
+          <input
+            placeholder="Name"
+            onChange={handleChange}
+            name="name"
+            value={formData.name}
+          />
+          {formErrors.name && (
+            <p>{formErrors.name}</p>
+          )}
+        </div>
+        <div>
+          <input
+            placeholder="Username"
+            onChange={handleChange}
+            name="username"
+            value={formData.username}
+          />
+          {formErrors.username && (
+            <p>{formErrors.username}</p>
+          )}
+        </div>
+        <div>
+          <input
+            className="user-form user-info"
+            placeholder="Email"
+            onChange={handleChange}
+            name="email"
+            value={formData.email}
+          />
+          {formErrors.email && (
+            <p>{formErrors.email}</p>
+          )}
+        </div>
+        <div>
+          <input
+            type="password"
+            placeholder="Password"
+            onChange={handleChange}
+            name="password"
+            value={formData.password}
+          />
+          {formErrors.password && (
+            <p>{formErrors.password}</p>
+          )}
+        </div>
+        <div>
+          <input
+            type="password"
+            placeholder="Password Confirmation"
+            onChange={handleChange}
+            name="passwordConfirmation"
+            value={formData.passwordConfirmation}
+          />
+          {formErrors.passwordConfirmation && (
+            <p>{formErrors.passwordConfirmation}</p>
+          )}
+        </div>
+        <div>
+          <input placeholder="Add your face!"
+            onChange={handleChange}
+            name="avatar"
+            value={formData.avatar}
+          />
+        </div>
+        {error && <p>{error}</p>}
+        <div>
+          <button type="submit">
             Register
-            </button>
+          </button>
             
-          </div>
-        </form>
-        <footer>
-          <h5>Already signed up? <span><Link to="/login">Login instead.</Link></span> </h5>
-        </footer>
-      </section>
+        </div>
+      </form>
+      <footer>
+        <h5>Already signed up? <span><Link to="/login">Login instead.</Link></span> </h5>
+      </footer>
       <ToastContainer />
     </section>
   )

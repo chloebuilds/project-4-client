@@ -13,7 +13,7 @@ function ZenQuote() {
       setLoading(true)
       try {
         const response = await axios.get(
-          'https://zenquotes.io/api/random'
+          'https://secret-ocean-49799.herokuapp.com/https://zenquotes.io/api/random'
         )
         setQuoteData(response.data)
         

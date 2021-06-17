@@ -28,7 +28,7 @@ function Login() {
         draggable: true,
         progress: undefined,
       })
-      history.push('/auth/profile/{{userId}}') // ! need to target the user id for dashboard after logging in
+      history.push('/dashboard')
     } catch (e) {
       setIsError(true)
     }
