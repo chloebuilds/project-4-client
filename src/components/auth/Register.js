@@ -20,7 +20,15 @@ function Register() {
 
     try {
       await registerUser(formData)
-      toast.error('Successfully registered! Please log in.')
+      toast.dark('🚀 You have registered!', {
+        position: 'top-right',
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
       history.push('/login')
     } catch (e) {
       setError(e.response.data.message)
