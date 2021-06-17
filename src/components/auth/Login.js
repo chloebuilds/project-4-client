@@ -1,7 +1,7 @@
 import React from 'react'
 import { useHistory, Link } from 'react-router-dom'
 import { loginUser } from '../../lib/api'
-import { setIsAdmin, setToken } from '../../lib/auth'
+import { setToken } from '../../lib/auth'
 import useForm from '../hooks/useForm'
 import { ToastContainer, toast } from 'react-toastify'
 
@@ -19,8 +19,15 @@ function Login() {
     try {
       const res = await loginUser(formData)
       setToken(res.data.token)
-      setIsAdmin(res.data.isAdmin)
-      toast.error('Successfully logged in!')
+      toast.dark('🚀 Successfully logged in!', {
+        position: 'top-right',
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
       history.push('/auth/profile/{{userId}}') // ! need to target the user id for dashboard after logging in
     } catch (e) {
       setIsError(true)

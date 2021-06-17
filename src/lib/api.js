@@ -11,15 +11,15 @@ function headers() {
 //* Sprint requests
 
 export function addNewSprint(newSprintData) {
-  return axios.post(`${baseUrl}/sprints`, newSprintData, headers())
+  return axios.post(`${baseUrl}/sprints/`, newSprintData, headers())
 }
 
 export function getAllSprints() {
-  return axios.get(`${baseUrl}/sprints`)
+  return axios.get(`${baseUrl}/sprints/`)
 }
 
 export function getSingleSprint(sprintId) {
-  return axios.get(`${baseUrl}/sprints/${sprintId}`)
+  return axios.get(`${baseUrl}/sprints/${sprintId}/`)
 }
 
 // export function editSprint(id, formdata) {
@@ -39,9 +39,13 @@ export function getAllSprintGoals(sprintId) {
 // * AUTH / USER REQUESTS
 
 export function registerUser(formData) {
-  return axios.post(`${baseUrl}/register`, formData)
+  return axios.post(`${baseUrl}/auth/register/`, formData)
 }
 
 export function loginUser(formData) {
-  return axios.post(`${baseUrl}/login`, formData)
+  return axios.post(`${baseUrl}/auth/login/`, formData)
+}
+
+export function getUser(userId) {
+  return axios.get(`${baseUrl}/auth/profile/${userId}/`)
 }
