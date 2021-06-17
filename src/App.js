@@ -29,8 +29,8 @@ function App() {
         {/* 
         <Route path="/sprints/:sprintId" component={SprintShow} />
         <Route path="/sprints" component={SprintsIndex} /> */}
-        <Route path="/register/" component={Register} />
-        <Route path="/login/" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route path="/login" component={Login} />
         <Route path="/dashboard/" component={Dashboard} />
 
         

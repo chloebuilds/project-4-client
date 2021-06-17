@@ -13,13 +13,17 @@ function Register() {
     email: '',
     password: '',
     passwordConfirmation: '',
+    avatar: '',
   })
 
   const handleSubmit = async event => {
     event.preventDefault()
 
     try {
+      console.log('I AM HERE')
+      console.log(formData)
       await registerUser(formData)
+      console.log('I AM HERE')
       toast.dark('🚀 You have registered!', {
         position: 'top-right',
         autoClose: 4000,
@@ -86,6 +90,19 @@ function Register() {
               onChange={handleChange}
               name="passwordConfirmation"
               value={formData.passwordConfirmation}
+            />
+            {formErrors.passwordConfirmation && (
+              <p className="user-form">{formErrors.passwordConfirmation}</p>
+            )}
+          </div>
+          <div>
+            <input
+              className="user-form user-info"
+              type="avatar"
+              placeholder="avatar"
+              onChange={handleChange}
+              name="avatar"
+              value={formData.avatar}
             />
             {formErrors.passwordConfirmation && (
               <p className="user-form">{formErrors.passwordConfirmation}</p>

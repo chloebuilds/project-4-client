@@ -1,14 +1,14 @@
 import React from 'react'
-// import { useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 // import axios from 'axios'
 
-import { isAuthenticated } from '../../lib/auth'
+import { isAuthenticated } from '../../../lib/auth'
 // import { addNewSprint } from '../../../lib/api'
 // import Error from './Error'
 
 
 export default function NewSprint() {
-  // const history = useHistory()
+  const history = useHistory()
   const isLoggedIn = isAuthenticated()
   console.log(isLoggedIn)
   // Reac.useEffect(() => {
