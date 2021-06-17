@@ -24,16 +24,16 @@ function App() {
 
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/register/" component={Register} />
-        <Route path="/login/" component={Login} />
-        <Route path="/dashboard/" component={Dashboard} />
+        <Route path="/register" component={Register} />
+        <Route path="/login" component={Login} />
+        <Route path="/dashboard" component={Dashboard} />
         {/* <Route path="/sprints/new" component={NewSprint} />
         <Route path="/sprints/:sprintId" component={SprintShow} />
         <Route path="/sprints" component={SprintsIndex} /> */}
         
         
         {/* for any page not found */}
-        <Route path="/unauthorized/" component={NotAuthorized} />
+        <Route path="/unauthorized" component={NotAuthorized} />
         <Route exact path="*" component={NotFound} />
 
       </Switch>
