@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import ZenQuote from '../zenith/ZenQuote'
+
 import gradientBackground from '../../assets/gradient-background.jpg'
 import styled from 'styled-components'
 import Card from '../../styles/styled-components/Card'
@@ -11,29 +13,33 @@ import { Button } from '../../styles/styled-components/Button'
 function Home() {
 
   return (
-
-    <Wrapper>
-      <Title >Hello World, I&apos;m Zenith!</Title>
-      <div style={{ width: '500px', margin: '0 auto' }}>
-        <Card
-          isFlex
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-          padding="2rem"
-          margin="0 0 2rem"
-          background="#262526"
-          border="1px solid linear-gradient(to right, #D763CD, #8F44FD)"
-        >
+    <>
+      <img src="https://www.freepik.com/premium-vector/astronaut-earth-drawing_2714264.htm#page=1&query=space%20icons&position=23"></img>
+    
+      <Wrapper>
+        <Title >Hello World, I&apos;m Zenith!</Title>
+        <div style={{ width: '500px', margin: '0 auto' }}>
+          <Card
+            isFlex
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            padding="2rem"
+            margin="0 0 2rem"
+            background="#262526"
+            border="1px solid linear-gradient(to right, #D763CD, #8F44FD)"
+          >
         Card Content
       
-        </Card>
-      </div>
-      <ButtonContainer>
-        <Link to='/login'><Button>Login</Button></Link>
-        <Link to='/register'><Button>Register</Button></Link>
-      </ButtonContainer>
-    </Wrapper>
+          </Card>
+        </div>
+        <ButtonContainer>
+          <Link to='/login'><Button>Login</Button></Link>
+          <Link to='/register'><Button>Register</Button></Link>
+        </ButtonContainer>
+        <ZenQuote />
+      </Wrapper>
+    </>
   )
 }
 
