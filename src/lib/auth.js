@@ -24,6 +24,7 @@ function getPayload() {
 
 export function isAuthenticated() {
   const payload = getPayload()
+  console.log('payload', payload.userId)
   if (!payload) {
     return false
   }
