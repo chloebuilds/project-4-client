@@ -11,8 +11,12 @@ import NotFound from './components/common/NotFound'
 import NotAuthorized from './components/common/NotAuthorized'
 import { UserProvider } from './components/context/UserContext'
 // import SprintGoals from './components/zenith/SprintGoals'
+<<<<<<< HEAD
 import NewSprint from './components/common/new-sprint/NewSprint'
 import NewSprintSetUp from './components/common/new-sprint/NewSprintSetUp'
+=======
+import NewSprint from './components/common/NewSprint'
+>>>>>>> development
 
 import { GlobalStyle } from '../src/styles/styled-components/Global'
 
