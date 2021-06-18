@@ -11,11 +11,12 @@ export function removeToken() {
   window.localStorage.removeItem('token')
 }
 
-function getPayload() {
+export function getPayload() {
 
   const token = getToken()
   const parts = token?.split('.')
   if (!token || parts.length < 3 ) {
+    console.log()
     return false
   }
   
@@ -24,7 +25,6 @@ function getPayload() {
 
 export function isAuthenticated() {
   const payload = getPayload()
-  console.log('payload', payload.userId)
   if (!payload) {
     return false
   }
@@ -39,25 +39,4 @@ export function isOwner(userId) {
     return false
   }
   return userId === payload.userId
-}
-
-//* ADMIN FUNCTIONS
-export function setIsAdmin(isAdmin) {
-  window.localStorage.setItem('isAdmin', isAdmin)
-}
-
-export function getIsAdmin() {
-  return window.localStorage.getItem('isAdmin')
-}
-
-export function removeIsAdmin() {
-  window.localStorage.removeItem('isAdmin')
-}
-
-export function isAdmin() {
-  const isAdminToken = getIsAdmin()
-  if (!isAdminToken || isAdminToken !== 'true' ) {
-    return false
-  }
-  return 'true'
 }
