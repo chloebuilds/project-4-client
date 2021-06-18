@@ -30,6 +30,11 @@ export function getSingleSprint(sprintId) {
 //   return axios.delete(`${baseUrl}/sprints/${id}`, headers())
 // }
 
+// * SPRINT GOALS REQUESTS
+
+export function getAllSprintGoals(sprintId) {
+  return axios.get(`${baseUrl}/sprints/${sprintId}/sprint-goals`)
+}
 
 // * AUTH / USER REQUESTS
 
