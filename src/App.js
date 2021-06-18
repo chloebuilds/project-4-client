@@ -11,7 +11,9 @@ import NotFound from './components/common/NotFound'
 import NotAuthorized from './components/common/NotAuthorized'
 import { UserProvider } from './components/context/UserContext'
 // import SprintGoals from './components/zenith/SprintGoals'
-import NewSprint from './components/common/NewSprint'
+import NewSprint from './components/zenith/NewSprint'
+import NewSprintSetUp from './components/zenith/NewSprintSetUp'
+
 
 import { GlobalStyle } from '../src/styles/styled-components/Global'
 
@@ -32,10 +34,10 @@ function App() {
           <Route path="/login" component={Login} />
           <Route path="/dashboard" component={Dashboard} />
           {/* <Route path="/sprints/new" component={NewSprint} />
-        <Route path="/sprints/:sprintId" component={SprintShow} />
         <Route path="/sprints" component={SprintsIndex} /> */}
           {/* <Route path="/sprints/:sprintId/sprint-goals" component={SprintGoals} /> */}
           <Route path="/sprints/new" component={NewSprint} />
+          <Route path="/sprints/:sprintId" component={NewSprintSetUp} />
 
         
           {/* for any page not found */}

@@ -19,9 +19,10 @@ export function getPayload() {
     console.log()
     return false
   }
-  
+  console.log(JSON.parse(atob(parts[1])))
   return JSON.parse(atob(parts[1]))
 }
+
 
 export function isAuthenticated() {
   const payload = getPayload()

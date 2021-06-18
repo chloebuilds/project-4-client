@@ -29,6 +29,7 @@ function Login() {
         progress: undefined,
       })
       history.push('/dashboard')
+      // history.push('/sprints/new')
     } catch (e) {
       setIsError(true)
     }

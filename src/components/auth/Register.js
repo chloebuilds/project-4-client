@@ -18,7 +18,6 @@ function Register() {
 
   const handleSubmit = async event => {
     event.preventDefault()
-    console.log(formData)
     try {
       await registerUser(formData)
       toast.dark('🚀 You have registered!', {
