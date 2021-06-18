@@ -5,7 +5,7 @@ import Card from '../../styles/styled-components/Card'
 import { UserContext } from '../context/UserContext'
 
 import SprintGoals from '../zenith/SprintGoals'
-// import SprintHabits from '../zenith/SprintHabits'
+import SprintHabits from '../zenith/SprintHabits'
 // import DailyTodos from '../zenith/DailyTodos'
 import WeeklyIntention from '../zenith/WeeklyIntention'
 // import DailyMood from '../zenith/DailyMood'
@@ -31,9 +31,10 @@ function Dashboard() {
       <Card>
         <SprintGoals />
       </Card>
-      {/* <Card>
+      <Card>
         <SprintHabits />
       </Card>
+      {/* 
       <Card>
         <DailyTodos />
       </Card> */}
