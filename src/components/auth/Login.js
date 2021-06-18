@@ -1,39 +1,43 @@
 import React from 'react'
-import { useHistory, Link } from 'react-router-dom'
-import { loginUser } from '../../lib/api'
-import { setToken } from '../../lib/auth'
+import { Link } from 'react-router-dom'
+
 import useForm from '../hooks/useForm'
-import { ToastContainer, toast } from 'react-toastify'
+
+import { UserContext } from '../context/UserContext'
 
 function Login() {
-  const history = useHistory()
+  const { login } = React.useContext(UserContext)
+  
   const [isError, setIsError] = React.useState(false)
   const { formData, handleChange } = useForm({
     email: '',
     passwords: '',
   })
 
-  const handleSubmit = async event => {
-    event.preventDefault()
-
-    try {
-      const res = await loginUser(formData)
-      setToken(res.data.token)
-      toast.dark('🚀 Successfully logged in!', {
-        position: 'top-right',
-        autoClose: 4000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      })
-      history.push('/dashboard')
-      // history.push('/sprints/new')
-    } catch (e) {
-      setIsError(true)
-    }
+  const handleSubmit = (e) => {
+    login(e, formData, setIsError)
   }
+  // const handleSubmit = async event => {
+  //   event.preventDefault()
+
+  //   try {
+  //     const res = await loginUser(formData)
+  //     setToken(res.data.token)
+  //     toast.dark('🚀 Successfully logged in!', {
+  //       position: 'top-right',
+  //       autoClose: 4000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //     })
+  //     currentSprint ? history.push('/dashboard') : history.push('/sprints/new')
+      
+  //   } catch (e) {
+  //     setIsError(true)
+  //   }
+  // }
 
   return (
     <section className="user-forms">
@@ -76,7 +80,7 @@ function Login() {
         </footer>
         
       </section>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </section>
             
   )

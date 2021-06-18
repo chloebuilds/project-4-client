@@ -1,47 +1,44 @@
 import React from 'react'
-import { addNewSprint, getAllSprints } from '../../lib/api'
-// import { useHistory } from 'react-router-dom'
-// import axios from 'axios'
+import { addNewSprint } from '../../lib/api'
+import { useHistory } from 'react-router-dom'
 
-// import { isAuthenticated } from '../../../lib/auth'
 import { UserContext } from '../context/UserContext'
 import useForm from '../hooks/useForm'
-
-// import { addNewSprint } from '../../../lib/api'
-// import Error from './Error'
 
 
 export default function NewSprint() {
   // const [isError, setIsError] = React.useState(null)
   const [isStartingNewSprint, setisStartingNewSprint] = React.useState(false)
-  // const history = useHistory()
+  const history = useHistory()
   const { user } = React.useContext(UserContext)
   console.log(user)
   const isLoading = !user
   const { formData, formErrors, handleChange } = useForm({
     sprintName: '',
   })
-  
+
+  window.onload = function() {
+    console.log('LOADING')
+  }
 
   const handleStartToggle = () => {
     setisStartingNewSprint(!isStartingNewSprint)
   }
-  console.log(isStartingNewSprint)
 
   const handleNewSprint = async event => {
     event.preventDefault()
     try {
       await addNewSprint(formData)
-      const allSprints = await getAllSprints()
-      console.log(allSprints)
+      history.push('/sprints/setup')
     } catch (e) {
       console.log(e)
     }
   }
 
+
   return (
     <>
-      {isLoading && <div><p>ॐ</p></div>}
+      {isLoading && <div><p>ॐ..loading...ॐ</p></div>}
       {user && 
       <>
         <div className={ isStartingNewSprint ? 'no-show' : ''}>
@@ -66,14 +63,13 @@ export default function NewSprint() {
               )}
             </div>
             <button>
-            done!
+              done!
             </button>
           </form>
         
         </div>
       </>
       }
-      
     </>
   )
 }
