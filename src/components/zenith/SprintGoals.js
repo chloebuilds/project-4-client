@@ -1,40 +1,32 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
 
-import { getSingleSprint } from '../../lib/api'
+import { UserContext } from '../context/UserContext'
 
 function SprintGoal() {
 
-  const { sprintId } = useParams()
-  const [ sprint, setSprint ] = React.useState(null)
-  const [ sprintGoals, setSprintGoals ] = React.useState([])
+  const { currentSprint } = React.useContext(UserContext)
 
+  
+  const isLoading = !currentSprint
 
-  React.useEffect(() => {
-    const getData = async () => {
-      try {
-        console.log(sprintId)
-        const res = await getSingleSprint(sprintId)
-        setSprint(res.data)
-        setSprintGoals(res.data.sprint_goals)
-      } catch (err) {
-        <p>Something went wrong!</p>
-      }
-    }
-    getData()
-  }, [sprintId])
-
-  console.log(sprint)
-  console.log(sprintGoals, 'heyhey')
 
   return (
     <>
-      <p>hello!</p>
-      {sprintGoals.map(goal => (
-        <> 
-          <p>{goal.goal_name}lol</p>
-        </>
-      ))}
+      {isLoading && <div><p>loading...</p></div>}
+      {currentSprint &&
+      <> 
+        <h3>Sprint Goals</h3>
+        {currentSprint?.sprintGoals.map(goal => (
+          <div key={goal.id}>
+            <p>{goal.goalName}</p>
+            <p>{goal.goalDescription}</p>
+
+          </div>
+          
+        ))}
+      </>
+      }
+    
     </>
   )
 
