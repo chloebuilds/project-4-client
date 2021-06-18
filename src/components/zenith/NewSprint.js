@@ -1,11 +1,11 @@
 import React from 'react'
-import { addNewSprint, getAllSprints } from '../../../lib/api'
+import { addNewSprint, getAllSprints } from '../../lib/api'
 // import { useHistory } from 'react-router-dom'
 // import axios from 'axios'
 
 // import { isAuthenticated } from '../../../lib/auth'
-import { UserContext } from '../../context/UserContext'
-import useForm from '../../hooks/useForm'
+import { UserContext } from '../context/UserContext'
+import useForm from '../hooks/useForm'
 
 // import { addNewSprint } from '../../../lib/api'
 // import Error from './Error'
