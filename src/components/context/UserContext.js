@@ -16,6 +16,8 @@ export const UserProvider = (props) => {
   const { sub: userId } = getPayload() // getting the userID(sub) from the payload
   const [user, setUser] = useState(null)
   const currentSprint = user?.createdSprints.find(sprint => Date.parse(sprint.endDate) > Date.now() )
+  const sprintGoals = currentSprint?.sprintGoals
+  console.log(sprintGoals)
 
   React.useEffect(() => {
     const getData = async () => {
