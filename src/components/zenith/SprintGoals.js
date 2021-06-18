@@ -18,7 +18,7 @@ function SprintGoal() {
         setSprint(res.data)
         setSprintGoals(res.data.sprint_goals)
       } catch (err) {
-        <p>Something went wrong!</p>
+        console.log(err)
       }
     }
     getData()
