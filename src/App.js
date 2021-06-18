@@ -37,7 +37,7 @@ function App() {
         <Route path="/sprints" component={SprintsIndex} /> */}
           {/* <Route path="/sprints/:sprintId/sprint-goals" component={SprintGoals} /> */}
           <Route path="/sprints/new" component={NewSprint} />
-          <Route path="/sprints/:sprintId" component={NewSprintSetUp} />
+          <Route path="/sprints/setup" component={NewSprintSetUp} />
 
         
           {/* for any page not found */}

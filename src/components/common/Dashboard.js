@@ -1,4 +1,5 @@
 import React from 'react'
+// import { useHistory } from 'react-router-dom'
 // import styled from 'styled-components'
 import Card from '../../styles/styled-components/Card'
 import { UserContext } from '../context/UserContext'
@@ -14,10 +15,12 @@ import ZenQuote from '../zenith/ZenQuote'
 
 
 function Dashboard() {
-
+  // const history = useHistory()
   const { user, currentSprint } = React.useContext(UserContext)
   console.log(user, currentSprint)
-
+  // if (!currentSprint) {
+  //   history.push('/sprints/new')
+  // }
   return (
     <>
       <h2>Dashboard</h2>

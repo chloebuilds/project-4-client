@@ -39,7 +39,7 @@ function Register() {
   return (
     <section>
       <h1>Create a new account</h1>
-      <form onSubmit={handleSubmit} setError={setError}>
+      <form onSubmit={handleSubmit}>
         <div>
           <input
             placeholder="Name"
