@@ -19,6 +19,7 @@ export const UserProvider = (props) => {
 
   const history = useHistory()
   const [user, setUser] = useState(null)
+  console.log(user)
   const currentSprint = user?.createdSprints.find(sprint => Date.parse(sprint.endDate) > Date.now())
   const location = useLocation()
   const [isLoggedIn, setIsLoggedIn] = useState(false)

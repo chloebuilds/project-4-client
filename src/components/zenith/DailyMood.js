@@ -15,15 +15,13 @@ function DailyMoods() {
       {currentSprint &&
       <> 
         <h3>Daily Moods</h3>
+        <button type="checkbox">Happy</button>
+        <button type="checkbox">Sad</button>
+        <button type="checkbox">Angry</button>
+        <button type="checkbox">Anxious</button>
         {/* {currentSprint?.moods.map(mood => (
-          <div key={mood.id}> */}
-            <button type="checkbox">Happy</button>
-            <button type="checkbox">Sad</button>
-            <button type="checkbox">Angry</button>
-            <button type="checkbox">Anxious</button>
-          {/* </div> */}
-          
-        {/* ))} */}
+          <div key={mood.id}></div>
+          ))} */}
       </>
       }
     

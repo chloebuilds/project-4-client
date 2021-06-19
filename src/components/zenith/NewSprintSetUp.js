@@ -20,7 +20,7 @@ export default function NewSprintSetUp() {
       <>
         <h1>{currentSprint.sprintName}</h1>
         <p>every sprint needs a goal you want to achieve and a habit you want to build by the end of your sprint and <span>{currentSprint.sprintName}</span> is no different.</p>
-        <p>you can have as many goals/habits as you wish, but be vary</p>
+        <p>you can have as many goals/habits as you wish, but we recommend you have at least 2</p>
         <h2>ADD GOALS AND DISPLAY</h2>
         <h2>ADD HABITS AND DISPLAY</h2>
         <Link to="/dashboard"><button>take me to my dashboard</button></Link>
