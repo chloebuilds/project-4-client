@@ -45,15 +45,15 @@ export const UserProvider = props => {
     try {
       const res = await loginUser(formData)
       setToken(res.data.token)
-      toast.dark('🚀 Successfully logged in!', {
-        position: 'top-right',
-        autoClose: 4000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      })
+      // toast.dark('🚀 Successfully logged in!', {
+      //   position: 'top-right',
+      //   autoClose: 4000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      // })
       setIsLoggedIn(true)
       currentSprint ? history.push('/dashboard') : history.push('/sprints/new')
     } catch (e) {
@@ -71,6 +71,7 @@ export const UserProvider = props => {
         hasNewHabitOrGoal,
         setHasNewHabitOrGoal,
         login,
+        setUser,
       }}
     >
       {/* props.children is a placeholder for all the component you are going to wrap your provider around. */}

@@ -3,7 +3,7 @@ import { UserContext } from '../context/UserContext'
 
 export default function SprintGoalsDisplay() {
   const { currentSprint } = React.useContext(UserContext)
-  const [ goals, setGoals ] = React.useState([])
+  const [goals, setGoals] = React.useState([])
   const isLoading = !currentSprint
   const currentGoals = currentSprint?.sprintGoals
 
@@ -16,31 +16,27 @@ export default function SprintGoalsDisplay() {
 
   return (
     <>
-      {isLoading && <div><p>ॐ..loading...ॐ</p></div>}
-      {currentSprint && 
-      <>
-        <h3>goals</h3>
-        {goals?.map(goal => (
-          <div key={goal.id}>
-            <ul>
-              <li>
-                <h4>{goal.goalName}</h4>
+      {isLoading && (
+        <div>
+          <p>loading...</p>
+        </div>
+      )}
+      {currentSprint && (
+        <>
+          <h3>Sprint Goals</h3>
+          <ol>
+            {currentSprint?.sprintGoals.map(goal => (
+              <li key={goal.id}>
+                <p>{goal.goalName}</p>
                 <p>{goal.goalDescription}</p>
               </li>
-            </ul>
-          </div>
-        ))}
-      </>
-      }
+            ))}
+          </ol>
+        </>
+      )}
     </>
   )
 }
-
-
-
-
-
-
 
 // import React from 'react'
 
@@ -50,15 +46,13 @@ export default function SprintGoalsDisplay() {
 
 //   const { currentSprint } = React.useContext(UserContext)
 
-  
 //   const isLoading = !currentSprint
-
 
 //   return (
 //     <>
 //       {isLoading && <div><p>loading...</p></div>}
 //       {currentSprint &&
-//       <> 
+//       <>
 //         <h3>Sprint Goals</h3>
 //         {currentSprint?.sprintGoals.map(goal => (
 //           <div key={goal.id}>
@@ -66,11 +60,11 @@ export default function SprintGoalsDisplay() {
 //             <p>{goal.goalDescription}</p>
 
 //           </div>
-          
+
 //         ))}
 //       </>
 //       }
-    
+
 //     </>
 //   )
 

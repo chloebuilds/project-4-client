@@ -1,62 +1,98 @@
 import React from 'react'
-// import { useHistory } from 'react-router-dom'
-// import styled from 'styled-components'
-import Card from '../../styles/styled-components/Card'
+import { useHistory } from 'react-router-dom'
+import styled from 'styled-components'
+import Card from '../../styles/styled-components/GlassCard'
 import { UserContext } from '../context/UserContext'
-
+import DailyGratitudes from '../zenith/DailyGratitudes'
 import SprintGoals from '../zenith/SprintGoals'
 import SprintHabits from '../zenith/SprintHabits'
 // import DailyTodos from '../zenith/DailyTodos'
 import WeeklyIntention from '../zenith/WeeklyIntention'
 import DailyMoods from '../zenith/DailyMood'
-// import DailyEnergy from '../zenith/DailyEnergy'
+import DailyEnergy from '../zenith/DailyEnergy'
 import ZenQuote from '../zenith/ZenQuote'
-// import Calendar from '../zenith/Calendar'
+import Calendar from '../zenith/Calendar'
 import Weather from '../zenith/Weather'
+import gradientBackground from '../../assets/gradient-background.jpg'
+import { DateTime } from 'luxon'
 
+function calculateDaysIntoSprint(startDate) {
+  const today = DateTime.now()
+  const start = DateTime.fromISO(startDate)
+  const diff = today.diff(start, 'days')
+  return Math.round(diff.toObject().days)
+}
 
 function Dashboard() {
-  // const history = useHistory()
+  const history = useHistory()
   const { user, currentSprint } = React.useContext(UserContext)
-  console.log(user, currentSprint)
-  // if (!currentSprint) {
-  //   history.push('/sprints/new')
-  // }
+  console.log('currentSprint', currentSprint)
+
+  const currentDay = calculateDaysIntoSprint(currentSprint?.startDate)
+
+  if (user && !currentSprint) {
+    history.push('/sprints/new')
+  }
+
   return (
     <>
-      <h2>Dashboard</h2>
-
-      <Card>
-        <Weather />
-      </Card>
-      <Card>
-        <ZenQuote />
-      </Card>
-      <Card>
-        <SprintGoals />
-      </Card>
-      <Card>
-        <SprintHabits />
-      </Card>
-      {/* 
+      
+      <Section>
+        <Header>
+          <Card>
+            <h2>Nice to see you, {user?.name}, welcome to your daily dashboard!</h2>
+            <p>You are currently on {currentSprint?.sprintName} and you are on day {currentDay} of 28. You got this!</p>
+          </Card>
+        </Header>
+        <Card>
+          <WeeklyIntention />
+        </Card>
+        <Card>
+          <DailyGratitudes />
+        </Card>
+        <Card>
+          <Weather />
+        </Card>
+        <Card>
+          <Calendar />
+        </Card>
+        
+        <Card>
+          <ZenQuote />
+        </Card>
+        <Card>
+          <SprintGoals />
+        </Card>
+        <Card>
+          <SprintHabits />
+        </Card>
+        {/* 
       <Card>
         <DailyTodos />
       </Card> */}
-      <Card>
-        <WeeklyIntention />
-      </Card>
-      <Card>
-        <DailyMoods />
-      </Card>
-      {/* <Card>
-        <DailyEnergy />
-      </Card>
-      <Card>
-        <Calendar />
-      </Card> */}
+        <Card>
+          <DailyMoods />
+        </Card>
+        <Card>
+          <DailyEnergy />
+        </Card>
+      
+      </Section>
     </>
   )
 }
 
 export default Dashboard
 
+const Section = styled.section`
+  background-image: url(${gradientBackground});
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+`
+const Header = styled.section`
+  width: 100%;
+`
