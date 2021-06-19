@@ -75,6 +75,7 @@ function DailyGratitudes() {
       console.log(err)
     }
   }
+  console.log(inputRefs.current)
 
   const handleEdit = (e) => {
     setGratitudes(existingGratitudes => {
