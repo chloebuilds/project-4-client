@@ -4,7 +4,7 @@ import { baseUrl } from '../config.js'
 
 function headers() {
   return {
-    headers: { Authorization: `Bearer ${getToken()}` }, 
+    headers: { Authorization: `Bearer ${getToken()}` },
   }
 }
 
@@ -41,17 +41,27 @@ export function getAllSprintGoals(sprintId) {
 export function getAllSprintHabits(sprintId) {
   return axios.get(`${baseUrl}/sprints/${sprintId}/sprint-habits/`)
 }
-export function newSprintHabit(sprintId) {
-  return axios.post(`${baseUrl}/sprints/${sprintId}/sprint-habits/`)
+export function newSprintHabit(sprintId, formData) {
+  return axios.post(
+    `${baseUrl}/sprints/${sprintId}/sprint-habits/`,
+    formData,
+    headers()
+  )
 }
 export function getASprintHabit(sprintId, habitId) {
   return axios.get(`${baseUrl}/sprints/${sprintId}/sprint-habits/${habitId}/`)
 }
 export function deleteASprintHabit(sprintId, habitId) {
-  return axios.delete(`${baseUrl}/sprints/${sprintId}/sprint-habits/${habitId}/`)
+  return axios.delete(
+    `${baseUrl}/sprints/${sprintId}/sprint-habits/${habitId}/`
+  )
 }
-export function editASprintHabit(sprintId, habitId) {
-  return axios.put(`${baseUrl}/sprints/${sprintId}/sprint-habits/${habitId}/`)
+export function editASprintHabit(sprintId, habitId, formData) {
+  return axios.put(
+    `${baseUrl}/sprints/${sprintId}/sprint-habits/${habitId}/`,
+    formData,
+    headers()
+  )
 }
 
 // * AUTH / USER REQUESTS
