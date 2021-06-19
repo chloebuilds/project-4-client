@@ -3,7 +3,7 @@ import React from 'react'
 // import styled from 'styled-components'
 import Card from '../../styles/styled-components/Card'
 import { UserContext } from '../context/UserContext'
-
+import DailyGratitudes from '../zenith/DailyGratitudes'
 import SprintGoals from '../zenith/SprintGoals'
 import SprintHabits from '../zenith/SprintHabits'
 // import DailyTodos from '../zenith/DailyTodos'
@@ -46,7 +46,10 @@ function Dashboard() {
         <WeeklyIntention />
       </Card>
       <Card>
-        <DailyMoods />
+        <DailyGratitudes />
+      </Card>
+      {/* <Card>
+        <DailyMood />
       </Card>
       <Card>
         <DailyEnergy />
