@@ -48,8 +48,8 @@ function Dashboard() {
       <Card>
         <DailyGratitudes />
       </Card>
-      {/* <Card>
-        <DailyMood />
+      <Card>
+        <DailyMoods />
       </Card>
       <Card>
         <DailyEnergy />

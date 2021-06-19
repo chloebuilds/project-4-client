@@ -65,11 +65,7 @@ export const UserProvider = (props) => {
   return (
   // This UserContext is the same UserContext created on line 6 when you called createContext()
   // createContext() returns a .Provider where you can give your context some value.
-<<<<<<< HEAD
-    <UserContext.Provider value={{ user, currentSprint, login }}>
-=======
-    <UserContext.Provider value={{ user, setUser, currentSprint }}>
->>>>>>> chloe-login-register
+    <UserContext.Provider value={{ user, setUser, currentSprint, login }}>
       {/* props.children is a placeholder for all the component you are going to wrap your provider around. */}
       {props.children}
     </UserContext.Provider>
