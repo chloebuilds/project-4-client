@@ -16,14 +16,18 @@ function SprintGoal() {
       {currentSprint &&
       <> 
         <h3>Sprint Goals</h3>
-        {currentSprint?.sprintGoals.map(goal => (
-          <div key={goal.id}>
-            <p>{goal.goalName}</p>
-            <p>{goal.goalDescription}</p>
+        <ol>
 
-          </div>
+          {currentSprint?.sprintGoals.map(goal => (
+            <li key={goal.id}>
+              <p>{goal.goalName}</p>
+              <p>{goal.goalDescription}</p>
+            </li>
+          ))}
+
+        </ol>
           
-        ))}
+
       </>
       }
     

@@ -36,6 +36,8 @@ export const UserProvider = (props) => {
     getData()
   }, [location, isLoggedIn])
 
+  console.log(user)
+
   const login = async (event, formData, setIsError) => {
     event.preventDefault()
 

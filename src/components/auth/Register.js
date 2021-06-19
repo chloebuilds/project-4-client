@@ -14,6 +14,7 @@ function Register() {
     password: '',
     passwordConfirmation: '',
     avatar: '',
+    city: '',
   })
 
   const handleSubmit = async event => {
@@ -103,6 +104,14 @@ function Register() {
             onChange={handleChange}
             name="avatar"
             value={formData.avatar}
+          />
+        </div>
+        {error && <p>{error}</p>}
+        <div>
+          <input placeholder="Your city"
+            onChange={handleChange}
+            name="city"
+            value={formData.city}
           />
         </div>
         {error && <p>{error}</p>}
