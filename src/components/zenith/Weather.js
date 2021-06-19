@@ -19,9 +19,12 @@ function Weather() {
   // console.log(user?.city)
 
   React.useEffect(() => {
+    if (!user) {
+      return
+    }
     const getData = async () => {
       try {
-        const res = await axios.get(baseUrl + `q=${user?.city}&appid=${apiKey}`)
+        const res = await axios.get(baseUrl + `q=${user.city}&appid=${apiKey}`)
         setWeatherData(res.data)
         
       } catch (err) {
@@ -29,7 +32,7 @@ function Weather() {
       }
     }
     getData()
-  }, [user?.city])
+  }, [user])
 
   return (
     <>

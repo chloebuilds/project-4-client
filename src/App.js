@@ -14,7 +14,6 @@ import { UserProvider } from './components/context/UserContext'
 import NewSprint from './components/zenith/NewSprint'
 import NewSprintSetUp from './components/zenith/NewSprintSetUp'
 
-
 import { GlobalStyle } from '../src/styles/styled-components/Global'
 
 
@@ -26,7 +25,7 @@ function App() {
       <UserProvider>
         <GlobalStyle />
         <Nav />
-        <ToastContainer />
+      
 
         <Switch>
           <Route exact path="/" component={Home} />
@@ -45,6 +44,7 @@ function App() {
           <Route exact path="*" component={NotFound} />
         
         </Switch>
+        <ToastContainer />
       </UserProvider>
     </Router>
     

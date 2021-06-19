@@ -1,9 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import { toast } from 'react-toastify'
 import useForm from '../hooks/useForm'
-
 import { UserContext } from '../context/UserContext'
+
+import styled from 'styled-components'
+import Card from '../../styles/styled-components/GlassCard'
+import gradientBackground from '../../assets/gradient-background.jpg'
 
 function Login() {
   const { login } = React.useContext(UserContext)
@@ -16,33 +19,21 @@ function Login() {
 
   const handleSubmit = (e) => {
     login(e, formData, setIsError)
+    toast.dark('🚀 Successfully logged in!', {
+      position: 'top-right',
+      autoClose: 4500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    })
   }
-  // const handleSubmit = async event => {
-  //   event.preventDefault()
-
-  //   try {
-  //     const res = await loginUser(formData)
-  //     setToken(res.data.token)
-  //     toast.dark('🚀 Successfully logged in!', {
-  //       position: 'top-right',
-  //       autoClose: 4000,
-  //       hideProgressBar: false,
-  //       closeOnClick: true,
-  //       pauseOnHover: true,
-  //       draggable: true,
-  //       progress: undefined,
-  //     })
-  //     currentSprint ? history.push('/dashboard') : history.push('/sprints/new')
-      
-  //   } catch (e) {
-  //     setIsError(true)
-  //   }
-  // }
 
   return (
-    <section className="user-forms">
-      <section className="form-container">
-        <h1 className="user-form">Log In</h1>
+    <Section>
+      <Card>
+        <h1>Log In</h1>
         <form className="user-form" onSubmit={handleSubmit} >
           
           <div>
@@ -79,11 +70,15 @@ function Login() {
           <h5 className="user-form">New to Zenith? <span><Link to="/register">Register now</Link></span></h5>
         </footer>
         
-      </section>
-      {/* <ToastContainer /> */}
-    </section>
-            
+      </Card>
+    </Section>          
   )
 } 
 
 export default Login
+
+const Section = styled.section`
+  background-image: url(${gradientBackground});
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+`

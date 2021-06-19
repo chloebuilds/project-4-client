@@ -1,0 +1,89 @@
+$off-white: rgb(247, 247, 247);
+$white-transparent: rgba(247, 247, 247, 0.658);
+$off-black: #100f10;
+
+.navbar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1em;
+  color: white;
+  height: 70px;
+  z-index: 3;
+  transition-timing-function: ease-in;
+  transition: all 0.8s;
+  align-items: center;
+}
+
+.navbar-show-color {
+  background: $white-transparent;
+  color: $off-black;
+}
+
+.navbar-default-color {
+  background: $off-white;
+  color: $off-black;
+}
+
+.navbar > img {
+  position: fixed;
+  left: 1em;
+}
+
+.navbar > div {
+  right: 1em;
+}
+
+/* Side navbar styling */
+.side-nav-menu-container {
+  width: 250px;
+  color: $off-black;
+  background-color: $white-transparent;
+  height: 100%;
+  position: fixed;
+  z-index: 2;
+  right: -100%;
+}
+
+.side-nav-menu-container.active {
+  right: 0;
+  transition: all 0.4s;
+}
+
+.navbar-content-container > li {
+  // padding: .5em;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  text-align: left;
+}
+
+.navbar-item {
+  color: $off-black;
+  text-decoration: none;
+  font-size: 17px;
+  text-transform: uppercase;
+  // a:link {
+  //   color: white;
+  // }
+}
+
+.navbar-item:hover {
+  color: #f06455;
+}
+
+.navbar-content-container {
+  width: 100%;
+}
+
+// Font awesome icons
+.fa-items-icon {
+  margin-right: 9px;
+  cursor: pointer;
+}
+
+.logout-link {
+  cursor: pointer;
+}
