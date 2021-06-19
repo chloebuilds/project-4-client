@@ -33,9 +33,8 @@ function ZenQuote() {
       <div>
         {loading && <p className="loading-error">Loading..</p>}
         {error && <p className="loading-error">Cannot retrieve zen quote, sorry!</p>}
-      return (
-        <p>{quoteData.h}</p>
-      )
+        <div dangerouslySetInnerHTML={{ __html: quoteData[0]?.h }}>
+        </div>
       </div>
     </>
   )

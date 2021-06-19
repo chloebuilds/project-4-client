@@ -15,6 +15,7 @@ const StyledCard = styled.div`
   ${(p) => p.isFlex && flexStyles};
   border-radius: 0.75rem;
   color: white;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 `
 
 const Card = ({
