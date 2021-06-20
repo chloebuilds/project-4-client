@@ -19,7 +19,7 @@ function DailyGratitudes() {
       return
     }
 
-    const filledGratitudes = [...currentSprint.dailyGratitudes, ...draftGratitudes]
+    const filledGratitudes = [...currentSprint.dailyGratitudes, ...draftGratitudes].sort((a,b) => a.id && a.id - b.id)
     filledGratitudes.length = 3
     const syncedGratitudes = filledGratitudes.reduce(
       (state, gratitude, i) => ({
@@ -98,6 +98,7 @@ function DailyGratitudes() {
   return (
     <>
       <h3>Daily Gratitude</h3>
+      <p>Today I am grateful for...</p>
       {gratitudes &&
         Object.entries(gratitudes).map(([label, gratitude], i) => {
           return (
