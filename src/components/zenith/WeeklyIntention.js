@@ -107,17 +107,17 @@ export default WeeklyIntention
 
 const Styled = {
   P: styled.p`
-  display: inline-block;
-`,
+    display: inline-block;
+  `,
   Input: styled.input`
-  outline: none;
+    outline: none;
     border: none;
     background: rgba(247, 247, 247, 0.2);
     color: #262526;
     padding: 7px;
     margin: 1px;
     &::placeholder {
-        color: #100F10;
-      }
-`,
+      color: #100f10;
+    }
+  `,
 }

@@ -16,11 +16,9 @@ export default function NewSprintSetUp() {
 
   const { formData, formErrors, handleChange, setFormData } = useForm({
     habitName: '',
-    habitDescription: '',
   })
   // const { formData, formErrors, handleChange, setFormData } = useForm({
   //   habitName: '',
-  //   habitDescription: '',
   // })
 
   const handleNewHabit = async event => {
@@ -31,7 +29,6 @@ export default function NewSprintSetUp() {
       await newSprintHabit(currentSprint.id, formData)
       setFormData({
         habitName: '',
-        habitDescription: '',
       })
       setHasNewHabitOrGoal(!hasNewHabitOrGoal)
     } catch (e) {
@@ -90,17 +87,6 @@ export default function NewSprintSetUp() {
                   value={formData.habitName}
                 />
                 {formErrors.habitName && <p>{formErrors.habitName}</p>}
-              </div>
-              <div>
-                <input
-                  placeholder="Drink 2L water every day"
-                  onChange={handleChange}
-                  name="habitDescription"
-                  value={formData.habitDescription}
-                />
-                {formErrors.habitDescription && (
-                  <p>{formErrors.habitDescription}</p>
-                )}
               </div>
               <button>done!</button>
             </form>
