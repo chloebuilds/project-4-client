@@ -8,8 +8,9 @@ function DailyEnergy() {
     <>
       <h5>Energy level</h5>
       <Slider 
-        min={1} max={11} step={1}
-        // marks={}
+        min={1} max={10} step={1}
+        marks={{ 10: 10 }}
+
       
       />
 
