@@ -4,11 +4,9 @@ import { registerUser } from '../../lib/api'
 import { useHistory, Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
-import styled from 'styled-components'
+// import styled from 'styled-components'
 import Card from '../../styles/styled-components/GlassCard'
-import gradientBackground from '../../assets/gradient-background.jpg'
-
-
+// import gradientBackground from '../../assets/gradient-background.jpg'
 
 function Register() {
   const history = useHistory()
@@ -38,7 +36,6 @@ function Register() {
       history.push('/login')
     } catch (e) {
       setError(e.response.data.message)
-      
     }
   }
 
@@ -54,9 +51,7 @@ function Register() {
               name="name"
               value={formData.name}
             />
-            {formErrors.name && (
-              <p>{formErrors.name}</p>
-            )}
+            {formErrors.name && <p>{formErrors.name}</p>}
           </div>
           <div>
             <input
@@ -65,9 +60,7 @@ function Register() {
               name="username"
               value={formData.username}
             />
-            {formErrors.username && (
-              <p>{formErrors.username}</p>
-            )}
+            {formErrors.username && <p>{formErrors.username}</p>}
           </div>
           <div>
             <input
@@ -77,9 +70,7 @@ function Register() {
               name="email"
               value={formData.email}
             />
-            {formErrors.email && (
-              <p>{formErrors.email}</p>
-            )}
+            {formErrors.email && <p>{formErrors.email}</p>}
           </div>
           <div>
             <input
@@ -89,9 +80,7 @@ function Register() {
               name="password"
               value={formData.password}
             />
-            {formErrors.password && (
-              <p>{formErrors.password}</p>
-            )}
+            {formErrors.password && <p>{formErrors.password}</p>}
           </div>
           <div>
             <input
@@ -106,7 +95,8 @@ function Register() {
             )}
           </div>
           <div>
-            <input placeholder="Add your face!"
+            <input
+              placeholder="Add your face!"
               onChange={handleChange}
               name="avatar"
               value={formData.avatar}
@@ -114,7 +104,8 @@ function Register() {
           </div>
           {error && <p>{error}</p>}
           <div>
-            <input placeholder="Your city"
+            <input
+              placeholder="Your city"
               onChange={handleChange}
               name="city"
               value={formData.city}
@@ -122,14 +113,16 @@ function Register() {
           </div>
           {error && <p>{error}</p>}
           <div>
-            <button type="submit">
-            Register
-            </button>
-            
+            <button type="submit">Register</button>
           </div>
         </form>
         <footer>
-          <h5>Already signed up? <span><Link to="/login">Login instead.</Link></span> </h5>
+          <h5>
+            Already signed up?{' '}
+            <span>
+              <Link to="/login">Login instead.</Link>
+            </span>{' '}
+          </h5>
         </footer>
       </Card>
     </section>
@@ -138,9 +131,8 @@ function Register() {
 
 export default Register
 
-
-const Section = styled.section`
-  background-image: url(${gradientBackground});
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-`
+// const Section = styled.section`
+// background-image: url(${gradientBackground});
+// background-repeat: no-repeat;
+// background-attachment: fixed;
+// `

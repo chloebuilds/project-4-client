@@ -15,6 +15,7 @@ import {
 import styled from 'styled-components'
 import { Link, useHistory } from 'react-router-dom'
 import { isAuthenticated, removeToken } from '../../lib/auth'
+// import logo from '../../assets/zenithLogo.png'
 
 function Nav() {
   const history = useHistory()
@@ -49,6 +50,8 @@ function Nav() {
             zenith
           </ZenithH1>
         </Link>
+        {/* <LogoImg src={logo} alt='logo' />
+        <ZenithH1>zenith</ZenithH1> */}
 
         <div className="menu-items-end" onClick={handleSideBar}>
           <Hamburger toggled={sidebarShow} toggle={setSidebarShow} />
@@ -132,3 +135,11 @@ function NavLink({ to, icon, text }) {
     </li>
   )
 }
+//   padding-left: 30px;
+//   margin-left: 80px;
+// `
+// const LogoImg = styled.img`
+//   height: 60px;
+//   width: 60px;
+
+// `

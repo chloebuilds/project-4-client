@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Card from '../../styles/styled-components/GlassCard'
 import { UserContext } from '../context/UserContext'
 import DailyGratitudes from '../zenith/DailyGratitudes'
-import SprintGoals from '../zenith/SprintGoals'
+import DisplaySprintGoals from '../zenith/DisplaySprintGoals'
 import SprintHabits from '../zenith/SprintHabits'
 // import DailyTodos from '../zenith/DailyTodos'
 import WeeklyIntention from '../zenith/WeeklyIntention'
@@ -60,7 +60,7 @@ function Dashboard() {
           <ZenQuote />
         </Card>
         <Card>
-          <SprintGoals />
+          <DisplaySprintGoals />
         </Card>
         <Card>
           <SprintHabits />

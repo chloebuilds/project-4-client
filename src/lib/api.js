@@ -64,6 +64,14 @@ export function editASprintHabit(sprintId, habitId, formData) {
   )
 }
 
+
+// * DAILY MOODS 
+
+export function addMoods(sprintId, data) {
+  return axios.post(`${baseUrl}/sprints/${sprintId}/moods/`, data)
+}
+
+
 // * AUTH / USER REQUESTS
 
 export function registerUser(formData) {
@@ -76,4 +84,7 @@ export function loginUser(formData) {
 
 export function getUser(userId) {
   return axios.get(`${baseUrl}/auth/profile/${userId}/`)
+}
+export function reset(userId) {
+  return axios.post(`${baseUrl}/auth/profile/${userId}/`)
 }

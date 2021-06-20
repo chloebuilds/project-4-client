@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { UserContext } from '../context/UserContext'
 import useForm from '../hooks/useForm'
 import Card from '../../styles/styled-components/Card'
-import SprintGoals from './SprintGoals'
+import NewSprintGoals from './NewSprintGoals'
 import SprintHabits from './SprintHabits'
 // import useForm from '../hooks/useForm'
 
@@ -78,9 +78,9 @@ export default function NewSprintSetUp() {
           </p>
 
           <Card>
-            <SprintGoals />
+            <NewSprintGoals />
           </Card>
-          <Card>
+          {/* <Card>
             <form onSubmit={handleNewHabit}>
               <div>
                 <input
@@ -107,7 +107,7 @@ export default function NewSprintSetUp() {
           </Card>
           <Card>
             <SprintHabits />
-          </Card>
+          </Card> */}
           <Link to="/dashboard">
             <button>sprint dashboard</button>
           </Link>
