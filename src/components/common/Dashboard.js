@@ -27,7 +27,7 @@ function calculateDaysIntoSprint(startDate) {
 function Dashboard() {
   const history = useHistory()
   const { user, currentSprint } = React.useContext(UserContext)
-  console.log('currentSprint', currentSprint)
+
 
   const currentDay = calculateDaysIntoSprint(currentSprint?.startDate)
 

@@ -11,6 +11,7 @@ const GlassCard = styled.div`
   background: rgba(255,255,255, 0.1);
   padding: 2em;
   margin: 1em;
+  margin-left: 4em;
   z-index: 1;
   backdrop-filter: blur(40px);
   border: solid 1.5spx transparent;
