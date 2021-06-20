@@ -13,7 +13,8 @@ export const Button = styled.button`
   background-clip: padding-box;
   position: relative;
   color: #FFF;
-  width: 150px;
+  width: ${props => props.width || '170px'};
+  margin: 2px;
   background-image: linear-gradient(90deg, #7b81ec, #898dda);
   cursor: pointer;
   text-transform: uppercase;
@@ -22,7 +23,7 @@ export const Button = styled.button`
   &:hover {
     transform: scale(1.05);
   }
-
+Z
   &:before {
     content: "";
     width: 100%;
@@ -57,3 +58,5 @@ export const Button = styled.button`
     }
   }
 `
+
+/* url(${gradientBackground}) */

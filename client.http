@@ -1,6 +1,6 @@
 @userId = 1
 @token = eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjEsImV4cCI6MTYyNDY1OTgwNX0.dfcADNkLB0A8ctSv2sCYnvotz3aFrV05Vd6xADxcfkM
-@sprintId = 4
+@sprintId = 7
 @goalId = 1
 @habitId = 1
 @intentionId = 1
@@ -308,4 +308,6 @@ Content-Type: application/json
   "dailyGratitude": "Still coffee"
 } 
 
+###
 
+GET https://secret-ocean-49799.herokuapp.com/https://zenquotes.io/api/random

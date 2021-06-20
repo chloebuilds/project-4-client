@@ -3,11 +3,15 @@ import styled from 'styled-components'
 import { UserContext } from '../context/UserContext'
 import axios from 'axios'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
+
 
 
 
 function DailyGratitudes() {
   const { currentSprint } = React.useContext(UserContext) //getting current sprint from context
+  const isLoading = !currentSprint
   const inputRefs = React.useRef([React.createRef(), React.createRef(), React.createRef()]) // creating 3 refs so that we can assign the inputs to them and have access to .focus() and .blur() (methods on inputs)
   const [gratitudes, setGratitudes] = React.useState({ // creating state to hold the 3 gratitudes (3 because we decided on 3). State ALWAYS needs to have 3 gratitudes in it because we are mapping over the objects in state to render a <p> tag/input
     gratitude1: { draft: '', final: '', id: null }, // id: null is so that we can edit. Id's are only added once they are sent to back-end
@@ -39,7 +43,11 @@ function DailyGratitudes() {
   const handleChange = (e) => {
     setGratitudes({ // updating the state
       ...gratitudes,
-      [e.target.name]: { draft: e.target.value, final: '', id: gratitudes[e.target.name].id }, // takes the name on the input and updating that property so that it's draft is the value of whats in the input. The final is a blank string so that we continue to render the input and the id is whatever it already was - either null or the id from the back-end. This is just updating the state.
+      [e.target.name]: 
+      { draft: e.target.value, 
+        final: '', 
+        id: gratitudes[e.target.name].id }, 
+      // takes the name on the input and updating that property so that it's draft is the value of whats in the input. The final is a blank string so that we continue to render the input and the id is whatever it already was - either null or the id from the back-end. This is just updating the state.
     })
   }
 
@@ -89,13 +97,8 @@ function DailyGratitudes() {
         final: '',
         id: gratitudes[e.target.name].id,
       },
-    }
-    )
-  
+    })
   }
-
-
-
 
   // this is what Object.entries(gratitudes) will look like:
   //  const array = [
@@ -108,6 +111,7 @@ function DailyGratitudes() {
 
   return (
     <>
+      {isLoading && <div><p>ॐ..loading...ॐ</p></div>}
       <h3>Daily Gratitude</h3>
       <p>Today I am grateful for...</p>
       {gratitudes &&
@@ -118,9 +122,7 @@ function DailyGratitudes() {
               {gratitude.final ? ( // conditionally rendering whether a p tag or an input is displayed, depending on if there is a gratitude.final that we have set in the useEffect
                 <>
                   <Styled.P ref={inputRefs.current[i]}>{gratitude.final}</Styled.P>
-                  <button name={label} onClick={handleEdit} style= {{ marginLeft: 10 }}>
-                    ✏️
-                  </button>
+                  <FontAwesomeIcon icon={faEdit} onClick={handleEdit} style= {{ marginLeft: 10 }}/>
                 </>
               ) : (
                 <Styled.Input
