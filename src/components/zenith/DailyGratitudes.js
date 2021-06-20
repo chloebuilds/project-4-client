@@ -123,7 +123,7 @@ function DailyGratitudes() {
                   </button>
                 </>
               ) : (
-                <input
+                <Styled.Input
                   placeholder="I am grateful for.."
                   name={label} // we give it a name so that we can do clever things with handle change
                   ref={inputRefs.current[i]} // the ref is something in react which enables us to access DOM elements directly (kinda like document.getElementBy). We have multiple refs (createRef()) so here we are assigning each input to the array of refs. A ref has .current method on it and in this instance it is an array (because that's what we set it to initially). We are assigning the input to the array of refs at the index(0, 1 or 2)
@@ -145,6 +145,17 @@ export default DailyGratitudes
 const Styled = {
   P: styled.p`
     display: inline-block;
+  `,
+  Input: styled.input`
+    outline: none;
+      border: none;
+      background: rgba(247, 247, 247, 0.2);
+    color: #100F10;
+    padding: 7px;
+    margin: 1px;
+      &::placeholder {
+        color: #262526;
+      }
   `,
 }
 
