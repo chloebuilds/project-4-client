@@ -1,5 +1,9 @@
 @use './navbar.scss';
 
+* {
+  box-sizing: border-box;
+}
+
 .no-show {
   display: none;
 }

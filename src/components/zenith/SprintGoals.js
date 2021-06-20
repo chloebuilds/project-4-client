@@ -18,7 +18,7 @@ export default function SprintGoalsDisplay() {
     <>
       {isLoading && (
         <div>
-          <p>loading...</p>
+          <p>ॐ..loading...ॐ</p>
         </div>
       )}
       {currentSprint && (

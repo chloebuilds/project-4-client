@@ -308,4 +308,6 @@ Content-Type: application/json
   "dailyGratitude": "Still coffee"
 } 
 
+###
 
+GET https://secret-ocean-49799.herokuapp.com/https://zenquotes.io/api/random

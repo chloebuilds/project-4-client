@@ -8,7 +8,8 @@ $off-black: #100f10;
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding: 1em;
+  padding: 30px;
+
   color: white;
   height: 40px;
   z-index: 3;
@@ -71,7 +72,7 @@ $off-black: #100f10;
 }
 
 .navbar-item:hover {
-  color: #f06455;
+  color: #7b81ec;
 }
 
 .navbar-content-container {

@@ -3,10 +3,13 @@ import { UserContext } from '../context/UserContext'
 import axios from 'axios'
 
 import styled from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
 
 function WeeklyIntention() {
   const { currentSprint } = React.useContext(UserContext)
   const inputRef = React.useRef()
+  const isLoading = !currentSprint
   const [ intention, setIntention ] = React.useState({
     draft: '', final: '', id: null,
   })
@@ -60,7 +63,8 @@ function WeeklyIntention() {
       const { data: postData } = await axios.post(
         `/api/sprints/${currentSprint?.id}/intentions/`,
         { weeklyIntention: intentionText, 
-        })
+        }
+      )
       return postData.id 
     } catch (err) {
       console.log(err)
@@ -78,13 +82,12 @@ function WeeklyIntention() {
 
   return (
     <>
+      {isLoading && <div><p>ॐ..loading...ॐ</p></div>}
       <h3>Intention for this week:</h3>
       {intention.final ? (
         <>
           <Styled.P>{intention.final}</Styled.P>
-          <button onClick={handleEdit} style= {{ marginLeft: 10 }}>
-                    ✏️
-          </button>
+          <FontAwesomeIcon icon={faEdit} onClick={handleEdit} style= {{ marginLeft: 10 }}/>
         </>
       ) : (
         <Styled.Input 
