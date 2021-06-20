@@ -35,7 +35,7 @@ function Nav() {
   return (
     <>
       <div className={`navbar ${showColor ? 'navbar-show-color' : 'navbar-default-color'}`}>
-        <ZenithH1>zenith zenith</ZenithH1>
+        <ZenithH1>zenith</ZenithH1>
 
         <div className="menu-items-end" onClick={handleSideBar}>
           <Hamburger toggled={sidebarShow} toggle={setSidebarShow} />
@@ -67,13 +67,13 @@ function Nav() {
 export default Nav
 
 const ZenithH1 = styled.h1`
-  font-size: 5rem;
-  background: linear-gradient(45deg, #f3ec78, #af4261);
+  font-size: 3rem;
+  background: linear-gradient(45deg, #7b81ec, #acafee);
   background-clip: text;
   -webkit-background-clip: text;
   -moz-background-clip: text;
   -moz-text-fill-color: transparent;
   -webkit-text-fill-color: transparent;
   display: inline-block;
-  text-transform: lowercase;
+  padding-left: 30px;
 `

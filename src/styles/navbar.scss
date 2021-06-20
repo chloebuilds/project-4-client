@@ -10,7 +10,7 @@ $off-black: #100f10;
   width: 100%;
   padding: 1em;
   color: white;
-  height: 70px;
+  height: 40px;
   z-index: 3;
   transition-timing-function: ease-in;
   transition: all 0.8s;
@@ -18,7 +18,7 @@ $off-black: #100f10;
 }
 
 .navbar-show-color {
-  background: $white-transparent;
+  background: $off-white;
   color: $off-black;
 }
 

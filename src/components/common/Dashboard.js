@@ -18,15 +18,16 @@ import { DateTime } from 'luxon'
 
 function calculateDaysIntoSprint(startDate) {
   const today = DateTime.now()
-  const start = DateTime.fromISO(startDate)
-  const diff = today.diff(start, 'days')
-  return Math.round(diff.toObject().days)
+  const start = DateTime.fromISO(startDate) //takes the argument of a date (coming from currentSprint?.startDate)
+  const diff = today.diff(start, 'days') // the difference from start in 'days'
+  console.log(diff.toObject())
+  return Math.floor(diff.toObject().days) + 1
 }
 
 function Dashboard() {
   const history = useHistory()
   const { user, currentSprint } = React.useContext(UserContext)
-  console.log('currentSprint', currentSprint)
+
 
   const currentDay = calculateDaysIntoSprint(currentSprint?.startDate)
 
