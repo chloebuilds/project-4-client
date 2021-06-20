@@ -5,6 +5,7 @@ import { faHome,faSearch,faUsers,faUserPlus, faPlus, faSignOutAlt } from '@forta
 import styled from 'styled-components'
 import { Link, useHistory } from 'react-router-dom'
 import { isAuthenticated, removeToken } from '../../lib/auth'
+import logo from '../../assets/zenithLogo.png'
 
 
 function Nav() {
@@ -35,6 +36,7 @@ function Nav() {
   return (
     <>
       <div className={`navbar ${showColor ? 'navbar-show-color' : 'navbar-default-color'}`}>
+        <LogoImg src={logo} alt='logo' />
         <ZenithH1>zenith</ZenithH1>
 
         <div className="menu-items-end" onClick={handleSideBar}>
@@ -76,4 +78,10 @@ const ZenithH1 = styled.h1`
   -webkit-text-fill-color: transparent;
   display: inline-block;
   padding-left: 30px;
+  margin-left: 80px;
+`
+const LogoImg = styled.img`
+  height: 60px;
+  width: 60px;
+
 `
