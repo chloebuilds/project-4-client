@@ -1,10 +1,8 @@
 import React, { createContext, useState } from 'react'
 import { useLocation, useHistory } from 'react-router-dom'
-import { getUser } from '../../lib/api'
-import { getPayload } from '../../lib/auth'
-import { loginUser } from '../../lib/api'
-import { setToken } from '../../lib/auth'
-import { toast } from 'react-toastify'
+import { getUser, loginUser } from '../../lib/api'
+import { getPayload, setToken } from '../../lib/auth'
+// import { toast } from 'react-toastify'
 
 // USER CONTEXT
 
@@ -22,6 +20,7 @@ export const UserProvider = props => {
   const currentSprint = user?.createdSprints.find(
     sprint => Date.parse(sprint.endDate) > Date.now()
   )
+
   const location = useLocation()
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [hasNewHabitOrGoal, setHasNewHabitOrGoal] = React.useState(false)
@@ -55,6 +54,7 @@ export const UserProvider = props => {
       //   progress: undefined,
       // })
       setIsLoggedIn(true)
+
       currentSprint ? history.push('/dashboard') : history.push('/sprints/new')
     } catch (e) {
       setIsError(true)
