@@ -39,7 +39,11 @@ function DailyGratitudes() {
   const handleChange = (e) => {
     setGratitudes({ // updating the state
       ...gratitudes,
-      [e.target.name]: { draft: e.target.value, final: '', id: gratitudes[e.target.name].id }, // takes the name on the input and updating that property so that it's draft is the value of whats in the input. The final is a blank string so that we continue to render the input and the id is whatever it already was - either null or the id from the back-end. This is just updating the state.
+      [e.target.name]: 
+      { draft: e.target.value, 
+        final: '', 
+        id: gratitudes[e.target.name].id }, 
+      // takes the name on the input and updating that property so that it's draft is the value of whats in the input. The final is a blank string so that we continue to render the input and the id is whatever it already was - either null or the id from the back-end. This is just updating the state.
     })
   }
 
