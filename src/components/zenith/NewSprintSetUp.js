@@ -77,7 +77,7 @@ export default function NewSprintSetUp() {
           <Card>
             <NewSprintGoals />
           </Card>
-          {/* <Card>
+          <Card>
             <form onSubmit={handleNewHabit}>
               <div>
                 <input
@@ -88,12 +88,13 @@ export default function NewSprintSetUp() {
                 />
                 {formErrors.habitName && <p>{formErrors.habitName}</p>}
               </div>
+
               <button>done!</button>
             </form>
           </Card>
           <Card>
             <SprintHabits />
-          </Card> */}
+          </Card>
           <Link to="/dashboard">
             <button>sprint dashboard</button>
           </Link>
