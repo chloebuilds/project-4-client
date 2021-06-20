@@ -13,7 +13,7 @@ export default function SprintGoalsDisplay() {
     }
     getCurrentGoals()
   }, [currentGoals])
-
+  console.log(goals)
   return (
     <>
       {isLoading && (
