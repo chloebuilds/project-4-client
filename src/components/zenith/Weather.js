@@ -3,20 +3,15 @@ import axios from 'axios'
 
 import { UserContext } from '../context/UserContext'
 
-
-
 function Weather() {
   
   const { user } = React.useContext(UserContext)
   
   const baseUrl = 'http://api.openweathermap.org/data/2.5/weather?'
   const apiKey = '44546322b5e17c3a35e117a1c5067ad9'
-  // const [ city, setCity ] = React.useState('')
+
   const [ weatherData, setWeatherData ] = React.useState(null)
   const isLoading = !weatherData
-
-  // setCity(user?.city)
-  // console.log(user?.city)
 
   React.useEffect(() => {
     if (!user) {

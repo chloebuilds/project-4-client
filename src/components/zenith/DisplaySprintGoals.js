@@ -3,17 +3,13 @@ import React from 'react'
 import { UserContext } from '../context/UserContext'
 
 function DisplaySprintGoals() {
-
   const { currentSprint } = React.useContext(UserContext)
 
   const isLoading = !currentSprint
 
-
-
   return (
-
     <>
-      <h3>My Sprint Goals</h3>
+      <h3>My sprint goals:</h3>
       {isLoading && <div><p>loading...</p></div>}
       {currentSprint &&
       <ol>
@@ -25,11 +21,8 @@ function DisplaySprintGoals() {
         ))}
       </ol>
       }
-
     </>
-    
   )
-
 }
 
 export default DisplaySprintGoals

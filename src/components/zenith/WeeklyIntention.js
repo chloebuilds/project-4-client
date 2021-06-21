@@ -10,11 +10,11 @@ function WeeklyIntention() {
   const { currentSprint } = React.useContext(UserContext)
   const inputRef = React.useRef()
   const isLoading = !currentSprint
-  const [ intention, setIntention ] = React.useState({
-    draft: '', final: '', id: null,
+  const [intention, setIntention] = React.useState({
+    draft: '',
+    final: '',
+    id: null,
   })
-
-
 
   React.useEffect(() => {
     if (!currentSprint) {
@@ -26,34 +26,33 @@ function WeeklyIntention() {
       return
     }
 
-    setIntention({ 
-      draft: '', 
-      final: weeklyIntention.weeklyIntention, 
-      id: weeklyIntention.id })
+    setIntention({
+      draft: '',
+      final: weeklyIntention.weeklyIntention,
+      id: weeklyIntention.id,
+    })
   }, [currentSprint])
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     setIntention({
       ...intention,
-      draft: e.target.value, 
-    }
-    )
+      draft: e.target.value,
+    })
   }
 
-  const handleBlur = async (e) => {
+  const handleBlur = async e => {
     const existingId = intention.id
     if (!e.target.value && !existingId) {
       return
     }
     const id = await updateIntention(e.target.value, existingId)
     setIntention({ ...intention, final: e.target.value, id })
-
   }
 
-  const handleKeyDown = (e) => {
+  const handleKeyDown = e => {
     if (e.key !== 'Enter') {
       return
-    } 
+    }
     inputRef.current.blur()
   }
 
@@ -68,15 +67,13 @@ function WeeklyIntention() {
       }
       const { data: postData } = await axios.post(
         `/api/sprints/${currentSprint?.id}/intentions/`,
-        { weeklyIntention: intentionText, 
-        }
+        { weeklyIntention: intentionText }
       )
-      return postData.id 
+      return postData.id
     } catch (err) {
       console.log(err)
     }
   }
-  
 
   const handleEdit = () => {
     setIntention({
@@ -88,23 +85,31 @@ function WeeklyIntention() {
 
   return (
     <>
-      {isLoading && <div><p>ॐ..loading...ॐ</p></div>}
+      {isLoading && (
+        <div>
+          <p>ॐ..loading...ॐ</p>
+        </div>
+      )}
       <h3>Intention for this week</h3>
       {intention.final ? (
         <>
           <Styled.P>{intention.final}</Styled.P>
-          <FontAwesomeIcon icon={faEdit} onClick={handleEdit} style= {{ marginLeft: 10 }}/>
+          <FontAwesomeIcon
+            icon={faEdit}
+            onClick={handleEdit}
+            style={{ marginLeft: 10 }}
+          />
         </>
       ) : (
-        <Styled.Input 
+        <Styled.Input
           placeholder="I am / I will..."
           value={intention.draft}
           ref={inputRef}
           onChange={handleChange}
           onBlur={handleBlur}
-          onKeyDown={handleKeyDown} />
+          onKeyDown={handleKeyDown}
+        />
       )}
-      
     </>
   )
 }

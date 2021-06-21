@@ -16,22 +16,25 @@ export default function SprintHabitsDisplay() {
 
   return (
     <>
-      {isLoading && <div><p>ॐ..loading...ॐ</p></div>}
-      {currentSprint && 
-      <>
-        <h3>My Sprint Habits</h3>
-        {habits?.map(habit => (
-          <div key={habit.id}>
-            <ul>
-              <li>
-                <h4>{habit.habitName}</h4>
-                <p>{habit.habitDescription}</p>
-              </li>
-            </ul>
-          </div>
-        ))}
-      </>
-      }
+      {isLoading && (
+        <div>
+          <p>ॐ..loading...ॐ</p>
+        </div>
+      )}
+      {currentSprint && (
+        <>
+          <h3>My Sprint Habits</h3>
+          {habits?.map(habit => (
+            <div key={habit.id}>
+              <ul>
+                <li>
+                  <h4>{habit.habitName}</h4>
+                </li>
+              </ul>
+            </div>
+          ))}
+        </>
+      )}
     </>
   )
 }

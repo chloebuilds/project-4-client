@@ -13,6 +13,7 @@ import DailyEnergy from '../zenith/DailyEnergy'
 import ZenQuote from '../zenith/ZenQuote'
 import Calendar from '../zenith/Calendar'
 import Weather from '../zenith/Weather'
+import { isAuthenticated } from '../../lib/auth'
 import gradientBackground from '../../assets/gradient-background.jpg'
 import Spinner from '../common/Spinner'
 
@@ -28,6 +29,7 @@ function calculateDaysIntoSprint(startDate) {
 
 function Dashboard() {
   const history = useHistory()
+  const isLoggedIn = isAuthenticated()
   const { user, currentSprint } = React.useContext(UserContext)
 
   const currentDay = calculateDaysIntoSprint(currentSprint?.startDate)
@@ -38,6 +40,9 @@ function Dashboard() {
 
   if (!user) {
     return <Spinner />
+  }
+  if (!isLoggedIn) {
+    history.push('/401')
   }
 
   return (
