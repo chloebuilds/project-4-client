@@ -7,14 +7,15 @@ import DailyGratitudes from '../zenith/DailyGratitudes'
 import DisplaySprintGoals from '../zenith/DisplaySprintGoals'
 import SprintHabits from '../zenith/SprintHabits'
 import DailyTodos from '../zenith/DailyTodos'
-// import WeeklyIntention from '../zenith/WeeklyIntention'
-// import DailyMoods from '../zenith/DailyMood'
+import WeeklyIntention from '../zenith/WeeklyIntention'
+import DailyMoods from '../zenith/DailyMood'
 import DailyEnergy from '../zenith/DailyEnergy'
 import ZenQuote from '../zenith/ZenQuote'
 import Calendar from '../zenith/Calendar'
 import Weather from '../zenith/Weather'
 import { isAuthenticated } from '../../lib/auth'
 import gradientBackground from '../../assets/gradient-background.jpg'
+import Spinner from '../common/Spinner'
 
 import { DateTime } from 'luxon'
 
@@ -37,6 +38,9 @@ function Dashboard() {
     history.push('/sprints/new')
   }
 
+  if (!user) {
+    return <Spinner />
+  }
   if (!isLoggedIn) {
     history.push('/401')
   }
@@ -44,43 +48,66 @@ function Dashboard() {
   return (
     <>
       <Section>
-        <Header>
-          <Card>
-            <h2>
-              Nice to see you, {user?.name}, welcome to your daily dashboard!
-            </h2>
-            <p>
-              You are currently on <strong>{currentSprint?.sprintName}</strong>{' '}
-              and you are on day <strong>{currentDay} of 28.</strong> You got
-              this &mdash; bon courage!
-            </p>
-            <Weather />
-          </Card>
-        </Header>
-        {/* <Card>
-          <WeeklyIntention />
-        </Card> */}
-        <Card>
-          <DailyGratitudes />
-        </Card>
-        <Card>
-          <Calendar />
-        </Card>
-        <Card>
-          <ZenQuote />
-        </Card>
-        <Card>
-          <DisplaySprintGoals />
-        </Card>
-        <Card>
-          <SprintHabits />
-        </Card>
-        <Card>
-          <DailyTodos />
-        </Card>
-        <Card>
-          <DailyEnergy />
-        </Card>
+        <Wrapper>
+          <Row>
+            <Header>
+              <Card width="100%">
+                <h2>
+                  Nice to see you, {user?.name}, welcome to your daily
+                  dashboard!
+                </h2>
+                <p>
+                  You are currently on{' '}
+                  <strong>{currentSprint?.sprintName}</strong> and you are on
+                  day <strong>{currentDay} of 28.</strong> You got this &mdash;
+                  bon courage!
+                </p>
+                <Weather />
+              </Card>
+            </Header>
+          </Row>
+          <Row>
+            <Card width="100%">
+              <WeeklyIntention />
+            </Card>
+          </Row>
+          <Row>
+            <Card width="100%">
+              <ZenQuote />
+            </Card>
+          </Row>
+          <Row>
+            <Card width="auto" flex={1}>
+              <DailyGratitudes />
+            </Card>
+            <Card width="auto" flex={2}>
+              <DailyTodos />
+            </Card>
+          </Row>
+
+          <Row>
+            <Card>
+              <DisplaySprintGoals />
+            </Card>
+            <Card>
+              <SprintHabits />
+            </Card>
+          </Row>
+
+          <Row>
+            <Column>
+              <Card width="100%" flex={2}>
+                <DailyMoods />
+              </Card>
+              <Card width="100%" flex={1}>
+                <DailyEnergy />
+              </Card>
+            </Column>
+            <Card flex={2}>
+              <Calendar />
+            </Card>
+          </Row>
+        </Wrapper>
       </Section>
     </>
   )
@@ -93,10 +120,26 @@ const Section = styled.section`
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  flex-wrap: wrap; */
 `
 const Header = styled.section`
   width: 100%;
+  display: flex;
+  flex-direction: row;
+`
+const Wrapper = styled.section`
+  margin: 10px 150px;
+`
+
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+`
+
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 `

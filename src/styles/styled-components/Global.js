@@ -11,7 +11,7 @@ body {
     transition: all 0.50s linear;
 }
 h1 {
-  font-family: "Space Grotesk";
+  font-family: 'Space Grotesk', Helvetica, Sans-Serif;
 
 }
 

@@ -157,8 +157,8 @@ function DailyToDoList() {
           <p>ॐ..loading...ॐ</p>
         </div>
       )}
-      <h3>To-Do List </h3>
-      <p>I will get these done today...</p>
+      <h3>My to do&apos;s for today</h3>
+
       {toDos &&
         Object.entries(toDos).map(([label, toDo], i) => {
           return (

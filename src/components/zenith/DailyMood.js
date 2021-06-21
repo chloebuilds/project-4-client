@@ -1,43 +1,119 @@
 import React from 'react'
 
 import { UserContext } from '../context/UserContext'
-import { addMoods } from '../../lib/api'
+import {
+  addMoods,
+  getCurrentMoods,
+  deleteMood,
+  getSingleSprint
+} from '../../lib/api'
 
 function DailyMoods() {
-
   const { currentSprint } = React.useContext(UserContext)
-  
   const isLoading = !currentSprint
+  // const [ availableMoods, setAvailableMoods ] = React.useState([  ])
+  const [currentMoods, setCurrentMoods] = React.useState([])
+  const [allMoods, setAllMoods] = React.useState([
+    'Happy',
+    'Sad',
+    'Anxious',
+    'Angry'
+  ])
+  const [deletedMoods, setDeletedMoods] = React.useState([])
+  const availableMoods = allMoods.filter(mood => !currentMoods.includes(mood))
 
+  // const updatedCurrentMoods = currentMoods.filter( mood => !)
 
-  const handleClick = async (e) => {
+  React.useEffect(() => {
+    const getData = async () => {
+      try {
+        const sprintId = currentSprint?.id
+        const moodsResponse = await getCurrentMoods(sprintId)
+        // console.log(moodsResponse.data)
+        setCurrentMoods(moodsResponse.data.map(m => m.moodName))
+        // moodsResponse.data.sort(alphabetical)
+        // setAllMoods()
+      } catch (err) {
+        console.log(err)
+      }
+    }
+    getData()
+  }, [currentSprint?.id])
+
+  const handleAddingMoods = async e => {
     try {
-      const newMood = { name: '' }
-
-      const res = await addMoods( newMood )
-
+      const moodToAdd = e.target.value
+      setCurrentMoods([...currentMoods, moodToAdd])
+      const sprintId = currentSprint?.id
+      await addMoods(sprintId, moodToAdd)
     } catch (err) {
       console.log(err)
     }
   }
 
+  const handleDeleteMood = async e => {
+    try {
+      const moodToDelete = e.target.value
+      const updatedCurrentMoods = currentMoods.filter(
+        mood => mood !== moodToDelete
+      )
+      const sprintId = currentSprint?.id
+      const response = await getSingleSprint(sprintId)
+      const moodToDeleteId = response.data.moods.find(
+        currentMood => currentMood.moodName === moodToDelete
+      ).id
+      console.log(moodToDeleteId)
+      await deleteMood(sprintId, moodToDeleteId)
+      setCurrentMoods(updatedCurrentMoods)
+      // console.log(res.data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  // console.log(currentSprint.moods)
+
   return (
     <>
-      {isLoading && <div><p>loading...</p></div>}
-      {currentSprint &&
-      <> 
-        <h3>Daily Mood</h3>
-        <p>Today I&apos; m feeling...</p>
-        <button onClick={handleClick}>Happy</button>
-        <button onClick={handleClick}>Sad</button>
-        <button onClick={handleClick}>Angry</button>
-        <button onClick={handleClick}>Anxious</button>
-        {/* {currentSprint?.moods.map(mood => (
-          <div key={mood.id}></div>
-          ))} */}
-      </>
-      }
-    
+      {isLoading && (
+        <div>
+          <p>loading...</p>
+        </div>
+      )}
+      {currentSprint && (
+        <>
+          <h3>Daily Mood</h3>
+          <p>Today I&apos; m feeling...</p>
+
+          <h5>current moods</h5>
+          <div className="mood-button-container">
+            {currentMoods.map(mood => (
+              <button
+                key={mood}
+                value={mood}
+                type="button"
+                onClick={handleDeleteMood}
+              >
+                {mood}
+              </button>
+            ))}
+          </div>
+
+          <h5>available moods</h5>
+          <div>
+            {availableMoods.map(mood => (
+              <button
+                onClick={handleAddingMoods}
+                key={mood}
+                value={mood}
+                type="button"
+              >
+                {mood}
+              </button>
+            ))}
+          </div>
+        </>
+      )}
     </>
   )
 }

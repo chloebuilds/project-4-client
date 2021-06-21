@@ -9,21 +9,18 @@ function DisplaySprintGoals() {
 
   return (
     <>
-      <h3>My Sprint Goals</h3>
-      {isLoading && (
-        <div>
-          <p>loading...</p>
-        </div>
-      )}
-      {currentSprint && (
-        <ol>
-          {currentSprint?.sprintGoals.map(goal => (
-            <li key={goal.id}>
-              <p>{goal.goalName}</p>
-            </li>
-          ))}
-        </ol>
-      )}
+      <h3>My sprint goals:</h3>
+      {isLoading && <div><p>loading...</p></div>}
+      {currentSprint &&
+      <ol>
+        {currentSprint?.sprintGoals.map(goal => (
+          <li key={goal.id}>
+            <p>{goal.goalName}</p>
+          </li>
+
+        ))}
+      </ol>
+      }
     </>
   )
 }

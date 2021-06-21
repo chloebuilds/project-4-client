@@ -116,7 +116,6 @@ const ZenithH1 = styled.h1`
   -moz-text-fill-color: transparent;
   -webkit-text-fill-color: transparent;
   display: inline-block;
-  padding-left: 40px;
 `
 
 function Logo() {

@@ -15,8 +15,7 @@ export const StyledCard = styled.div`
   ${(p) => p.isFlex && flexStyles};
   border-radius: 0.75rem;
   color: ${(p) => p.color || 'white'};
-  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px
-  //rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  box-shadow: rgba(61, 64, 66, 0.37) 6px 2px 16px 0px;
 `
 
 

@@ -66,8 +66,16 @@ export function editASprintHabit(sprintId, habitId, formData) {
 
 // * DAILY MOODS
 
-export function addMoods(sprintId, data) {
-  return axios.post(`${baseUrl}/sprints/${sprintId}/moods/`, data)
+export function addMoods(sprintId, moodName) {
+  return axios.post(`${baseUrl}/sprints/${sprintId}/moods/`, { moodName } , headers())
+}
+
+export function getCurrentMoods(sprintId) {
+  return axios.get(`${baseUrl}/sprints/${sprintId}/moods/`)
+}
+
+export function deleteMood(sprintId, moodId) {
+  return axios.delete(`${baseUrl}/sprints/${sprintId}/moods/${moodId}`, headers() )
 }
 
 // * AUTH / USER REQUESTS
