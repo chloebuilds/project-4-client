@@ -8,7 +8,7 @@ import DisplaySprintGoals from '../zenith/DisplaySprintGoals'
 import SprintHabits from '../zenith/SprintHabits'
 import DailyTodos from '../zenith/DailyTodos'
 // import WeeklyIntention from '../zenith/WeeklyIntention'
-// import DailyMoods from '../zenith/DailyMood'
+import DailyMoods from '../zenith/DailyMood'
 import DailyEnergy from '../zenith/DailyEnergy'
 import ZenQuote from '../zenith/ZenQuote'
 import Calendar from '../zenith/Calendar'
@@ -79,9 +79,9 @@ function Dashboard() {
         <Card>
           <DailyTodos />
         </Card>
-        {/* <Card>
+        <Card>
           <DailyMoods />
-        </Card> */}
+        </Card>
         <Card>
           <DailyEnergy />
         </Card>

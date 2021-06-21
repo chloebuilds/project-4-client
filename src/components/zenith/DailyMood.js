@@ -6,12 +6,11 @@ import { addMoods, getCurrentMoods, deleteMood, getSingleSprint } from '../../li
 
 function DailyMoods() {
 
-  const { currentSprint } = React.useContext(UserContext)
+  const { currentSprint, user } = React.useContext(UserContext)
   const isLoading = !currentSprint
   // const [ availableMoods, setAvailableMoods ] = React.useState([  ])
   const [ currentMoods, setCurrentMoods ] = React.useState([])
   const [allMoods, setAllMoods] = React.useState(['Happy', 'Sad', 'Anxious', 'Angry'])
-  const [ deletedMoods, setDeletedMoods ] = React.useState([])
   const availableMoods = allMoods.filter( mood => !currentMoods.includes(mood)) 
 
   // const updatedCurrentMoods = currentMoods.filter( mood => !)
@@ -71,9 +70,7 @@ function DailyMoods() {
       {isLoading && <div><p>loading...</p></div>}
       {currentSprint &&
       <>
-        <h3>Daily Moods</h3>
-
-        <h5>current moods</h5>
+        <h3>How are you feeling today {user.name}?</h3>
         <div className="mood-button-container">
           {currentMoods.map(mood => (
             <button
@@ -87,8 +84,8 @@ function DailyMoods() {
           ))}
         </div>
 
-        <h5>available moods</h5>
         <div>
+          {/* <h5>Add moods:</h5> */}
           {availableMoods.map(mood => (
             <button 
               onClick={handleAddingMoods}

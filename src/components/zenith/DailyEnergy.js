@@ -2,25 +2,76 @@ import React from 'react'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
 
+import { UserContext } from '../context/UserContext'
+import { addEnergyLevel } from '../../lib/api'
 
 function DailyEnergy() {
+  const { currentSprint } = React.useContext(UserContext)
+  const [ num, setNum ] = React.useState(null)
 
-  // const [ num, setNum ] = React.useState('')
+  const marks = {
+    1: {
+      style: {
+        color: 'white',
+      },
+      label: '😴',
+    },
+    2: {
+      style: {
+        color: 'white',
+      },
+      label: '😩',
+    },
+    3: {
+      style: {
+        color: 'white',
+      },
+      label: '😐',
+    },
+    4: {
+      style: {
+        color: 'white',
+      },
+      label: '🙂',
+    },
+    5: {
+      style: {
+        color: 'white',
+      },
+      label: '🥳',
+    },
+  }
+  
 
-  // const handleAfterChange = () => {
-  //   alert('youve set your energy level for the day!)
-  // }
+  const handleAfterChange = async (value) => {
+    try {
+      const energyLevel = value
+      setNum(energyLevel)
+      const sprintId = currentSprint?.id
+      await addEnergyLevel(sprintId, energyLevel)
+
+    } catch (err) {
+      console.log(err)
+    }
+
+  }
+
+  // console.log(currentSprint)
 
   return (
     <>
       <h3>Energy level</h3>
+      {}
       <Slider 
         min={1} max={5} step={1}
-        marks={ { 5: 5 } }
+        marks={ marks}
         dots={ true }
-        // onAfterChange={handleAfterChange}
-        defaultValue={1}
-        // value={num}
+        // value={} 
+        onAfterChange={handleAfterChange}
+        // defaultValue={1}
+        // startPoint
+        // ariaLabelledByForHandle={''}
+        // renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
         handleStyle={{
           backgroundColor: 'white',
           border: 0,
