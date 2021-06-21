@@ -70,9 +70,10 @@ function NewSprintGoals() {
         )
         return putData.id
       }
-      const { data: postData } = await axios.post(`/api/sprints/${currentSprint?.id}/sprint-goals/`, {
-        goalName: sprintGoalText,
-      })
+      const { data: postData } = await axios.post(
+        `/api/sprints/${currentSprint?.id}/sprint-goals/`, 
+        { goalName: sprintGoalText }
+      )
       return postData.id
     } catch (err) {
       console.log(err)
