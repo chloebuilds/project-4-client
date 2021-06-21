@@ -162,8 +162,6 @@ function DailyGratitudes() {
   //    ['gratitude3', { draft: '', final: '', id: null }],
   //   ]
 
-  console.log(inputRefs.current)
-
   return (
     <>
       {isLoading && (
@@ -208,7 +206,9 @@ function DailyGratitudes() {
             </div>
           )
         })}
-      <button onClick={clearGratitudes}>Clear Gratitudes</button>
+      <Styled.ButtonContainer>
+        <button onClick={clearGratitudes}>Clear</button>
+      </Styled.ButtonContainer>
     </>
   )
 }
@@ -229,6 +229,10 @@ const Styled = {
     &::placeholder {
       color: #262526;
     }
+  `,
+  ButtonContainer: styled.div`
+    display: flex;
+    align-items: right;
   `,
 }
 

@@ -1,9 +1,22 @@
 @use './navbar.scss';
-
+@use './buttons.scss';
+:root {
+  --navbar-height: 60px;
+}
 * {
   box-sizing: border-box;
 }
 
+html,
+body,
+div#root {
+  height: 100%;
+}
+
 .no-show {
   display: none;
+}
+
+a {
+  color: #a51d9a;
 }

@@ -23,7 +23,7 @@ export default function SprintHabitsDisplay() {
       )}
       {currentSprint && (
         <>
-          <h3>Habits</h3>
+          <h3>My Sprint Habits</h3>
           {habits?.map(habit => (
             <div key={habit.id}>
               <ul>

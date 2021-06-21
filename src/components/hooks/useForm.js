@@ -10,11 +10,15 @@ export default function useForm(initialValue) {
     setFormData({ ...formData, [e.target.name]: e.target.value })
     setFormErrors({ ...formErrors, [e.target.name]: '' })
   }
+
+  const clearForm = () => (setFormData(initialValue), setFormErrors(initialValue))
+
   return { 
     formData, 
     handleChange,
     setFormErrors,
     setFormData,
     formErrors,
+    clearForm,
   } 
 }

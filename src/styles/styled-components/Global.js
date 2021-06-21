@@ -5,15 +5,18 @@ export const GlobalStyle = createGlobalStyle`
 body {
     /* margin: 0;
     padding: 0; */
-    background: #F7F7F7;
+    background: ${({ theme }) => theme.body};
+    color: ${({ theme }) => theme.text};
     font-family: 'Poppins', Helvetica, Sans-Serif;
+    transition: all 0.50s linear;
 }
 h1 {
-  font-family: "Space Grotesk";
+  font-family: 'Space Grotesk', Helvetica, Sans-Serif;
 
 }
 
 a {
   text-decoration: none;
 }
+
 `
