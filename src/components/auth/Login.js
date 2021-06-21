@@ -21,7 +21,7 @@ function Login() {
     login(e, formData, setIsError)
     toast.dark('🚀 Successfully logged in!', {
       position: 'top-right',
-      autoClose: 4500,
+      autoClose: 4000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,

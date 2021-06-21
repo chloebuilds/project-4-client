@@ -6,14 +6,16 @@ import { UserContext } from '../context/UserContext'
 import DailyGratitudes from '../zenith/DailyGratitudes'
 import DisplaySprintGoals from '../zenith/DisplaySprintGoals'
 import SprintHabits from '../zenith/SprintHabits'
-// import DailyTodos from '../zenith/DailyTodos'
-import WeeklyIntention from '../zenith/WeeklyIntention'
-import DailyMoods from '../zenith/DailyMood'
+import DailyTodos from '../zenith/DailyTodos'
+// import WeeklyIntention from '../zenith/WeeklyIntention'
+// import DailyMoods from '../zenith/DailyMood'
 import DailyEnergy from '../zenith/DailyEnergy'
 import ZenQuote from '../zenith/ZenQuote'
 import Calendar from '../zenith/Calendar'
 import Weather from '../zenith/Weather'
+import { isAuthenticated } from '../../lib/auth'
 import gradientBackground from '../../assets/gradient-background.jpg'
+
 import { DateTime } from 'luxon'
 
 function calculateDaysIntoSprint(startDate) {
@@ -26,8 +28,8 @@ function calculateDaysIntoSprint(startDate) {
 
 function Dashboard() {
   const history = useHistory()
+  const isLoggedIn = isAuthenticated()
   const { user, currentSprint } = React.useContext(UserContext)
-
 
   const currentDay = calculateDaysIntoSprint(currentSprint?.startDate)
 
@@ -35,29 +37,35 @@ function Dashboard() {
     history.push('/sprints/new')
   }
 
+  if (!isLoggedIn) {
+    history.push('/401')
+  }
+
   return (
     <>
-      
       <Section>
         <Header>
           <Card>
-            <h2>Nice to see you, {user?.name}, welcome to your daily dashboard!</h2>
-            <p>You are currently on {currentSprint?.sprintName} and you are on day {currentDay} of 28. You got this!</p>
+            <h2>
+              Nice to see you, {user?.name}, welcome to your daily dashboard!
+            </h2>
+            <p>
+              You are currently on <strong>{currentSprint?.sprintName}</strong>{' '}
+              and you are on day <strong>{currentDay} of 28.</strong> You got
+              this &mdash; bon courage!
+            </p>
+            <Weather />
           </Card>
         </Header>
-        <Card>
+        {/* <Card>
           <WeeklyIntention />
-        </Card>
+        </Card> */}
         <Card>
           <DailyGratitudes />
         </Card>
         <Card>
-          <Weather />
-        </Card>
-        <Card>
           <Calendar />
         </Card>
-        
         <Card>
           <ZenQuote />
         </Card>
@@ -67,17 +75,16 @@ function Dashboard() {
         <Card>
           <SprintHabits />
         </Card>
-        {/* 
-      <Card>
-        <DailyTodos />
-      </Card> */}
+
         <Card>
-          <DailyMoods />
+          <DailyTodos />
         </Card>
+        {/* <Card>
+          <DailyMoods />
+        </Card> */}
         <Card>
           <DailyEnergy />
         </Card>
-      
       </Section>
     </>
   )

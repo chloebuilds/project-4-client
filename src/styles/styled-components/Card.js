@@ -7,42 +7,17 @@ const flexStyles = css`
   justify-content: ${(p) => p.justifyContent};
 `
 
-const StyledCard = styled.div`
-  margin: ${(p) => p.margin};
-  padding: ${(p) => p.padding};
-  background: ${(p) => p.background};
+export const StyledCard = styled.div`
+  margin: ${(p) => p.margin || '0 0 1rem'};
+  padding: ${(p) => p.padding || '1rem'};
+  background: ${(p) => p.background || '#100F10'};
   border: ${(p) => p.border};
   ${(p) => p.isFlex && flexStyles};
   border-radius: 0.75rem;
-  color: white;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  color: ${(p) => p.color || 'white'};
+  box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px
+  //rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
 `
 
-const Card = ({
-  children,
-  isFlex,
-  flexDirection,
-  alignItems,
-  justifyContent,
-  margin = '0 0 1rem',
-  padding = '1rem',
-  background = '#100F10',
-  border,
-}) => {
-  return (
-    <StyledCard
-      isFlex={isFlex}
-      flexDirection={flexDirection}
-      alignItems={alignItems}
-      justifyContent={justifyContent}
-      margin={margin}
-      padding={padding}
-      background={background}
-      border={border}
-    >
-      {children}
-    </StyledCard>
-  )
-}
 
-export default Card
+export default StyledCard

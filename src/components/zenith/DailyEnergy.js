@@ -13,7 +13,7 @@ function DailyEnergy() {
 
   return (
     <>
-      <h5>Energy level</h5>
+      <h3>Energy level</h3>
       <Slider 
         min={1} max={5} step={1}
         marks={ { 5: 5 } }

@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react'
 import { useLocation, useHistory } from 'react-router-dom'
-import { getUser, loginUser } from '../../lib/api'
+import { getUserWithReset, loginUser } from '../../lib/api'
 import { getPayload, setToken } from '../../lib/auth'
 // import { toast } from 'react-toastify'
 
@@ -29,7 +29,7 @@ export const UserProvider = props => {
     const { sub: userId } = getPayload() // getting the userID(sub) from the payload
     const getData = async () => {
       try {
-        const res = await getUser(userId)
+        const res = await getUserWithReset(userId)
         setUser(res.data)
       } catch (err) {
         console.log(err)

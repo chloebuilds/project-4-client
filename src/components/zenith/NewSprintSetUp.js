@@ -1,58 +1,22 @@
 import React from 'react'
-import { newSprintHabit } from '../../lib/api'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
+import { isAuthenticated } from '../../lib/auth'
 import { UserContext } from '../context/UserContext'
-import useForm from '../hooks/useForm'
 import Card from '../../styles/styled-components/Card'
 import NewSprintGoals from './NewSprintGoals'
-import SprintHabits from './SprintHabits'
-// import useForm from '../hooks/useForm'
+import NewSprintHabits from './NewSprintHabits'
+// import SprintHabits from './SprintHabits'
 
 export default function NewSprintSetUp() {
-  const { currentSprint, hasNewHabitOrGoal, setHasNewHabitOrGoal } =
-    React.useContext(UserContext)
+  const isLoggedIn = isAuthenticated()
+  const history = useHistory()
+  const { currentSprint } = React.useContext(UserContext)
   const isLoading = !currentSprint
 
-  const { formData, formErrors, handleChange, setFormData } = useForm({
-    habitName: '',
-    habitDescription: '',
-  })
-  // const { formData, formErrors, handleChange, setFormData } = useForm({
-  //   habitName: '',
-  //   habitDescription: '',
-  // })
-
-  const handleNewHabit = async event => {
-    event.preventDefault()
-    try {
-      console.log(currentSprint.id)
-      console.log(formData)
-      await newSprintHabit(currentSprint.id, formData)
-      setFormData({
-        habitName: '',
-        habitDescription: '',
-      })
-      setHasNewHabitOrGoal(!hasNewHabitOrGoal)
-    } catch (e) {
-      console.log(e)
-    }
+  if (!isLoggedIn) {
+    history.push('/401')
   }
-  // const handleNewGoal = async event => {
-  //   event.preventDefault()
-  //   try {
-  //     console.log(currentSprint.id)
-  //     console.log(formData)
-  //     await newSprintGoal(currentSprint.id, formData)
-  //     setFormData({
-  //       goalName: '',
-  //       goalDescription: '',
-  //     })
-  //     setHasNewHabitOrGoal(!hasNewHabitOrGoal)
-  //   } catch (e) {
-  //     console.log(e)
-  //   }
-  // }
 
   return (
     <>
@@ -73,39 +37,17 @@ export default function NewSprintSetUp() {
             <span>{currentSprint.sprintName}</span> is no different.
           </p>
           <p>
-            you can have as many goals/habits as you wish, but we recommend you
-            have 3 max or some other text cannot think
+            Once you submit, you will not be able to change your habits or
+            goals, so in the words of the Grail Knight, choose wisely...
           </p>
 
           <Card>
             <NewSprintGoals />
           </Card>
-          {/* <Card>
-            <form onSubmit={handleNewHabit}>
-              <div>
-                <input
-                  placeholder="Drink 2L water every day"
-                  onChange={handleChange}
-                  name="habitName"
-                  value={formData.habitName}
-                />
-                {formErrors.habitName && <p>{formErrors.habitName}</p>}
-              </div>
-              <div>
-                <input
-                  placeholder="Drink 2L water every day"
-                  onChange={handleChange}
-                  name="habitDescription"
-                  value={formData.habitDescription}
-                />
-                {formErrors.habitDescription && (
-                  <p>{formErrors.habitDescription}</p>
-                )}
-              </div>
-              <button>done!</button>
-            </form>
-          </Card>
           <Card>
+            <NewSprintHabits />
+          </Card>
+          {/* <Card>
             <SprintHabits />
           </Card> */}
           <Link to="/dashboard">

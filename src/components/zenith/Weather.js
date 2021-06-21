@@ -19,7 +19,7 @@ function Weather() {
     }
     const getData = async () => {
       try {
-        const res = await axios.get(baseUrl + `q=${user.city || 'New York'}&appid=${apiKey}`)
+        const res = await axios.get(baseUrl + `q=${user.city || 'London' }&appid=${apiKey}`)
         setWeatherData(res.data)
         
       } catch (err) {
@@ -32,28 +32,18 @@ function Weather() {
   return (
     <>
       {isLoading ? (
-        <p>loading...</p>
+        <p>ॐ..loading...ॐ</p>
       ) : (
         <>
           {weatherData !== null ? (
             <>
-              <h3> Today's weather: </h3>
-              <div className="main-container" styles= {{ display: 'flex' }}>
-                <div className="weather-icon">
-                  <img src={`http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`} alt="imgicon"/>
-                </div>
-                <h3>{weatherData.weather[0].main}</h3>
-                <div className="temprature">
-                  <h3>{parseFloat(weatherData.main.temp - 273.15).toFixed(1)}&deg;C</h3>
-                </div>
-                <div className="location">
-                  <h5><i className="fa fa-street-view"></i>{weatherData.name} | {weatherData.sys.country}</h5>
-                </div>
-                <div className="temperature-range">
-                  <h6>Min: {parseFloat(weatherData.main.temp_min - 273.15).toFixed(1)}&deg;C 
-              | Max: {parseFloat(weatherData.main.temp_max - 273.15).toFixed(1)}&deg;C 
-              | Humidity: {weatherData.main.humidity}%</h6>
-                </div>
+              <div style= {{ display: 'flex', justifyContent: 'space-between' }}>
+                <h3><i className="fa fa-street-view"></i> {weatherData.name} | {weatherData.sys.country}</h3>
+                <img src={`http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`} alt="imgicon"/>
+                <p> {weatherData.weather[0].main} | {parseFloat(weatherData.main.temp - 273.15).toFixed(1)}&deg;C </p>
+                <p>Min: {parseFloat(weatherData.main.temp_min - 273.15).toFixed(1)}&deg;C 
+                  | Max: {parseFloat(weatherData.main.temp_max - 273.15).toFixed(1)}&deg;C 
+                  | Humidity: {weatherData.main.humidity}% </p>
               </div>
             </>
           ) : null}
