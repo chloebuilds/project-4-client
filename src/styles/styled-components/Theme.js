@@ -9,5 +9,5 @@ export const darkTheme = {
   body: 'rgb(247, 247, 247)',
   text: '#FAFAFA',
   toggleBorder: '#7b81ec',
-  background: '#999',
+  background: 'rgb(247, 247, 247)',
 }

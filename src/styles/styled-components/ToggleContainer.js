@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const ToggleContainer = styled.button`
   border: 2px solid ${({ theme }) => theme.toggleBorder};
+  background: rgb(247, 247, 247);
   border-radius: 30px;
   cursor: pointer;
   display: flex;
@@ -10,7 +11,6 @@ export const ToggleContainer = styled.button`
   margin: 10px;
   overflow: hidden;
   padding: 0.5rem;
-  position: left;
   /* width: 8rem;
   height: 4rem; */
 
@@ -18,10 +18,9 @@ export const ToggleContainer = styled.button`
     height: auto;
     width: auto;
     transition: all 0.3s linear;
-
-    // light-mode
-
-    // dark-mode
+  }
+  :hover {
+    background: #f0ebeb;
   }
   .light {
     color: #d38a84;

@@ -6,7 +6,11 @@ const Toggle = ({ theme, toggleTheme }) => {
   const isLight = theme === 'light'
   return (
     <>
-      <ToggleContainer lightTheme={isLight} onClick={toggleTheme}>
+      <ToggleContainer
+        lightTheme={isLight}
+        onClick={toggleTheme}
+        className="toggle-container"
+      >
         <span className="material-icons light">light_mode</span>
         <span className="material-icons dark">dark_mode</span>
       </ToggleContainer>
