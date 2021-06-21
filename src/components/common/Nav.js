@@ -43,7 +43,11 @@ function Nav() {
 
   return (
     <>
-      <div className={`navbar ${showColor ? 'navbar-show-color' : 'navbar-default-color'}`}>
+      <div
+        className={`navbar ${
+          showColor ? 'navbar-show-color' : 'navbar-default-color'
+        }`}
+      >
         <Link to="/">
           <ZenithH1>
             <Logo />
@@ -57,18 +61,35 @@ function Nav() {
           <Hamburger toggled={sidebarShow} toggle={setSidebarShow} />
         </div>
       </div>
-      <div className={sidebarShow ? 'side-nav-menu-container active' : 'side-nav-menu-container'}>
+      <div
+        className={
+          sidebarShow
+            ? 'side-nav-menu-container active'
+            : 'side-nav-menu-container'
+        }
+      >
         <ul className="navbar-content-container" onClick={handleSideBar}>
           <NavLink to="/" icon={faHome} text="Home" />
           {isLoggedIn ? (
             <>
-              <NavLink to="/sprints/new" text="Start a new Sprint" icon={faRocket}/>
-              <NavLink to="/dashboard" text="Dashboard" icon={faOm}/>
-              <NavLink to="/" text="Past Sprints" icon={faSearch}/>
-              <NavLink to="/" text="Change your location" icon={faLocationArrow}/>
-              <NavLink to="/" text="Dark Mode" icon={faStarHalfAlt}/>
+              <NavLink
+                to="/sprints/new"
+                text="Start a new Sprint"
+                icon={faRocket}
+              />
+              <NavLink to="/dashboard" text="Dashboard" icon={faOm} />
+              <NavLink to="/" text="Past Sprints" icon={faSearch} />
+              <NavLink
+                to="/"
+                text="Change your location"
+                icon={faLocationArrow}
+              />
+              <NavLink to="/" text="Dark Mode" icon={faStarHalfAlt} />
               <li className="navbar-item logout-link" onClick={handleLogout}>
-                <FontAwesomeIcon className="fa-items-icon" icon={faSignOutAlt} />
+                <FontAwesomeIcon
+                  className="fa-items-icon"
+                  icon={faSignOutAlt}
+                />
                 Log out
               </li>
             </>
@@ -113,8 +134,14 @@ function Logo() {
     >
       <defs>
         <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" style={{ stopColor: '#7b81ec', stopOpacity: 1 }}></stop>
-          <stop offset="100%" style={{ stopColor: '#7b81ec', stopOpacity: 1 }}></stop>
+          <stop
+            offset="0%"
+            style={{ stopColor: '#7b81ec', stopOpacity: 1 }}
+          ></stop>
+          <stop
+            offset="100%"
+            style={{ stopColor: '#7b81ec', stopOpacity: 1 }}
+          ></stop>
         </linearGradient>
       </defs>
       <path

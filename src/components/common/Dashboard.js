@@ -75,13 +75,9 @@ function Dashboard() {
         <Card>
           <SprintHabits />
         </Card>
-
         <Card>
           <DailyTodos />
         </Card>
-        {/* <Card>
-          <DailyMoods />
-        </Card> */}
         <Card>
           <DailyEnergy />
         </Card>
