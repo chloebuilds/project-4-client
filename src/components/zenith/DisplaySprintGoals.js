@@ -13,7 +13,7 @@ function DisplaySprintGoals() {
   return (
 
     <>
-      <h3>My sprint goals:</h3>
+      <h3>My Sprint Goals</h3>
       {isLoading && <div><p>loading...</p></div>}
       {currentSprint &&
       <ol>

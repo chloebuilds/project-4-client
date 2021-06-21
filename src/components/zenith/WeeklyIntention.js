@@ -14,16 +14,22 @@ function WeeklyIntention() {
     draft: '', final: '', id: null,
   })
 
-  console.log(currentSprint)
+
 
   React.useEffect(() => {
     if (!currentSprint) {
       return
     }
+    const weeklyIntention = currentSprint.weeklyIntentions[0]
+
+    if (!weeklyIntention) {
+      return
+    }
+
     setIntention({ 
       draft: '', 
-      final: currentSprint.weeklyIntentions[0].weeklyIntention, 
-      id: currentSprint.weeklyIntentions[0].id })
+      final: weeklyIntention.weeklyIntention, 
+      id: weeklyIntention.id })
   }, [currentSprint])
 
   const handleChange = (e) => {
@@ -83,7 +89,7 @@ function WeeklyIntention() {
   return (
     <>
       {isLoading && <div><p>ॐ..loading...ॐ</p></div>}
-      <h3>Intention for this week:</h3>
+      <h3>Intention for this week</h3>
       {intention.final ? (
         <>
           <Styled.P>{intention.final}</Styled.P>

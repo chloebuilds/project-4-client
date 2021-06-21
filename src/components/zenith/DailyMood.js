@@ -26,7 +26,8 @@ function DailyMoods() {
       {isLoading && <div><p>loading...</p></div>}
       {currentSprint &&
       <> 
-        <h3>Daily Moods</h3>
+        <h3>Daily Mood</h3>
+        <p>Today I&apos; m feeling...</p>
         <button onClick={handleClick}>Happy</button>
         <button onClick={handleClick}>Sad</button>
         <button onClick={handleClick}>Angry</button>
