@@ -1,15 +1,16 @@
 import React from 'react'
 import { addNewSprint } from '../../lib/api'
 import { useHistory } from 'react-router-dom'
-
+import { isAuthenticated } from '../../lib/auth'
 import { UserContext } from '../context/UserContext'
 import useForm from '../hooks/useForm'
 
 export default function NewSprint() {
   // const [isError, setIsError] = React.useState(null)
+  const isLoggedIn = isAuthenticated()
   const [isStartingNewSprint, setisStartingNewSprint] = React.useState(false)
   const history = useHistory()
-  const { user } = React.useContext(UserContext)
+  const { user, currentSprint } = React.useContext(UserContext)
   console.log(user)
   const isLoading = !user
   const { formData, formErrors, handleChange } = useForm({
@@ -24,10 +25,14 @@ export default function NewSprint() {
     event.preventDefault()
     try {
       await addNewSprint(formData)
-      history.push('/sprints/setup')
+      history.push('/sprints/new/setup')
     } catch (e) {
       console.log(e)
     }
+  }
+
+  if (!isLoggedIn || currentSprint) {
+    history.push('/401')
   }
 
   return (

@@ -6,61 +6,81 @@ import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
 
-
-
-
 function DailyGratitudes() {
   const { currentSprint } = React.useContext(UserContext) //getting current sprint from context
   const isLoading = !currentSprint
-  const inputRefs = React.useRef([React.createRef(), React.createRef(), React.createRef()]) // creating 3 refs so that we can assign the inputs to them and have access to .focus() and .blur() (methods on inputs)
-  const [gratitudes, setGratitudes] = React.useState({ // creating state to hold the 3 gratitudes (3 because we decided on 3). State ALWAYS needs to have 3 gratitudes in it because we are mapping over the objects in state to render a <p> tag/input
+  const inputRefs = React.useRef([
+    React.createRef(),
+    React.createRef(),
+    React.createRef()
+  ]) // creating 3 refs so that we can assign the inputs to them and have access to .focus() and .blur() (methods on inputs)
+  const [gratitudes, setGratitudes] = React.useState({
+    // creating state to hold the 3 gratitudes (3 because we decided on 3). State ALWAYS needs to have 3 gratitudes in it because we are mapping over the objects in state to render a <p> tag/input
     gratitude1: { draft: '', final: '', id: null }, // id: null is so that we can edit. Id's are only added once they are sent to back-end
     gratitude2: { draft: '', final: '', id: null },
     gratitude3: { draft: '', final: '', id: null },
   })
 
   React.useEffect(() => {
-    if (!currentSprint) { // checking if current sprint is defined yet
+    if (!currentSprint) {
+      // checking if current sprint is defined yet
       return
     }
-    const fillerGratitudes = [...Array(3)].map(() => ({ id: null, dailyGratitude: '' })) // create placeholder/filler objects (in case there are fewer than 3 gratitudes coming back from the back-end) eg.  this morning I was only grateful for chocolate and nothing else. So this will fill the other 2 with the fillerGratitudes objects (this will also mean that the remaining 2 can be filled in)
+    const fillerGratitudes = [...Array(3)].map(() => ({
+      id: null,
+      dailyGratitude: '',
+    })) // create placeholder/filler objects (in case there are fewer than 3 gratitudes coming back from the back-end) eg.  this morning I was only grateful for chocolate and nothing else. So this will fill the other 2 with the fillerGratitudes objects (this will also mean that the remaining 2 can be filled in)
 
-    const temporaryGratitudes = [ // making sure that we have at least 3 objects that we can use to create the state we need with the .reduce()
+    const temporaryGratitudes = [
+      // making sure that we have at least 3 objects that we can use to create the state we need with the .reduce()
       ...currentSprint.dailyGratitudes.sort((a, b) => a.id - b.id), // getting the gratitudes from the sprint (if any) in the back-end, spread over them and sort by id (this is to make sure they render in order - they were coming back in a jumbled order!)
       ...fillerGratitudes // filling the array with placeholder objects (fillerGratitudes) that mirror the initial state, so that we know that we have an array of at least 'length 3'. We need 'length 3' because there are 3 gratitudes to render
     ]
     temporaryGratitudes.length = 3 // because we always want to render just 3 gratitude slots (even though temporaryGratitudes may be more than that)
-    const syncedGratitudes = temporaryGratitudes.reduce( // transforming the array of back-end gratitude objects/placeholders into a new object with .reduce() so that we can update state in the format that we need for the UI ({ id: ?, draft: ?, final: ? })
-      (newState, gratitude, i) => ({ // The callback function returns is going to be the accumulator on the next iteration or that is returned from the whole reduce (when you get to the last element in the array). The object we are returning is going to be the new state
+    const syncedGratitudes = temporaryGratitudes.reduce(
+      // transforming the array of back-end gratitude objects/placeholders into a new object with .reduce() so that we can update state in the format that we need for the UI ({ id: ?, draft: ?, final: ? })
+      (newState, gratitude, i) => ({
+        // The callback function returns is going to be the accumulator on the next iteration or that is returned from the whole reduce (when you get to the last element in the array). The object we are returning is going to be the new state
         ...newState, // spreading over the newState (the accumulator)
-        [`gratitude${i + 1}`]: { draft: '', final: gratitude.dailyGratitude, id: gratitude.id }, // converting the object from the back-end OR the placeholder into the shape of object that we need for the front-end and to set in state
+        [`gratitude${i + 1}`]: {
+          draft: '',
+          final: gratitude.dailyGratitude,
+          id: gratitude.id,
+        }, // converting the object from the back-end OR the placeholder into the shape of object that we need for the front-end and to set in state
       }),
       {} // saying that what we return from the reduce() is going to be an object (the data type that we are going to accumulate)
     )
     setGratitudes(syncedGratitudes) // the result of the reduce() is being set as setGratitudes
   }, [currentSprint]) // run useEffect again once we have the currentSprint from the back-end
 
-  const handleChange = (e) => {
-    setGratitudes({ // updating the state
+  const handleChange = e => {
+    setGratitudes({
+      // updating the state
       ...gratitudes,
-      [e.target.name]: 
-      { draft: e.target.value, 
-        final: '', 
-        id: gratitudes[e.target.name].id }, 
+      [e.target.name]: {
+        draft: e.target.value,
+        final: '',
+        id: gratitudes[e.target.name].id,
+      },
       // takes the name on the input and updating that property so that it's draft is the value of whats in the input. The final is a blank string so that we continue to render the input and the id is whatever it already was - either null or the id from the back-end. This is just updating the state.
     })
   }
 
-  const handleBlur = async (e) => { // this is where we update the back-end
+  const handleBlur = async e => {
+    // this is where we update the back-end
     const existingId = gratitudes[e.target.name].id
     if (!e.target.value && !existingId) {
       return
     }
     const id = await updateGratitudes(e.target.value, existingId)
-    setGratitudes({ ...gratitudes, [e.target.name]: { draft: '', final: e.target.value, id } })
+    setGratitudes({
+      ...gratitudes,
+      [e.target.name]: { draft: '', final: e.target.value, id },
+    })
   }
 
-  const handleKeyDown = (event, index) => { // firing when any key is pressed but we only care if its the enter key
+  const handleKeyDown = (event, index) => {
+    // firing when any key is pressed but we only care if its the enter key
     if (event.key !== 'Enter') {
       return
     }
@@ -80,17 +100,20 @@ function DailyGratitudes() {
         )
         return putData.id
       }
-      const { data: postData } = await axios.post(`/api/sprints/${currentSprint?.id}/gratitudes/`, {
-        dailyGratitude: gratitudeText,
-      })
+      const { data: postData } = await axios.post(
+        `/api/sprints/${currentSprint?.id}/gratitudes/`,
+        {
+          dailyGratitude: gratitudeText,
+        }
+      )
       return postData.id
     } catch (err) {
       console.log(err)
     }
   }
 
-  const handleEdit = (e) => {
-    setGratitudes({ 
+  const handleEdit = e => {
+    setGratitudes({
       ...gratitudes,
       [e.target.name]: {
         draft: gratitudes[e.target.name].final,
@@ -102,27 +125,41 @@ function DailyGratitudes() {
 
   // this is what Object.entries(gratitudes) will look like:
   //  const array = [
-  //    ['gratitude1', { draft: '', final: '', id: null }], 
-  //    ['gratitude2', { draft: '', final: '', id: null }], 
-  //    ['gratitude3', { draft: '', final: '', id: null }], 
+  //    ['gratitude1', { draft: '', final: '', id: null }],
+  //    ['gratitude2', { draft: '', final: '', id: null }],
+  //    ['gratitude3', { draft: '', final: '', id: null }],
   //   ]
 
   console.log(inputRefs.current)
 
   return (
     <>
-      {isLoading && <div><p>ॐ..loading...ॐ</p></div>}
+      {isLoading && (
+        <div>
+          <p>ॐ..loading...ॐ</p>
+        </div>
+      )}
       <h3>Daily Gratitude</h3>
       <p>Today I am grateful for...</p>
       {gratitudes &&
-        Object.entries(gratitudes).map(([label, gratitude], i) => { // mapping over our state. Object.entries means that we can convert the object into an array of arrays where the first element of each sub-array is the property's key (eg. gratitude1, gratitude2..) and the second element of the sub-array is the property's value (the object of the gratitude - { draft: '', final: '', id: null }) SEE LINE 127 above for const array.
+        Object.entries(gratitudes).map(([label, gratitude], i) => {
+          // mapping over our state. Object.entries means that we can convert the object into an array of arrays where the first element of each sub-array is the property's key (eg. gratitude1, gratitude2..) and the second element of the sub-array is the property's value (the object of the gratitude - { draft: '', final: '', id: null }) SEE LINE 127 above for const array.
           return (
             <div key={label}>
-              <label style= {{ display: 'inline-block', width: 20 }}>{i + 1}. </label>
+              <label style={{ display: 'inline-block', width: 20 }}>
+                {i + 1}.{' '}
+              </label>
               {gratitude.final ? ( // conditionally rendering whether a p tag or an input is displayed, depending on if there is a gratitude.final that we have set in the useEffect
                 <>
-                  <Styled.P ref={inputRefs.current[i]}>{gratitude.final}</Styled.P>
-                  <FontAwesomeIcon icon={faEdit} onClick={handleEdit} style= {{ marginLeft: 10 }}/>
+                  <Styled.P ref={inputRefs.current[i]}>
+                    {gratitude.final}
+                  </Styled.P>
+                  <FontAwesomeIcon
+                    name={label}
+                    icon={faEdit}
+                    onClick={handleEdit}
+                    style={{ marginLeft: 10 }}
+                  />
                 </>
               ) : (
                 <Styled.Input
@@ -130,9 +167,9 @@ function DailyGratitudes() {
                   name={label} // we give it a name so that we can do clever things with handle change
                   ref={inputRefs.current[i]} // the ref is something in react which enables us to access DOM elements directly (kinda like document.getElementBy). We have multiple refs (createRef()) so here we are assigning each input to the array of refs. A ref has .current method on it and in this instance it is an array (because that's what we set it to initially). We are assigning the input to the array of refs at the index(0, 1 or 2)
                   value={gratitude.draft} // value of the input is going to be the draft on each gratitude object
-                  onChange={handleChange} 
+                  onChange={handleChange}
                   onBlur={handleBlur}
-                  onKeyDown={(e) => handleKeyDown(e, i)}
+                  onKeyDown={e => handleKeyDown(e, i)}
                 />
               )}
             </div>
@@ -150,23 +187,16 @@ const Styled = {
   `,
   Input: styled.input`
     outline: none;
-      border: none;
-      background: rgba(247, 247, 247, 0.2);
-    color: #100F10;
+    border: none;
+    background: rgba(247, 247, 247, 0.2);
+    color: #100f10;
     padding: 7px;
     margin: 1px;
-      &::placeholder {
-        color: #262526;
-      }
+    &::placeholder {
+      color: #262526;
+    }
   `,
 }
-
-
-
-
-
-
-
 
 // ? DEBUG TOOLS
 // const logGratitudes = () => {
