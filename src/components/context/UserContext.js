@@ -2,7 +2,7 @@ import React, { createContext, useState } from 'react'
 import { useLocation, useHistory } from 'react-router-dom'
 import { getUser, loginUser } from '../../lib/api'
 import { getPayload, setToken } from '../../lib/auth'
-// import { toast } from 'react-toastify'
+import { toast } from 'react-toastify'
 
 // USER CONTEXT
 
@@ -16,13 +16,14 @@ export const UserProvider = props => {
 
   const history = useHistory()
   const [user, setUser] = useState(null)
+  const [userId, setUserId] = useState(null)
   console.log(user)
   const currentSprint = user?.createdSprints.find(
     sprint => Date.parse(sprint.endDate) > Date.now()
   )
 
   const location = useLocation()
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  // const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [hasNewHabitOrGoal, setHasNewHabitOrGoal] = React.useState(false)
 
   React.useEffect(() => {
@@ -36,7 +37,7 @@ export const UserProvider = props => {
       }
     }
     getData()
-  }, [location, isLoggedIn, hasNewHabitOrGoal])
+  }, [location, userId, hasNewHabitOrGoal])
 
   const login = async (event, formData, setIsError) => {
     event.preventDefault()
@@ -44,16 +45,18 @@ export const UserProvider = props => {
     try {
       const res = await loginUser(formData)
       setToken(res.data.token)
-      // toast.dark('🚀 Successfully logged in!', {
-      //   position: 'top-right',
-      //   autoClose: 4000,
-      //   hideProgressBar: false,
-      //   closeOnClick: true,
-      //   pauseOnHover: true,
-      //   draggable: true,
-      //   progress: undefined,
-      // })
-      setIsLoggedIn(true)
+      const { sub: userId } = getPayload()
+      setUserId(userId)
+      toast.dark('🚀 Successfully logged in!', {
+        position: 'top-right',
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+      // setIsLoggedIn(true)
 
       currentSprint ? history.push('/dashboard') : history.push('/sprints/new')
     } catch (e) {

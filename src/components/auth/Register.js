@@ -4,14 +4,16 @@ import { registerUser } from '../../lib/api'
 import { useHistory, Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
-// import styled from 'styled-components'
+import styled from 'styled-components'
+import FormStyle from '../../styles/styled-components/FormStyle'
 import Card from '../../styles/styled-components/GlassCard'
 // import gradientBackground from '../../assets/gradient-background.jpg'
 
 function Register() {
   const history = useHistory()
   const [error, setError] = React.useState('')
-  const { formData, formErrors, handleChange } = useForm({
+  const { formData, formErrors, handleChange, clearForm } = useForm({
+    name: '',
     username: '',
     email: '',
     password: '',
@@ -40,12 +42,12 @@ function Register() {
   }
 
   return (
-    <section>
-      <h1>Create a new account</h1>
-      <Card>
+    <Section>
+      <Card isFlex flexDirection="column" alignItems="center" width="40%">
+        <h1>Create a new account</h1>
         <form onSubmit={handleSubmit}>
           <div>
-            <input
+            <FormStyle.Input
               placeholder="Name"
               onChange={handleChange}
               name="name"
@@ -54,7 +56,7 @@ function Register() {
             {formErrors.name && <p>{formErrors.name}</p>}
           </div>
           <div>
-            <input
+            <FormStyle.Input
               placeholder="Username"
               onChange={handleChange}
               name="username"
@@ -63,7 +65,7 @@ function Register() {
             {formErrors.username && <p>{formErrors.username}</p>}
           </div>
           <div>
-            <input
+            <FormStyle.Input
               className="user-form user-info"
               placeholder="Email"
               onChange={handleChange}
@@ -73,7 +75,7 @@ function Register() {
             {formErrors.email && <p>{formErrors.email}</p>}
           </div>
           <div>
-            <input
+            <FormStyle.Input
               type="password"
               placeholder="Password"
               onChange={handleChange}
@@ -83,7 +85,7 @@ function Register() {
             {formErrors.password && <p>{formErrors.password}</p>}
           </div>
           <div>
-            <input
+            <FormStyle.Input
               type="password"
               placeholder="Password Confirmation"
               onChange={handleChange}
@@ -94,17 +96,9 @@ function Register() {
               <p>{formErrors.passwordConfirmation}</p>
             )}
           </div>
-          <div>
-            <input
-              placeholder="Add your face!"
-              onChange={handleChange}
-              name="avatar"
-              value={formData.avatar}
-            />
-          </div>
           {error && <p>{error}</p>}
           <div>
-            <input
+            <FormStyle.Input
               placeholder="Your city"
               onChange={handleChange}
               name="city"
@@ -112,27 +106,35 @@ function Register() {
             />
           </div>
           {error && <p>{error}</p>}
-          <div>
+          <ButtonContainer>
             <button type="submit">Register</button>
-          </div>
+            <button type="button" onClick={clearForm}>Clear Form</button>
+          </ButtonContainer>
         </form>
-        <footer>
-          <h5>
-            Already signed up?{' '}
-            <span>
-              <Link to="/login">Login instead.</Link>
-            </span>{' '}
-          </h5>
-        </footer>
+        <FormStyle.P>
+          Already signed up? <Link to="/login">Login instead.</Link>
+        </FormStyle.P>
       </Card>
-    </section>
+    </Section>
   )
 }
 
 export default Register
 
-// const Section = styled.section`
-// background-image: url(${gradientBackground});
-// background-repeat: no-repeat;
-// background-attachment: fixed;
-// `
+const Section = styled.section`
+  background-image: url('https://images.unsplash.com/photo-1528722828814-77b9b83aafb2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3300&q=80');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  height: calc(100% - var(--navbar-height));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+const ButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+`

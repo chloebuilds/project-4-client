@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { UserContext } from '../context/UserContext'
-import { addMoods } from '../../lib/api'
+// import { addMoods } from '../../lib/api'
 
 function DailyMoods() {
 
@@ -10,16 +10,16 @@ function DailyMoods() {
   const isLoading = !currentSprint
 
 
-  const handleClick = async (e) => {
-    try {
-      const newMood = { name: '' }
+  // const handleClick = async (e) => {
+  //   try {
+  //     const newMood = { name: '' }
 
-      const res = await addMoods( newMood )
+  //     const res = await addMoods( newMood )
 
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
 
   return (
     <>
@@ -27,7 +27,7 @@ function DailyMoods() {
       {currentSprint &&
       <> 
         <h3>Daily Mood</h3>
-        <p>Today I&apos; m feeling...</p>
+        {/* <p>Today I&apos; m feeling...</p>
         <button onClick={handleClick}>Happy</button>
         <button onClick={handleClick}>Sad</button>
         <button onClick={handleClick}>Angry</button>

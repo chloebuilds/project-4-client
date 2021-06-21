@@ -17,13 +17,13 @@
   },
   "editor.tokenColorCustomizations": {
     "[Monokai Dimmed]": {
-        "comments": "#d3934b",
+      "comments": "#d3934b"
     }
-  },  
+  },
   "editor.formatOnSave": false,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.codeActionsOnSave": [
-    "source.formatDocument",
-    "source.fixAll.eslint"
-  ]
+  "editor.codeActionsOnSave": ["source.formatDocument", "source.fixAll.eslint"],
+  "files.associations": {
+    "*.js": "javascriptreact"
+  }
 }

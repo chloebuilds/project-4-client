@@ -107,7 +107,7 @@ function NewSprintGoals() {
   return (
     <>
       <h3>Sprint Goals</h3>
-      <p>Today I am grateful for...</p>
+      <p>Specific, measureable and attainable goals to set yourself for the duration of the sprint</p>
       {sprintGoals &&
         Object.entries(sprintGoals).map(([label, sprintGoal], i) => { // mapping over our state. Object.entries means that we can convert the object into an array of arrays where the first element of each sub-array is the property's key (eg. gratitude1, gratitude2..) and the second element of the sub-array is the property's value (the object of the gratitude - { draft: '', final: '', id: null }) SEE LINE 127 above for const array.
           return (

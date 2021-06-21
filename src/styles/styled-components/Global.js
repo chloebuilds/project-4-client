@@ -9,7 +9,7 @@ body {
     font-family: 'Poppins', Helvetica, Sans-Serif;
 }
 h1 {
-  font-family: "Space Grotesk";
+  font-family: 'Space Grotesk', Helvetica, Sans-Serif;
 
 }
 
