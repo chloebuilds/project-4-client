@@ -9,7 +9,7 @@ function DisplaySprintGoals() {
 
   return (
     <>
-      <h3>My sprint goals:</h3>
+      <h3>My Sprint Goals</h3>
       {isLoading && (
         <div>
           <p>loading...</p>
@@ -20,7 +20,6 @@ function DisplaySprintGoals() {
           {currentSprint?.sprintGoals.map(goal => (
             <li key={goal.id}>
               <p>{goal.goalName}</p>
-              {/* <p>{goal.goalDescription}</p> */}
             </li>
           ))}
         </ol>

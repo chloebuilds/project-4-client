@@ -85,7 +85,13 @@ function DailyGratitudes() {
       return
     }
     if (index < 2) {
-      inputRefs.current[index + 1].current.focus() // accessing the ref's, move to the next one if we are in the 1st or the 2nd input. Focusing elsewhere automatically calls the .blur() method
+      const nextElement = inputRefs.current[index + 1].current
+      if (nextElement.tagName === 'P') {
+        inputRefs.current[index].current.blur()
+        return
+      }
+      console.dir(inputRefs.current[index + 1].current)
+      nextElement.focus() // accessing the ref's, move to the next one if we are in the 1st or the 2nd input. Focusing elsewhere automatically calls the .blur() method
     } else {
       inputRefs.current[index].current.blur() // if we are on the 3rd input then pressing enter will .blur() (we have completed our 3 gratitudes)
     }
@@ -113,14 +119,40 @@ function DailyGratitudes() {
   }
 
   const handleEdit = e => {
+    console.log(e.currentTarget.id)
     setGratitudes({
       ...gratitudes,
-      [e.target.name]: {
-        draft: gratitudes[e.target.name].final,
+      [e.currentTarget.id]: {
+        draft: gratitudes[e.currentTarget.id].final,
         final: '',
-        id: gratitudes[e.target.name].id,
+        id: gratitudes[e.currentTarget.id].id,
       },
     })
+  }
+
+  const clearGratitudes = async () => {
+    try {
+      const { data } = await axios.get(
+        `/api/sprints/${currentSprint?.id}/gratitudes/`
+      )
+      for (const gratitude of data) {
+        try {
+          await axios.delete(
+            `/api/sprints/${currentSprint?.id}/gratitudes/${gratitude.id}/`
+          )
+        } catch (err) {
+          console.log(err)
+        }
+      }
+      setGratitudes({
+        gratitude1: { draft: '', final: '', id: null },
+        gratitude2: { draft: '', final: '', id: null },
+        gratitude3: { draft: '', final: '', id: null },
+      })
+      console.log('Gratitudes deleted')
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   // this is what Object.entries(gratitudes) will look like:
@@ -154,12 +186,13 @@ function DailyGratitudes() {
                   <Styled.P ref={inputRefs.current[i]}>
                     {gratitude.final}
                   </Styled.P>
-                  <FontAwesomeIcon
-                    name={label}
-                    icon={faEdit}
+                  <span
+                    id={label}
                     onClick={handleEdit}
                     style={{ marginLeft: 10 }}
-                  />
+                  >
+                    <FontAwesomeIcon icon={faEdit} />
+                  </span>
                 </>
               ) : (
                 <Styled.Input
@@ -175,6 +208,7 @@ function DailyGratitudes() {
             </div>
           )
         })}
+      <button onClick={clearGratitudes}>Clear Gratitudes</button>
     </>
   )
 }
