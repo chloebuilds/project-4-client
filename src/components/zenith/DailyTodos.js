@@ -79,25 +79,31 @@ function DailyToDoList() {
       return
     }
     if (index < 4) {
-      inputRefs.current[index + 1].current.focus()
+      const nextElement = inputRefs.current[index + 1].current
+      if (nextElement.tagName === 'P') {
+        inputRefs.current[index].current.blur()
+        return
+      }
+      console.dir(inputRefs.current[index + 1].current)
+      nextElement.focus()
     } else {
       inputRefs.current[index].current.blur()
     }
   }
 
-  const updatedToDos = async (toDoText, existingId) => {
+  const updatedToDos = async (toDoTextToUpdate, existingId) => {
     try {
       if (existingId) {
         const { data: putData } = await axios.put(
           `/api/sprints/${currentSprint?.id}/to-dos/${existingId}/`,
-          { toDoItem: toDoText }
+          { toDoItem: toDoTextToUpdate }
         )
         return putData.id
       }
       const { data: postData } = await axios.post(
         `/api/sprints/${currentSprint?.id}/to-dos/`,
         {
-          toDoItem: toDoText,
+          toDoItem: toDoTextToUpdate,
         }
       )
       return postData.id
@@ -109,15 +115,40 @@ function DailyToDoList() {
   const handleEdit = e => {
     setToDos({
       ...toDos,
-      [e.target.name]: {
-        draft: toDos[e.target.name].final,
+      [e.currentTarget.id]: {
+        draft: toDos[e.currentTarget.id].final,
         final: '',
-        id: toDos[e.target.name].id,
+        id: toDos[e.currentTarget.id].id,
       },
     })
   }
 
-  console.log(inputRefs.current)
+  const clearToDos = async () => {
+    try {
+      const { data } = await axios.get(
+        `/api/sprints/${currentSprint?.id}/to-dos/`
+      )
+      for (const toDo of data) {
+        try {
+          await axios.delete(
+            `/api/sprints/${currentSprint?.id}/to-dos/${toDo.id}/`
+          )
+        } catch (err) {
+          console.log(err)
+        }
+      }
+      setToDos({
+        toDo1: { draft: '', final: '', id: null },
+        toDo2: { draft: '', final: '', id: null },
+        toDo3: { draft: '', final: '', id: null },
+        toDo4: { draft: '', final: '', id: null },
+        toDo5: { draft: '', final: '', id: null },
+      })
+      console.log('To-dos deleted')
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   return (
     <>
@@ -138,11 +169,13 @@ function DailyToDoList() {
               {toDo.final ? (
                 <>
                   <Styled.P ref={inputRefs.current[i]}>{toDo.final}</Styled.P>
-                  <FontAwesomeIcon
-                    icon={faEdit}
+                  <span
+                    id={label}
                     onClick={handleEdit}
                     style={{ marginLeft: 10 }}
-                  />
+                  >
+                    <FontAwesomeIcon icon={faEdit} />
+                  </span>
                 </>
               ) : (
                 <Styled.Input
@@ -157,6 +190,7 @@ function DailyToDoList() {
             </div>
           )
         })}
+      <button onClick={clearToDos}>Clear To-Do List</button>
     </>
   )
 }

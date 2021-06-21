@@ -3,10 +3,10 @@ import styled from 'styled-components'
 import { UserContext } from '../context/UserContext'
 import axios from 'axios'
 
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-function DailyToDoList() {
+function NewSprintHabits() {
   const { currentSprint } = React.useContext(UserContext)
   const isLoading = !currentSprint
   const inputRefs = React.useRef([
@@ -33,7 +33,6 @@ function DailyToDoList() {
       ...fillerHabits
     ]
     temporaryHabits.length = 3
-    //************** */ QUESTION ABOUT FINAL AND ID ***********************************************************************************************************///////////////
     const syncedHabits = temporaryHabits.reduce(
       (newState, habit, i) => ({
         ...newState,
@@ -77,7 +76,13 @@ function DailyToDoList() {
       return
     }
     if (index < 2) {
-      inputRefs.current[index + 1].current.focus()
+      const nextElement = inputRefs.current[index + 1].current
+      if (nextElement.tagName === 'P') {
+        inputRefs.current[index].current.blur()
+        return
+      }
+      console.dir(inputRefs.current[index + 1].current)
+      nextElement.focus()
     } else {
       inputRefs.current[index].current.blur()
     }
@@ -107,15 +112,38 @@ function DailyToDoList() {
   const handleEdit = e => {
     setHabits({
       ...habits,
-      [e.target.name]: {
-        draft: habits[e.target.name].final,
+      [e.currentTarget.id]: {
+        draft: habits[e.currentTarget.id].final,
         final: '',
-        id: habits[e.target.name].id,
+        id: habits[e.currentTarget.id].id,
       },
     })
   }
 
-  console.log(inputRefs.current)
+  const clearSprintHabits = async () => {
+    try {
+      const { data } = await axios.get(
+        `/api/sprints/${currentSprint?.id}/sprint-habits/`
+      )
+      for (const sprintHabit of data) {
+        try {
+          await axios.delete(
+            `/api/sprints/${currentSprint?.id}/sprint-habits/${sprintHabit.id}/`
+          )
+        } catch (err) {
+          console.log(err)
+        }
+      }
+      setHabits({
+        habit1: { draft: '', final: '', id: null },
+        habit2: { draft: '', final: '', id: null },
+        habit3: { draft: '', final: '', id: null },
+      })
+      console.log('All habits are deleted')
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   return (
     <>
@@ -136,17 +164,17 @@ function DailyToDoList() {
               {habit.final ? (
                 <>
                   <Styled.P ref={inputRefs.current[i]}>{habit.final}</Styled.P>
-                  <button
-                    name={label}
+                  <span
+                    id={label}
                     onClick={handleEdit}
                     style={{ marginLeft: 10 }}
                   >
-                    ✏️
-                  </button>
+                    <FontAwesomeIcon icon={faEdit} />
+                  </span>
                 </>
               ) : (
                 <Styled.Input
-                  placeholder="My goal is..."
+                  placeholder="My habit is..."
                   name={label}
                   ref={inputRefs.current[i]}
                   value={habit.draft}
@@ -158,11 +186,12 @@ function DailyToDoList() {
             </div>
           )
         })}
+      <button onClick={clearSprintHabits}>Clear All Habits</button>
     </>
   )
 }
 
-export default DailyToDoList
+export default NewSprintHabits
 
 const Styled = {
   P: styled.p`

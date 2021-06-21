@@ -3,6 +3,9 @@ import styled from 'styled-components'
 import { UserContext } from '../context/UserContext'
 import axios from 'axios'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
+
 function NewSprintGoals() {
   const { currentSprint } = React.useContext(UserContext) //getting current sprint from context
   const inputRefs = React.useRef([
@@ -80,25 +83,31 @@ function NewSprintGoals() {
       return
     }
     if (index < 2) {
-      inputRefs.current[index + 1].current.focus() // accessing the ref's, move to the next one if we are in the 1st or the 2nd input. Focusing elsewhere automatically calls the .blur() method
+      const nextElement = inputRefs.current[index + 1].current
+      if (nextElement.tagName === 'P') {
+        inputRefs.current[index].current.blur()
+        return
+      }
+      console.dir(inputRefs.current[index + 1].current)
+      nextElement.focus()
     } else {
-      inputRefs.current[index].current.blur() // if we are on the 3rd input then pressing enter will .blur() (we have completed our 3 gratitudes)
+      inputRefs.current[index].current.blur()
     }
   }
 
-  const updateSprintGoals = async (sprintGoalText, existingId) => {
+  const updateSprintGoals = async (sprintGoalToUpdate, existingId) => {
     try {
       if (existingId) {
         const { data: putData } = await axios.put(
           `/api/sprints/${currentSprint?.id}/sprint-goals/${existingId}/`,
-          { goalName: sprintGoalText }
+          { goalName: sprintGoalToUpdate }
         )
         return putData.id
       }
       const { data: postData } = await axios.post(
         `/api/sprints/${currentSprint?.id}/sprint-goals/`,
         {
-          goalName: sprintGoalText,
+          goalName: sprintGoalToUpdate,
         }
       )
       return postData.id
@@ -110,22 +119,38 @@ function NewSprintGoals() {
   const handleEdit = e => {
     setSprintGoals({
       ...sprintGoals,
-      [e.target.name]: {
-        draft: sprintGoals[e.target.name].final,
+      [e.currentTarget.id]: {
+        draft: sprintGoals[e.currentTarget.id].final,
         final: '',
-        id: sprintGoals[e.target.name].id,
+        id: sprintGoals[e.currentTarget.id].id,
       },
     })
   }
 
-  // this is what Object.entries(gratitudes) will look like:
-  //  const array = [
-  //    ['gratitude1', { draft: '', final: '', id: null }],
-  //    ['gratitude2', { draft: '', final: '', id: null }],
-  //    ['gratitude3', { draft: '', final: '', id: null }],
-  //   ]
-
-  // console.log(inputRefs.current)
+  const clearSprintGoals = async () => {
+    try {
+      const { data } = await axios.get(
+        `/api/sprints/${currentSprint?.id}/sprint-goals/`
+      )
+      for (const sprintGoal of data) {
+        try {
+          await axios.delete(
+            `/api/sprints/${currentSprint?.id}/sprint-goals/${sprintGoal.id}/`
+          )
+        } catch (err) {
+          console.log(err)
+        }
+      }
+      setSprintGoals({
+        sprintGoal1: { draft: '', final: '', id: null },
+        sprintGoal2: { draft: '', final: '', id: null },
+        sprintGoal3: { draft: '', final: '', id: null },
+      })
+      console.log('All goals deleted')
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   return (
     <>
@@ -144,13 +169,13 @@ function NewSprintGoals() {
                   <Styled.P ref={inputRefs.current[i]}>
                     {sprintGoal.final}
                   </Styled.P>
-                  <button
-                    name={label}
+                  <span
+                    id={label}
                     onClick={handleEdit}
                     style={{ marginLeft: 10 }}
                   >
-                    ✏️
-                  </button>
+                    <FontAwesomeIcon icon={faEdit} />
+                  </span>
                 </>
               ) : (
                 <Styled.Input
@@ -166,6 +191,7 @@ function NewSprintGoals() {
             </div>
           )
         })}
+      <button onClick={clearSprintGoals}>Clear All Goals</button>
     </>
   )
 }
