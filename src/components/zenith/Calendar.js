@@ -76,6 +76,8 @@ const CalendarButtons = styled.button`
 const CalendarCard = styled.div`
   max-width: 95%;
   max-heigth: 95%;
+  // color: #2C3E50;
+  
 `
 
 
