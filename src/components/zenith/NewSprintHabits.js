@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import FormStyle from '../../styles/styled-components/FormStyle'
+
 import { UserContext } from '../context/UserContext'
 import axios from 'axios'
 
@@ -152,8 +154,8 @@ function NewSprintHabits() {
           <p>ॐ..loading...ॐ</p>
         </div>
       )}
-      <h3>Habits I Want To Build: </h3>
-      <p>We recommend up to 3 habits per sprint, add them below</p>
+      <h3>Habits I Want To Build</h3>
+      <p>We recommend up to 3 habits per sprint, add them below:</p>
       {habits &&
         Object.entries(habits).map(([label, habit], i) => {
           return (
@@ -163,7 +165,9 @@ function NewSprintHabits() {
               </label>
               {habit.final ? (
                 <>
-                  <Styled.P ref={inputRefs.current[i]}>{habit.final}</Styled.P>
+                  <FormStyle.P ref={inputRefs.current[i]}>
+                    {habit.final}
+                  </FormStyle.P>
                   <span
                     id={label}
                     onClick={handleEdit}
@@ -173,7 +177,7 @@ function NewSprintHabits() {
                   </span>
                 </>
               ) : (
-                <Styled.Input
+                <FormStyle.Input
                   placeholder="My habit is..."
                   name={label}
                   ref={inputRefs.current[i]}
@@ -186,29 +190,23 @@ function NewSprintHabits() {
             </div>
           )
         })}
-      <button onClick={clearSprintHabits}>Clear All Habits</button>
+      <FormStyle.ButtonContainer>
+        <ClearButton onClick={clearSprintHabits}>Clear</ClearButton>
+      </FormStyle.ButtonContainer>
     </>
   )
 }
 
 export default NewSprintHabits
 
-const Styled = {
-  P: styled.p`
-    display: inline-block;
-  `,
-  Input: styled.input`
-    outline: none;
-    border: none;
-    background: rgba(247, 247, 247, 0.2);
-    color: #100f10;
-    padding: 7px;
-    margin: 1px;
-    &::placeholder {
-      color: #262526;
-    }
-  `,
-}
+const ClearButton = styled.button`
+  margin: 2px;
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 5px;
+  background-color: white;
+  color: #100f10;
+`
 
 // import React from 'react'
 

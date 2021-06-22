@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { css } from 'styled-components'
 
 // import styled from 'styled-components'
 
@@ -16,7 +17,6 @@ function ZenQuote() {
           'https://secret-ocean-49799.herokuapp.com/https://zenquotes.io/api/random'
         )
         setQuoteData(response.data)
-        
       } catch (e) {
         console.log(e)
         setError(e.response.data.message)
@@ -33,7 +33,11 @@ function ZenQuote() {
       <div>
         {loading && <p className="loading-error">Loading..</p>}
         {error && <p className="loading-error">Cannot retrieve zen quote, sorry!</p>}
-        <div dangerouslySetInnerHTML={{ __html: quoteData[0]?.h }}>
+        <div>
+          <blockquote>
+            &ldquo;{quoteData[0]?.q}&ldquo; &mdash;{' '}
+            <footer style={{ marginTop: 5 }}>{quoteData[0]?.a}</footer>
+          </blockquote>
         </div>
       </div>
     </>

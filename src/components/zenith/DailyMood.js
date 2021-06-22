@@ -8,6 +8,8 @@ import {
   getSingleSprint
 } from '../../lib/api'
 
+import styled from 'styled-components'
+
 function DailyMoods() {
   const { currentSprint } = React.useContext(UserContext)
   const isLoading = !currentSprint
@@ -15,11 +17,20 @@ function DailyMoods() {
   const [currentMoods, setCurrentMoods] = React.useState([])
   const [allMoods, setAllMoods] = React.useState([
     'Happy',
+    'Excited',
+    'Optimistic',
+    'Calm',
+    'Zen',
+    'Hungry',
+    'Hopeful',
+    'Meh',
+    'Tired',
     'Sad',
     'Anxious',
-    'Angry'
+    'Angry',
+    'Frustrated'
   ])
-  const [deletedMoods, setDeletedMoods] = React.useState([])
+  // const [deletedMoods, setDeletedMoods] = React.useState([])
   const availableMoods = allMoods.filter(mood => !currentMoods.includes(mood))
 
   // const updatedCurrentMoods = currentMoods.filter( mood => !)
@@ -27,9 +38,9 @@ function DailyMoods() {
   React.useEffect(() => {
     const getData = async () => {
       try {
-        const sprintId = currentSprint?.id
+        const sprintId = currentSprint?.id 
         const moodsResponse = await getCurrentMoods(sprintId)
-        // console.log(moodsResponse.data)
+        console.log(moodsResponse.data)
         setCurrentMoods(moodsResponse.data.map(m => m.moodName))
         // moodsResponse.data.sort(alphabetical)
         // setAllMoods()
@@ -59,6 +70,7 @@ function DailyMoods() {
       )
       const sprintId = currentSprint?.id
       const response = await getSingleSprint(sprintId)
+      console.log(response.data)
       const moodToDeleteId = response.data.moods.find(
         currentMood => currentMood.moodName === moodToDelete
       ).id
@@ -83,33 +95,32 @@ function DailyMoods() {
       {currentSprint && (
         <>
           <h3>Daily Mood</h3>
-          <p>Today I&apos; m feeling...</p>
 
-          <h5>current moods</h5>
-          <div className="mood-button-container">
+          <p>Current mood:</p>
+          <div>
             {currentMoods.map(mood => (
-              <button
+              <MoodButton
                 key={mood}
                 value={mood}
                 type="button"
                 onClick={handleDeleteMood}
               >
                 {mood}
-              </button>
+              </MoodButton>
             ))}
           </div>
 
-          <h5>available moods</h5>
+          <p>Select a mood:</p>
           <div>
             {availableMoods.map(mood => (
-              <button
+              <MoodButton
                 onClick={handleAddingMoods}
                 key={mood}
                 value={mood}
                 type="button"
               >
                 {mood}
-              </button>
+              </MoodButton>
             ))}
           </div>
         </>
@@ -119,3 +130,12 @@ function DailyMoods() {
 }
 
 export default DailyMoods
+
+const MoodButton = styled.button`
+  margin: 2px;
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 5px;
+  background-color: white;
+  color: #100f10;
+`

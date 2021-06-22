@@ -81,6 +81,7 @@ export function deleteMood(sprintId, moodId) {
 // * AUTH / USER REQUESTS
 
 export function registerUser(formData) {
+  console.log(formData)
   return axios.post(`${baseUrl}/auth/register/`, formData)
 }
 

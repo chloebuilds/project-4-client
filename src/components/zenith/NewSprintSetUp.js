@@ -3,17 +3,24 @@ import { Link, useHistory } from 'react-router-dom'
 
 import { isAuthenticated } from '../../lib/auth'
 import { UserContext } from '../context/UserContext'
-import Card from '../../styles/styled-components/Card'
+import Card from '../../styles/styled-components/GlassCard'
+import StyledCard from '../../styles/styled-components/Card'
+
 import NewSprintGoals from './NewSprintGoals'
 import NewSprintHabits from './NewSprintHabits'
 // import SprintHabits from './SprintHabits'
+import { DateTime } from 'luxon'
+
+import styled from 'styled-components'
+
+const formatDate = date => DateTime.fromISO(date).toFormat('DDD')
 
 export default function NewSprintSetUp() {
-  const isLoggedIn = isAuthenticated()
   const history = useHistory()
-  const { currentSprint } = React.useContext(UserContext)
-  const isLoading = !currentSprint
-
+  const isLoggedIn = isAuthenticated()
+  const { user, currentSprint, refreshUser } = React.useContext(UserContext)
+  const isLoading = !user
+  console.log(user)
   if (!isLoggedIn) {
     history.push('/401')
   }
@@ -21,40 +28,71 @@ export default function NewSprintSetUp() {
   return (
     <>
       {isLoading && (
-        <div>
+        <Container>
           <p>ॐ..loading...ॐ</p>
-        </div>
+        </Container>
       )}
       {currentSprint && (
-        <>
-          <h1>{currentSprint.sprintName}</h1>
-          <h6>
-            from {currentSprint.startDate} until {currentSprint.endDate}
-          </h6>
-          <p>
-            every sprint needs a goal you want to achieve and a habit you want
-            to build by the end of your sprint and{' '}
-            <span>{currentSprint.sprintName}</span> is no different.
-          </p>
-          <p>
-            Once you submit, you will not be able to change your habits or
-            goals, so in the words of the Grail Knight, choose wisely...
-          </p>
+        <Section>
+          <Container>
+            <StyledCard
+              isFlex
+              flexDirection="column"
+              alignItems="center"
+              justifyContent="center"
+              padding="1rem 4rem"
+              margin="0.5em"
+              background="rgba(247, 247, 247, 0.658)"
+              color="black"
+            >
+              <h1>{currentSprint.sprintName}</h1>
+              <h4>
+                from {formatDate(currentSprint.startDate)} until{' '}
+                {formatDate(currentSprint.endDate)}
+              </h4>
+              <p>
+                Every sprint needs 3 goals you either want to work on or want to achieve by the 
+                end of your sprint and 3 habit you want to build on during your sprint and{' '}
+                <span>{currentSprint.sprintName}</span> is no different.
+              </p>
+              <p>
+                Once you submit, you will not be able to change your habits or
+                goals for the next 28 days&mdash;so in the words of the Grail
+                Knight&mdash; choose wisely...
+              </p>
+            </StyledCard>
 
-          <Card>
-            <NewSprintGoals />
-          </Card>
-          <Card>
-            <NewSprintHabits />
-          </Card>
-          {/* <Card>
-            <SprintHabits />
-          </Card> */}
-          <Link to="/dashboard">
-            <button>sprint dashboard</button>
-          </Link>
-        </>
+            <Card width="auto" padding="3rem">
+              <NewSprintGoals />
+            </Card>
+            <Card width="auto" padding="3rem">
+              <NewSprintHabits />
+            </Card>
+
+            <Link to="/dashboard" style={{ margin: '0 auto' }}>
+              <button onClick={refreshUser}>All Done</button>
+            </Link>
+          </Container>
+        </Section>
       )}
     </>
   )
 }
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 8rem;
+`
+const Section = styled.section`
+  background-image: url('https://wallpapertag.com/wallpaper/full/d/2/b/194863-red-gradient-background-2880x1800-for-iphone-5s.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: bottom;
+  min-height: calc(100% - var(--navbar-height));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`

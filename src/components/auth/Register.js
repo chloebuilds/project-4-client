@@ -18,7 +18,7 @@ function Register() {
     email: '',
     password: '',
     passwordConfirmation: '',
-    avatar: '',
+    avatar: 'hello.jpg',
     city: '',
   })
 
