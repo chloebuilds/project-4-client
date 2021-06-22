@@ -14,7 +14,7 @@ function DailyToDoList() {
   const inputRefs = React.useRef([
     React.createRef(),
     React.createRef(),
-    React.createRef(),
+    React.createRef()
   ])
   const [toDos, setToDos] = React.useState({
     toDo1: { draft: '', final: '', id: null },
@@ -34,7 +34,7 @@ function DailyToDoList() {
     }))
     const temporaryToDos = [
       ...currentSprint.toDos.sort((a, b) => a.id - b.id),
-      ...fillerToDos,
+      ...fillerToDos
     ]
     temporaryToDos.length = 5
     //************** */ QUESTION ABOUT FINAL AND ID ***********************************************************************************************************///////////////
@@ -159,7 +159,7 @@ function DailyToDoList() {
           <p>ॐ..loading...ॐ</p>
         </div>
       )}
-      <h3>My to-do list for today</h3>
+      <h3>My To-Do List For Today</h3>
 
       {toDos &&
         Object.entries(toDos).map(([label, toDo], i) => {

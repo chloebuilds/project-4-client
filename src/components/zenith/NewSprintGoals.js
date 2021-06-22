@@ -156,7 +156,7 @@ function NewSprintGoals() {
 
   return (
     <>
-      <h3>My Sprint Goals</h3>
+      <h3>Goals I Want To Achieve</h3>
       <p>We recommend up to 3 goals per sprint, add them below:</p>
       {sprintGoals &&
         Object.entries(sprintGoals).map(([label, sprintGoal], i) => {
@@ -194,7 +194,9 @@ function NewSprintGoals() {
           )
         })}
       <FormStyle.ButtonContainer>
-        <ClearButton onClick={clearSprintGoals}>Clear All Goals</ClearButton>
+        <ClearButton onClick={clearSprintGoals} className="clear-button">
+          Clear All<span className="material-icons">delete_forever</span>
+        </ClearButton>
       </FormStyle.ButtonContainer>
     </>
   )
@@ -207,8 +209,13 @@ const ClearButton = styled.button`
   padding: 5px;
   font-size: 14px;
   border-radius: 5px;
-  background-color: white;
+  background-color: rgb(166, 152, 228);
   color: #100f10;
+  margin-left: 580px;
+  :hover {
+    background-color: rgb(125, 100, 236);
+    color: white;
+  }
 `
 
 //////////////////////////////////////////////////////////////////

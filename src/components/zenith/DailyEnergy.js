@@ -7,7 +7,7 @@ import { addEnergyLevel } from '../../lib/api'
 
 function DailyEnergy() {
   const { currentSprint } = React.useContext(UserContext)
-  const [ num, setNum ] = React.useState(null)
+  const [num, setNum] = React.useState(null)
 
   const marks = {
     1: {
@@ -41,32 +41,31 @@ function DailyEnergy() {
       label: '🥳',
     },
   }
-  
 
-  const handleAfterChange = async (value) => {
+  const handleAfterChange = async value => {
     try {
       const energyLevel = value
       setNum(energyLevel)
       const sprintId = currentSprint?.id
       await addEnergyLevel(sprintId, energyLevel)
-
     } catch (err) {
       console.log(err)
     }
-
   }
-
+  console.log(num)
   // console.log(currentSprint)
 
   return (
     <>
       <h3>Energy level</h3>
       {}
-      <Slider 
-        min={1} max={5} step={1}
-        marks={ marks}
-        dots={ true }
-        // value={} 
+      <Slider
+        min={1}
+        max={5}
+        step={1}
+        marks={marks}
+        dots={true}
+        // value={}
         onAfterChange={handleAfterChange}
         // defaultValue={1}
         // startPoint
@@ -84,15 +83,17 @@ function DailyEnergy() {
           height: 2,
           background: 'white',
         }}
-        dotStyle={{
-          // background: 'none',
-        }}
-        activeDotStyle={{
-          // background: '#f06455',
-        }}
-
+        dotStyle={
+          {
+            // background: 'none',
+          }
+        }
+        activeDotStyle={
+          {
+            // background: '#f06455',
+          }
+        }
       />
-
     </>
   )
 }
