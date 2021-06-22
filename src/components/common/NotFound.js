@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom'
 import { GiphyFetch } from '@giphy/js-fetch-api'
 import { Gif } from '@giphy/react-components'
 
+import ErrorPage from '../../styles/styled-components/ErrorPage'
+import Section from '../../styles/styled-components/GradientBackground'
+
 const giphyFetch = new GiphyFetch('sXpGFDGZs0Dv1mmNFvYaGUvYwKX0PWIh')
 const gifsArray = [
   'SnKuXWPgAFkFerONjc',
@@ -33,18 +36,25 @@ export default function NotFound() {
     getGif()
   }, [])
   return (
-    <div>
-      <div>
-        <p>
-          Uh oh! The requested URL was not found on our server. <br />
-          Head back to
-          <Link className="homepage-link" to="/">
-            {' '}
-            Zenith homepage
-          </Link>{' '}
-        </p>
-      </div>
-      <div>{gif && <Gif gif={gif} width={400} />}</div>
-    </div>
+    <>
+      <Section>
+        <ErrorPage>
+          <div className="light-card">
+            <div className="error-card-container">
+              <h1>Uh oh, the requested URL was not found on our server!</h1>{' '}
+              <br />
+              <h2>
+                Best head back to
+                <Link className="homepage-link" to="/">
+                  {' '}
+                  Zenith homepage
+                </Link>{' '}
+              </h2>
+              <div className="gif">{gif && <Gif gif={gif} width={400} />}</div>
+            </div>
+          </div>
+        </ErrorPage>
+      </Section>
+    </>
   )
 }
