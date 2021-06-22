@@ -66,7 +66,7 @@ export default function NewSprint() {
                     It looks like you&apos;re not currently in an active sprint.{' '}
                   </p>
                   <p>Begin your new sprint now. </p>
-                  <button onClick={handleStartToggle}>Start new sprint</button>
+                  <button onClick={handleStartToggle}>New sprint</button>
                 </div>
                 <div className={isStartingNewSprint ? '' : 'no-show'}>
                   <form onSubmit={handleNewSprint}>
@@ -95,7 +95,7 @@ export default function NewSprint() {
 }
 
 const Section = styled.section`
-  background-image: url('https://wallpapertag.com/wallpaper/full/d/2/b/194863-red-gradient-background-2880x1800-for-iphone-5s.jpg');
+  background-image: url('https://images.unsplash.com/photo-1528722828814-77b9b83aafb2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3300&q=80');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;

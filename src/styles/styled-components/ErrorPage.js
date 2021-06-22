@@ -27,6 +27,7 @@ const StyledErrorPage = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: calc(100% - var(--navbar-height));
   }
   h1,
   h2 {

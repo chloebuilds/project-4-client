@@ -211,7 +211,7 @@ const ClearButton = styled.button`
   border-radius: 5px;
   background-color: rgb(166, 152, 228);
   color: #100f10;
-  margin-left: 580px;
+  margin-left: 860px;
   :hover {
     background-color: rgb(125, 100, 236);
     color: white;
