@@ -78,6 +78,12 @@ export function deleteMood(sprintId, moodId) {
   return axios.delete(`${baseUrl}/sprints/${sprintId}/moods/${moodId}`, headers() )
 }
 
+//* DAILY ENERGY 
+
+export function addEnergyLevel(sprintId, energyLevel) {
+  return axios.post(`${baseUrl}/sprints/${sprintId}/energy-levels/`, { energyLevel } , headers())
+}
+
 // * AUTH / USER REQUESTS
 
 export function registerUser(formData) {
