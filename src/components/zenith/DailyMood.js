@@ -10,7 +10,8 @@ function DailyMoods() {
   const isLoading = !currentSprint
   // const [ availableMoods, setAvailableMoods ] = React.useState([  ])
   const [ currentMoods, setCurrentMoods ] = React.useState([])
-  const [allMoods, setAllMoods] = React.useState(['Happy', 'Sad', 'Anxious', 'Angry'])
+  const [allMoods, setAllMoods] = React.useState(['Happy', 'Sad', 'Anxious', 'Angry', 'Scared', 'Joyful', 'Upset',  'Motivated', 'Amused'])
+  // 'Tense', 'Surprised','Determined', 'Confused',
   const availableMoods = allMoods.filter( mood => !currentMoods.includes(mood)) 
 
   // const updatedCurrentMoods = currentMoods.filter( mood => !)
@@ -79,13 +80,13 @@ function DailyMoods() {
               type="button"
               onClick={handleDeleteMood}
             >
-              {mood}
+              {mood} x
             </button>
           ))}
         </div>
-
+        <hr/>
         <div>
-          {/* <h5>Add moods:</h5> */}
+          <p>Select your moods:</p>
           {availableMoods.map(mood => (
             <button 
               onClick={handleAddingMoods}

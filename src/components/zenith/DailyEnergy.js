@@ -13,30 +13,35 @@ function DailyEnergy() {
     1: {
       style: {
         color: 'white',
+        fontSize: '16px',
       },
       label: '😴',
     },
     2: {
       style: {
         color: 'white',
+        fontSize: '16px',
       },
       label: '😩',
     },
     3: {
       style: {
         color: 'white',
+        fontSize: '16px',
       },
       label: '😐',
     },
     4: {
       style: {
         color: 'white',
+        fontSize: '16px',
       },
       label: '🙂',
     },
     5: {
       style: {
         color: 'white',
+        fontSize: '16px',
       },
       label: '🥳',
     },
@@ -60,8 +65,7 @@ function DailyEnergy() {
 
   return (
     <>
-      <h3>Energy level</h3>
-      {}
+      <h3>My energy level:</h3>
       <Slider 
         min={1} max={5} step={1}
         marks={ marks}
@@ -78,17 +82,17 @@ function DailyEnergy() {
         }}
         trackStyle={{
           // background: '#f06455',
-          backgroundImage: 'linear-gradient(to right, orange, yellow, green)',
+          backgroundImage: 'linear-gradient(to right, purple, pink)',
         }}
         railStyle={{
           height: 2,
           background: 'white',
         }}
         dotStyle={{
-          // background: 'none',
+          background: 'white',
         }}
         activeDotStyle={{
-          // background: '#f06455',
+          background: 'white',
         }}
 
       />
