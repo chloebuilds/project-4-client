@@ -6,13 +6,11 @@ export const ToggleContainer = styled.button`
   border-radius: 30px;
   cursor: pointer;
   display: flex;
+  /* align-items: flex-end; */
   font-size: 0.5rem;
   justify-content: space-between;
-  margin: 10px;
   overflow: hidden;
-  padding: 0.5rem;
-  /* width: 8rem;
-  height: 4rem; */
+  padding: 0.2rem;
 
   span {
     height: auto;

@@ -68,30 +68,26 @@ function Nav() {
             : 'side-nav-menu-container'
         }
       >
-        <ul className="navbar-content-container" onClick={handleSideBar}>
+        <div className="navbar-content-container" onClick={handleSideBar}>
           <NavLink to="/" icon={faHome} text="Home" />
           {isLoggedIn ? (
             <>
+              <NavLink to="/dashboard" text="Dashboard" icon={faOm} />
               <NavLink
                 to="/sprints/new"
                 text="Start a new Sprint"
                 icon={faRocket}
               />
-              <NavLink to="/dashboard" text="Dashboard" icon={faOm} />
               <NavLink to="/" text="Past Sprints" icon={faSearch} />
-              <NavLink
-                to="/"
-                text="Change your location"
-                icon={faLocationArrow}
-              />
+              <NavLink to="/" text="Change location" icon={faLocationArrow} />
               {/* <NavLink to="/" text="Dark Mode" icon={faStarHalfAlt} /> */}
-              <li className="navbar-item logout-link" onClick={handleLogout}>
+              <p className="navbar-item logout-link" onClick={handleLogout}>
                 <FontAwesomeIcon
                   className="fa-items-icon"
                   icon={faSignOutAlt}
                 />
                 Log out
-              </li>
+              </p>
             </>
           ) : (
             <>
@@ -99,7 +95,7 @@ function Nav() {
               <NavLink to="/login" icon={faUsers} text="Log In" />
             </>
           )}
-        </ul>
+        </div>
       </div>
     </>
   )
@@ -116,7 +112,6 @@ const ZenithH1 = styled.h1`
   -moz-text-fill-color: transparent;
   -webkit-text-fill-color: transparent;
   display: inline-block;
-  margin: 0;
 `
 
 function Logo() {
@@ -154,12 +149,12 @@ function Logo() {
 
 function NavLink({ to, icon, text }) {
   return (
-    <li>
+    <p>
       <Link to={to} className="navbar-item">
         <FontAwesomeIcon className="fa-items-icon" icon={icon} />
         {text}
       </Link>
-    </li>
+    </p>
   )
 }
 //   padding-left: 30px;

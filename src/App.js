@@ -30,8 +30,8 @@ function App() {
       <UserProvider>
         <ThemeProvider theme={themeMode}>
           <GlobalStyle />
-          <Toggle theme={theme} toggleTheme={toggleTheme} />
           <Nav />
+          <Toggle theme={theme} toggleTheme={toggleTheme} />
 
           <Switch>
             <Route exact path="/" component={Home} />
