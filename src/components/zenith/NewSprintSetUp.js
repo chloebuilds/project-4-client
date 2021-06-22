@@ -43,17 +43,19 @@ export default function NewSprintSetUp() {
               padding="1rem 4rem"
               margin="0.5em"
               background="rgba(247, 247, 247, 0.658)"
-              color="black"
+              color="#100f10"
             >
-              <h1>{currentSprint.sprintName}</h1>
+              <Title>{currentSprint.sprintName}</Title>
               <h4>
                 from {formatDate(currentSprint.startDate)} until{' '}
                 {formatDate(currentSprint.endDate)}
               </h4>
               <p>
-                Every sprint needs 3 goals you either want to work on or want to achieve by the 
-                end of your sprint and 3 habit you want to build on during your sprint and{' '}
-                <span>{currentSprint.sprintName}</span> is no different.
+                Kudos for starting your sprint! Now let&apos;s get it sorted.
+                Every sprint needs 3 goals you either want to work on or want to
+                achieve by the end of your sprint and 3 habit you want to build
+                on during your sprint and{' '}
+                <Span>{currentSprint.sprintName}</Span> is no different.
               </p>
               <p>
                 Once you submit, you will not be able to change your habits or
@@ -95,4 +97,21 @@ const Section = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
+`
+
+const Title = styled.h1`
+  font-size: 3.5em;
+  text-align: center;
+  color: ${props => (props.darkMode ? '#d38a84' : '#7b81ec')};
+  font-family: 'Space Grotesk', sans-serif;
+  margin-bottom: 0.7rem;
+`
+
+const Span = styled.span`
+  font-size: 16px;
+  font-style: bold;
+  text-align: none;
+  color: ${props => (props.darkMode ? '#d38a84' : '#7b81ec')};
+  font-family: 'Space Grotesk', sans-serif;
+  margin-bottom: 0;
 `

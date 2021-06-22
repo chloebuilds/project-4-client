@@ -191,7 +191,9 @@ function NewSprintHabits() {
           )
         })}
       <FormStyle.ButtonContainer>
-        <ClearButton onClick={clearSprintHabits}>Clear</ClearButton>
+        <ClearButton onClick={clearSprintHabits} className="clear-button">
+          Clear All<span className="material-icons">delete_forever</span>
+        </ClearButton>
       </FormStyle.ButtonContainer>
     </>
   )
@@ -204,8 +206,13 @@ const ClearButton = styled.button`
   padding: 5px;
   font-size: 14px;
   border-radius: 5px;
-  background-color: white;
+  background-color: rgb(166, 152, 228);
   color: #100f10;
+  margin-left: 580px;
+  :hover {
+    background-color: rgb(125, 100, 236);
+    color: white;
+  }
 `
 
 // import React from 'react'

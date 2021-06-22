@@ -61,7 +61,7 @@ function DailyMoods() {
       console.log(err)
     }
   }
-
+  console.log(setAllMoods)
   const handleDeleteMood = async e => {
     try {
       const moodToDelete = e.target.value
