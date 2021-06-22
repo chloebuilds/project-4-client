@@ -15,10 +15,8 @@ export function getPayload() {
   const token = getToken()
   const parts = token?.split('.')
   if (!token || parts.length < 3) {
-    console.log()
     return false
   }
-  console.log(JSON.parse(atob(parts[1])))
   return JSON.parse(atob(parts[1]))
 }
 

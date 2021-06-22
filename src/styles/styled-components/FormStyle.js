@@ -12,11 +12,17 @@ const FormStyle = {
     color: #262526;
     padding: 7px;
     margin: 10px;
-    display: block;
-    width: 250px;
+    display: inline-block;
+    width: 90%;
+    font-size: 14px;
     &::placeholder {
       color: #434457;
     }
+  `,
+  ButtonContainer: styled.div`
+    margin: 0 auto;
+    padding: 10px;
+    display: flex;
   `,
 }
 

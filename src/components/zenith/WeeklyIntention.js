@@ -90,7 +90,7 @@ function WeeklyIntention() {
           <p>ॐ..loading...ॐ</p>
         </div>
       )}
-      <h3>Intention for this week</h3>
+      <h3>My intention for this week</h3>
       {intention.final ? (
         <>
           <Styled.P>{intention.final}</Styled.P>
@@ -119,6 +119,7 @@ export default WeeklyIntention
 const Styled = {
   P: styled.p`
     display: inline-block;
+    margin-left: 40px;
   `,
   Input: styled.input`
     outline: none;
@@ -127,6 +128,9 @@ const Styled = {
     color: #262526;
     padding: 7px;
     margin: 1px;
+    margin-left: 20px;
+    height: 30px;
+    width: 90%;
     &::placeholder {
       color: #100f10;
     }

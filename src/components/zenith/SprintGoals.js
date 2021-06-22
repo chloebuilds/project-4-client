@@ -23,7 +23,7 @@ export default function SprintGoalsDisplay() {
       )}
       {currentSprint && (
         <>
-          <h3>Sprint Goals</h3>
+          <h3>My Sprint Goals</h3>
           <ol>
             {currentSprint?.sprintGoals.map(goal => (
               <li key={goal.id}>

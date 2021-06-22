@@ -72,7 +72,7 @@ export default function NewSprint() {
                   />
                   {formErrors.sprintName && <p>{formErrors.sprintName}</p>}
                 </div>
-                <button>Done!</button>
+                <button>Done</button>
               </form>
             </div>
           </Container>

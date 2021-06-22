@@ -9,7 +9,7 @@ const flexStyles = css`
 
 export const StyledCard = styled.div`
   margin: ${p => p.margin || '0 0 1rem'};
-  padding: ${p => p.padding || '1rem'};
+  padding: ${p => p.padding || '2rem'};
   background: ${p => p.background || '#100F10'};
   border: ${p => p.border};
   ${p => p.isFlex && flexStyles};

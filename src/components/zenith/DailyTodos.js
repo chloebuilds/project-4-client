@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import FormStyle from '../../styles/styled-components/FormStyle'
+
 import { UserContext } from '../context/UserContext'
 import axios from 'axios'
 
@@ -12,7 +14,7 @@ function DailyToDoList() {
   const inputRefs = React.useRef([
     React.createRef(),
     React.createRef(),
-    React.createRef()
+    React.createRef(),
   ])
   const [toDos, setToDos] = React.useState({
     toDo1: { draft: '', final: '', id: null },
@@ -32,7 +34,7 @@ function DailyToDoList() {
     }))
     const temporaryToDos = [
       ...currentSprint.toDos.sort((a, b) => a.id - b.id),
-      ...fillerToDos
+      ...fillerToDos,
     ]
     temporaryToDos.length = 5
     //************** */ QUESTION ABOUT FINAL AND ID ***********************************************************************************************************///////////////
@@ -157,13 +159,15 @@ function DailyToDoList() {
           <p>ॐ..loading...ॐ</p>
         </div>
       )}
-      <h3>My to do&apos;s for today</h3>
+      <h3>My to-do list for today</h3>
 
       {toDos &&
         Object.entries(toDos).map(([label, toDo], i) => {
           return (
             <div key={label}>
-              <label style={{ display: 'inline-block', width: 20 }}>
+              <label
+                style={{ display: 'inline-block', width: 20, marginLeft: 20 }}
+              >
                 {i + 1}.{' '}
               </label>
               {toDo.final ? (
@@ -190,7 +194,9 @@ function DailyToDoList() {
             </div>
           )
         })}
-      <button onClick={clearToDos}>Clear To-Do List</button>
+      <FormStyle.ButtonContainer>
+        <ClearButton onClick={clearToDos}>Clear</ClearButton>
+      </FormStyle.ButtonContainer>
     </>
   )
 }
@@ -200,16 +206,32 @@ export default DailyToDoList
 const Styled = {
   P: styled.p`
     display: inline-block;
+    margin: 2px 5px;
   `,
   Input: styled.input`
     outline: none;
     border: none;
     background: rgba(247, 247, 247, 0.2);
-    color: #100f10;
+    color: #262526;
     padding: 7px;
-    margin: 1px;
+    margin: 2px 0 0 5px;
+    height: 30px;
+    width: 90%;
     &::placeholder {
-      color: #262526;
+      color: #100f10;
     }
   `,
+  ButtonContainer: styled.div`
+    margin: 0 auto;
+    padding-top: 10px;
+  `,
 }
+
+const ClearButton = styled.button`
+  margin: 0 auto;
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 5px;
+  background-color: #ffffff73;
+  color: #100f10;
+`

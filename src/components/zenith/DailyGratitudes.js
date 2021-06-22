@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { UserContext } from '../context/UserContext'
 import axios from 'axios'
+import FormStyle from '../../styles/styled-components/FormStyle'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit } from '@fortawesome/free-solid-svg-icons'
@@ -176,14 +177,16 @@ function DailyGratitudes() {
           // mapping over our state. Object.entries means that we can convert the object into an array of arrays where the first element of each sub-array is the property's key (eg. gratitude1, gratitude2..) and the second element of the sub-array is the property's value (the object of the gratitude - { draft: '', final: '', id: null }) SEE LINE 127 above for const array.
           return (
             <div key={label}>
-              <label style={{ display: 'inline-block', width: 20 }}>
+              <label
+                style={{ display: 'inline-block', width: 20, marginLeft: 20 }}
+              >
                 {i + 1}.{' '}
               </label>
               {gratitude.final ? ( // conditionally rendering whether a p tag or an input is displayed, depending on if there is a gratitude.final that we have set in the useEffect
                 <>
-                  <Styled.P ref={inputRefs.current[i]}>
+                  <FormStyle.P ref={inputRefs.current[i]}>
                     {gratitude.final}
-                  </Styled.P>
+                  </FormStyle.P>
                   <span
                     id={label}
                     onClick={handleEdit}
@@ -194,7 +197,7 @@ function DailyGratitudes() {
                 </>
               ) : (
                 <Styled.Input
-                  placeholder="I am grateful for.."
+                  placeholder=""
                   name={label} // we give it a name so that we can do clever things with handle change
                   ref={inputRefs.current[i]} // the ref is something in react which enables us to access DOM elements directly (kinda like document.getElementBy). We have multiple refs (createRef()) so here we are assigning each input to the array of refs. A ref has .current method on it and in this instance it is an array (because that's what we set it to initially). We are assigning the input to the array of refs at the index(0, 1 or 2)
                   value={gratitude.draft} // value of the input is going to be the draft on each gratitude object
@@ -206,9 +209,9 @@ function DailyGratitudes() {
             </div>
           )
         })}
-      <Styled.ButtonContainer>
-        <button onClick={clearGratitudes}>Clear</button>
-      </Styled.ButtonContainer>
+      <FormStyle.ButtonContainer>
+        <ClearButton onClick={clearGratitudes}>Clear</ClearButton>
+      </FormStyle.ButtonContainer>
     </>
   )
 }
@@ -218,23 +221,36 @@ export default DailyGratitudes
 const Styled = {
   P: styled.p`
     display: inline-block;
+    margin-left: 5px;
   `,
   Input: styled.input`
     outline: none;
     border: none;
     background: rgba(247, 247, 247, 0.2);
-    color: #100f10;
+    color: #262526;
     padding: 7px;
-    margin: 1px;
+    margin: 2px 0 0 5px;
+    margin-left: 5px;
+    height: 30px;
+    width: 80%;
     &::placeholder {
-      color: #262526;
+      color: #100f10;
     }
   `,
   ButtonContainer: styled.div`
-    display: flex;
-    align-items: right;
+    margin: 0 auto;
+    padding: 10px;
   `,
 }
+
+const ClearButton = styled.button`
+  margin: 0 auto;
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 5px;
+  background-color: #ffffff73;
+  color: #100f10;
+`
 
 // ? DEBUG TOOLS
 // const logGratitudes = () => {

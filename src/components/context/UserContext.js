@@ -3,15 +3,19 @@ import { useHistory } from 'react-router-dom'
 import { getUserWithReset, loginUser } from '../../lib/api'
 import { getPayload, setToken } from '../../lib/auth'
 import { toast } from 'react-toastify'
+
 export const UserContext = createContext()
+
 export const UserProvider = props => {
   const history = useHistory()
   const [user, setUser] = useState(null)
   const [userId, setUserId] = useState(null)
   const [shouldRefresh, setShouldRefresh] = React.useState(false)
+
   const currentSprint = user?.createdSprints?.find(
     sprint => Date.parse(sprint.endDate) > Date.now()
   )
+
   React.useEffect(() => {
     const id = userId || getPayload().sub
     if (!id) {
@@ -49,7 +53,9 @@ export const UserProvider = props => {
       setIsError(true)
     }
   }
+
   const refreshUser = () => setShouldRefresh(true)
+
   return (
     <UserContext.Provider
       value={{

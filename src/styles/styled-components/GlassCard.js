@@ -12,7 +12,7 @@ const GlassCard = styled.div`
   display: inline-block;
   width: ${p => p.width || '70%'};
   background: rgba(255, 255, 255, 0.1);
-  padding: 1.5em;
+  padding: ${p => p.padding || '1.5rem'};
   margin: ${p => p.margin || '0.5em'};
   z-index: 1;
   backdrop-filter: blur(40px);

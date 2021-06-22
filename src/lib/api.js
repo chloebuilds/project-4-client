@@ -87,6 +87,7 @@ export function addEnergyLevel(sprintId, energyLevel) {
 // * AUTH / USER REQUESTS
 
 export function registerUser(formData) {
+  console.log(formData)
   return axios.post(`${baseUrl}/auth/register/`, formData)
 }
 

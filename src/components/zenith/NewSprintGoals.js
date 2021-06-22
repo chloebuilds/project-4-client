@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import FormStyle from '../../styles/styled-components/FormStyle'
+
 import { UserContext } from '../context/UserContext'
 import axios from 'axios'
 
@@ -154,8 +156,8 @@ function NewSprintGoals() {
 
   return (
     <>
-      <h3>Goals I Want To Achieve:</h3>
-      <p>We recommend up to 3 goals per sprint, add them below</p>
+      <h3>My Sprint Goals</h3>
+      <p>We recommend up to 3 goals per sprint, add them below:</p>
       {sprintGoals &&
         Object.entries(sprintGoals).map(([label, sprintGoal], i) => {
           // mapping over our state. Object.entries means that we can convert the object into an array of arrays where the first element of each sub-array is the property's key (eg. gratitude1, gratitude2..) and the second element of the sub-array is the property's value (the object of the gratitude - { draft: '', final: '', id: null }) SEE LINE 127 above for const array.
@@ -166,9 +168,9 @@ function NewSprintGoals() {
               </label>
               {sprintGoal.final ? ( // conditionally rendering whether a p tag or an input is displayed, depending on if there is a gratitude.final that we have set in the useEffect
                 <>
-                  <Styled.P ref={inputRefs.current[i]}>
+                  <FormStyle.P ref={inputRefs.current[i]}>
                     {sprintGoal.final}
-                  </Styled.P>
+                  </FormStyle.P>
                   <span
                     id={label}
                     onClick={handleEdit}
@@ -178,7 +180,7 @@ function NewSprintGoals() {
                   </span>
                 </>
               ) : (
-                <Styled.Input
+                <FormStyle.Input
                   placeholder="My goal is..."
                   name={label} // we give it a name so that we can do clever things with handle change
                   ref={inputRefs.current[i]} // the ref is something in react which enables us to access DOM elements directly (kinda like document.getElementBy). We have multiple refs (createRef()) so here we are assigning each input to the array of refs. A ref has .current method on it and in this instance it is an array (because that's what we set it to initially). We are assigning the input to the array of refs at the index(0, 1 or 2)
@@ -191,29 +193,23 @@ function NewSprintGoals() {
             </div>
           )
         })}
-      <button onClick={clearSprintGoals}>Clear All Goals</button>
+      <FormStyle.ButtonContainer>
+        <ClearButton onClick={clearSprintGoals}>Clear All Goals</ClearButton>
+      </FormStyle.ButtonContainer>
     </>
   )
 }
 
 export default NewSprintGoals
 
-const Styled = {
-  P: styled.p`
-    display: inline-block;
-  `,
-  Input: styled.input`
-    outline: none;
-    border: none;
-    background: rgba(247, 247, 247, 0.2);
-    color: #100f10;
-    padding: 7px;
-    margin: 1px;
-    &::placeholder {
-      color: #262526;
-    }
-  `,
-}
+const ClearButton = styled.button`
+  margin: 2px;
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 5px;
+  background-color: white;
+  color: #100f10;
+`
 
 //////////////////////////////////////////////////////////////////
 // import React from 'react'

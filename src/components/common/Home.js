@@ -39,7 +39,9 @@ function Home() {
           </>
         ) : (
           <Link to="/dashboard">
-            <HomeButton className="home-button" width="195px">Dashboard</HomeButton>
+            <HomeButton className="home-button" width="195px">
+              Dashboard
+            </HomeButton>
           </Link>
         )}
       </ButtonContainer>
@@ -49,7 +51,7 @@ function Home() {
           flexDirection="column"
           alignItems="center"
           justifyContent="center"
-          padding="1rem"
+          padding="1rem 4rem"
           margin="2rem"
           background="rgba(247, 247, 247, 0.658)"
           color="black"

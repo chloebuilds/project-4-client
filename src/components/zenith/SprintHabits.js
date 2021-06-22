@@ -8,10 +8,7 @@ export default function SprintHabitsDisplay() {
   const currentHabits = currentSprint?.sprintHabits
 
   React.useEffect(() => {
-    const getCurrentHabits = () => {
-      setHabits(currentHabits)
-    }
-    getCurrentHabits()
+    setHabits(currentHabits)
   }, [currentHabits])
 
   return (
@@ -24,15 +21,15 @@ export default function SprintHabitsDisplay() {
       {currentSprint && (
         <>
           <h3>My Sprint Habits</h3>
-          {habits?.map(habit => (
-            <div key={habit.id}>
-              <ul>
+          <ol>
+            {habits?.map(habit => (
+              <div key={habit.id}>
                 <li>
-                  <h4>{habit.habitName}</h4>
+                  <p>{habit.habitName}</p>
                 </li>
-              </ul>
-            </div>
-          ))}
+              </div>
+            ))}
+          </ol>
         </>
       )}
     </>

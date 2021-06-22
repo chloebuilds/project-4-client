@@ -71,12 +71,11 @@ function Dashboard() {
             <Card width="100%">
               <WeeklyIntention />
             </Card>
-          </Row>
-          <Row>
             <Card width="100%">
               <ZenQuote />
             </Card>
           </Row>
+
           <Row>
             <Card width="auto" flex={1}>
               <DailyGratitudes />
@@ -97,10 +96,10 @@ function Dashboard() {
 
           <Row>
             <Column>
-              <Card width="100%" flex={2}>
+              <Card width="auto" flex={2}>
                 <DailyMoods />
               </Card>
-              <Card width="100%" flex={1}>
+              <Card width="auto" flex={1}>
                 <DailyEnergy />
               </Card>
             </Column>
@@ -131,7 +130,7 @@ const Header = styled.section`
   flex-direction: row;
 `
 const Wrapper = styled.section`
-  margin: 10px 150px;
+  margin: 0 150px;
 `
 
 const Row = styled.div`
