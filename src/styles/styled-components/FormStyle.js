@@ -15,6 +15,7 @@ const FormStyle = {
     display: inline-block;
     width: 90%;
     font-size: 14px;
+    border-radius: 0.5rem;
     &::placeholder {
       color: #434457;
     }
