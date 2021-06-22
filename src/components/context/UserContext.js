@@ -32,7 +32,6 @@ export const UserProvider = props => {
     getData()
     setShouldRefresh(false)
   }, [userId, shouldRefresh])
-
   const login = async (event, formData, setIsError) => {
     event.preventDefault()
     try {

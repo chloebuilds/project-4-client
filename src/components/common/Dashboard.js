@@ -14,7 +14,8 @@ import ZenQuote from '../zenith/ZenQuote'
 import Calendar from '../zenith/Calendar'
 import Weather from '../zenith/Weather'
 import { isAuthenticated } from '../../lib/auth'
-import gradientBackground from '../../assets/gradient-background.jpg'
+import Section from '../../styles/styled-components/GradientBackground'
+// import gradientBackground from '../../assets/gradient-background.jpg'
 import Spinner from '../common/Spinner'
 
 import { DateTime } from 'luxon'
@@ -114,15 +115,15 @@ function Dashboard() {
 
 export default Dashboard
 
-const Section = styled.section`
-  background-image: url(${gradientBackground});
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  /* display: flex;
-  flex-direction: column;
-  flex-wrap: wrap; */
-`
+// const Section = styled.section`
+//   background-image: url(${gradientBackground});
+//   background-repeat: no-repeat;
+//   background-attachment: fixed;
+//   background-position: center;
+//   /* display: flex;
+//   flex-direction: column;
+//   flex-wrap: wrap; */
+// `
 const Header = styled.section`
   width: 100%;
   display: flex;
