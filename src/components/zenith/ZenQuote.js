@@ -1,8 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { css } from 'styled-components'
-
-// import styled from 'styled-components'
+import styled from 'styled-components'
 
 function ZenQuote() {
   const [quoteData, setQuoteData] = React.useState([])
@@ -36,7 +34,7 @@ function ZenQuote() {
         <div>
           <blockquote>
             &ldquo;{quoteData[0]?.q}&ldquo; &mdash;{' '}
-            <footer style={{ marginTop: 5 }}>{quoteData[0]?.a}</footer>
+            <Styled.Footer style={{ marginTop: 5 }}>{quoteData[0]?.a}</Styled.Footer>
           </blockquote>
         </div>
       </div>
@@ -45,3 +43,9 @@ function ZenQuote() {
 }
 
 export default ZenQuote
+
+const Styled = {
+  Footer: styled.footer`
+    margin-top: 5px;
+  `,
+}
