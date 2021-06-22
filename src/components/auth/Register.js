@@ -18,7 +18,6 @@ function Register() {
     email: '',
     password: '',
     passwordConfirmation: '',
-    avatar: '',
     city: '',
   })
 
@@ -108,7 +107,9 @@ function Register() {
           {error && <p>{error}</p>}
           <ButtonContainer>
             <button type="submit">Register</button>
-            <button type="button" onClick={clearForm}>Clear Form</button>
+            <button type="button" onClick={clearForm}>
+              Clear Form
+            </button>
           </ButtonContainer>
         </form>
         <FormStyle.P>
