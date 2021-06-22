@@ -13,7 +13,6 @@ import styled from 'styled-components'
 function DailyMoods() {
   const { currentSprint, user } = React.useContext(UserContext)
   const isLoading = !currentSprint
-  const availableMoods = allMoods.filter( mood => !currentMoods.includes(mood)) 
   const [currentMoods, setCurrentMoods] = React.useState([])
   const [allMoods, setAllMoods] = React.useState([
     'Happy',
@@ -33,7 +32,8 @@ function DailyMoods() {
     'Scared',
     'Motivated'
   ])
-
+  const availableMoods = allMoods.filter( mood => !currentMoods.includes(mood)) 
+  
   React.useEffect(() => {
     const getData = async () => {
       try {
