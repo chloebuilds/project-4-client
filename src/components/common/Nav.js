@@ -9,7 +9,7 @@ import {
   faOm,
   faSignOutAlt,
   faRocket,
-  faStarHalfAlt,
+  // faStarHalfAlt,
   faLocationArrow
 } from '@fortawesome/free-solid-svg-icons'
 import styled from 'styled-components'
@@ -84,7 +84,7 @@ function Nav() {
                 text="Change your location"
                 icon={faLocationArrow}
               />
-              <NavLink to="/" text="Dark Mode" icon={faStarHalfAlt} />
+              {/* <NavLink to="/" text="Dark Mode" icon={faStarHalfAlt} /> */}
               <li className="navbar-item logout-link" onClick={handleLogout}>
                 <FontAwesomeIcon
                   className="fa-items-icon"

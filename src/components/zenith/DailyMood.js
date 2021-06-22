@@ -11,7 +11,7 @@ import {
 import styled from 'styled-components'
 
 function DailyMoods() {
-  const { currentSprint } = React.useContext(UserContext)
+  const { currentSprint, user } = React.useContext(UserContext)
   const isLoading = !currentSprint
   // const [ availableMoods, setAvailableMoods ] = React.useState([  ])
   const [currentMoods, setCurrentMoods] = React.useState([])
@@ -38,9 +38,9 @@ function DailyMoods() {
   React.useEffect(() => {
     const getData = async () => {
       try {
-        const sprintId = currentSprint?.id 
+        const sprintId = currentSprint?.id
         const moodsResponse = await getCurrentMoods(sprintId)
-        console.log(moodsResponse.data)
+        // console.log(moodsResponse.data)
         setCurrentMoods(moodsResponse.data.map(m => m.moodName))
         // moodsResponse.data.sort(alphabetical)
         // setAllMoods()
@@ -70,7 +70,6 @@ function DailyMoods() {
       )
       const sprintId = currentSprint?.id
       const response = await getSingleSprint(sprintId)
-      console.log(response.data)
       const moodToDeleteId = response.data.moods.find(
         currentMood => currentMood.moodName === moodToDelete
       ).id
@@ -94,7 +93,7 @@ function DailyMoods() {
       )}
       {currentSprint && (
         <>
-          <h3>Daily Mood</h3>
+          <h3>How are you feeling today {user.name}?</h3>
 
           <p>Current mood:</p>
           <div>
