@@ -13,7 +13,6 @@ import styled from 'styled-components'
 function DailyMoods() {
   const { currentSprint, user } = React.useContext(UserContext)
   const isLoading = !currentSprint
-  // const [ availableMoods, setAvailableMoods ] = React.useState([  ])
   const [currentMoods, setCurrentMoods] = React.useState([])
   const [allMoods, setAllMoods] = React.useState([
     'Happy',
@@ -28,13 +27,13 @@ function DailyMoods() {
     'Sad',
     'Anxious',
     'Angry',
-    'Frustrated'
+    'Frustrated',
+    'Upset',
+    'Scared',
+    'Motivated'
   ])
-  // const [deletedMoods, setDeletedMoods] = React.useState([])
-  const availableMoods = allMoods.filter(mood => !currentMoods.includes(mood))
-
-  // const updatedCurrentMoods = currentMoods.filter( mood => !)
-
+  const availableMoods = allMoods.filter( mood => !currentMoods.includes(mood)) 
+  
   React.useEffect(() => {
     const getData = async () => {
       try {
@@ -95,7 +94,7 @@ function DailyMoods() {
         <>
           <h3>How are you feeling today {user.name}?</h3>
 
-          <p>Current mood:</p>
+          {/* <p>Current mood:</p> */}
           <div>
             {currentMoods.map(mood => (
               <MoodButton
@@ -104,12 +103,12 @@ function DailyMoods() {
                 type="button"
                 onClick={handleDeleteMood}
               >
-                {mood}
+                {mood} x
               </MoodButton>
             ))}
           </div>
 
-          <p>Select a mood:</p>
+          <p>Select your moods:</p>
           <div>
             {availableMoods.map(mood => (
               <MoodButton

@@ -1,18 +1,18 @@
 {
   "workbench.colorCustomizations": {
-    "statusBar.background": "#AA77DA",
-    "titleBar.activeBackground": "#AA77DA",
+    "statusBar.background": "#aa77da",
+    "titleBar.activeBackground": "#aa77da",
     "titleBar.inactiveBackground": "#aa77da99",
-    "activityBar.activeBackground": "#C39FE5",
+    "activityBar.activeBackground": "#c39fe5",
     "activityBar.activeBorder": "#966129",
-    "activityBar.background": "#C39FE5",
-    "activityBar.foreground": "#15202B",
+    "activityBar.background": "#c39fe5",
+    "activityBar.foreground": "#15202b",
     "activityBar.inactiveForeground": "#15202b99",
     "activityBarBadge.background": "#966129",
-    "activityBarBadge.foreground": "#E7E7E7",
-    "statusBar.foreground": "#15202B",
-    "statusBarItem.hoverBackground": "#914FCF",
-    "titleBar.activeForeground": "#15202B",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "statusBar.foreground": "#15202b",
+    "statusBarItem.hoverBackground": "#914fcf",
+    "titleBar.activeForeground": "#15202b",
     "titleBar.inactiveForeground": "#15202b99"
   },
   "editor.tokenColorCustomizations": {
@@ -25,5 +25,6 @@
   "editor.codeActionsOnSave": ["source.formatDocument", "source.fixAll.eslint"],
   "files.associations": {
     "*.js": "javascriptreact"
-  }
+  },
+  "peacock.color": "#aa77da"
 }
