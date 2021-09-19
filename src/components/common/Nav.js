@@ -79,7 +79,7 @@ function Nav() {
                 icon={faRocket}
               />
               <NavLink to="/" text="Past Sprints" icon={faSearch} />
-              <NavLink to="/" text="Change location" icon={faLocationArrow} />
+              {/* <NavLink to="/" text="Change location" icon={faLocationArrow} /> */}
               {/* <NavLink to="/" text="Dark Mode" icon={faStarHalfAlt} /> */}
               <p className="navbar-item logout-link" onClick={handleLogout}>
                 <FontAwesomeIcon
