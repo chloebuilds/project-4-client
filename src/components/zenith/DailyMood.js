@@ -104,7 +104,7 @@ function DailyMoods() {
                 type="button"
                 onClick={handleDeleteMood}
               >
-                {mood}
+                {mood} x
               </MoodButton>
             ))}
           </div>
