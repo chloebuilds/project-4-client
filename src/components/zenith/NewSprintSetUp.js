@@ -20,7 +20,7 @@ const formatDate = date => DateTime.fromISO(date).toFormat('DDD')
 const giphyFetch = new GiphyFetch('sXpGFDGZs0Dv1mmNFvYaGUvYwKX0PWIh')
 
 export default function NewSprintSetUp() {
-  const [hasAddedGoalsAndHabits, setiHasAddedGoalsAndHabits] =
+  const [hasAddedGoalsAndHabits, setHasAddedGoalsAndHabits] =
     React.useState(false)
   const history = useHistory()
   const isLoggedIn = isAuthenticated()
@@ -41,7 +41,7 @@ export default function NewSprintSetUp() {
   }
 
   const handleSprintToggle = () => {
-    setiHasAddedGoalsAndHabits(!hasAddedGoalsAndHabits)
+    setHasAddedGoalsAndHabits(!hasAddedGoalsAndHabits)
   }
 
   return (

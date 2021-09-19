@@ -53,8 +53,6 @@ function DailyEnergy() {
     }
   }
   console.log(num)
-  // console.log(currentSprint)
-
   return (
     <>
       <h3>Energy level</h3>

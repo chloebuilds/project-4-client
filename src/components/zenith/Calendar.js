@@ -76,7 +76,7 @@ const CalendarButtons = styled.button`
 
 const CalendarCard = styled.div`
   max-width: 95%;
-  max-heigth: 95%;
+  max-height: 95%;
 `
 
 

@@ -37,7 +37,6 @@ function DailyToDoList() {
       ...fillerToDos
     ]
     temporaryToDos.length = 5
-    //************** */ QUESTION ABOUT FINAL AND ID ***********************************************************************************************************///////////////
     const syncedToDos = temporaryToDos.reduce(
       (newState, toDo, i) => ({
         ...newState,
