@@ -1,20 +1,4 @@
 {
-  "workbench.colorCustomizations": {
-    "statusBar.background": "#AA77DA",
-    "titleBar.activeBackground": "#AA77DA",
-    "titleBar.inactiveBackground": "#aa77da99",
-    "activityBar.activeBackground": "#C39FE5",
-    "activityBar.activeBorder": "#966129",
-    "activityBar.background": "#C39FE5",
-    "activityBar.foreground": "#15202B",
-    "activityBar.inactiveForeground": "#15202b99",
-    "activityBarBadge.background": "#966129",
-    "activityBarBadge.foreground": "#E7E7E7",
-    "statusBar.foreground": "#15202B",
-    "statusBarItem.hoverBackground": "#914FCF",
-    "titleBar.activeForeground": "#15202B",
-    "titleBar.inactiveForeground": "#15202b99"
-  },
   "editor.tokenColorCustomizations": {
     "[Monokai Dimmed]": {
         "comments": "#D3934B",
