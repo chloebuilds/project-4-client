@@ -13,30 +13,35 @@ function DailyEnergy() {
     1: {
       style: {
         color: 'white',
+        fontSize: '16px',
       },
       label: '😴',
     },
     2: {
       style: {
         color: 'white',
+        fontSize: '16px',
       },
       label: '😩',
     },
     3: {
       style: {
         color: 'white',
+        fontSize: '16px',
       },
       label: '😐',
     },
     4: {
       style: {
         color: 'white',
+        fontSize: '16px',
       },
       label: '🙂',
     },
     5: {
       style: {
         color: 'white',
+        fontSize: '16px',
       },
       label: '🥳',
     },
@@ -53,19 +58,14 @@ function DailyEnergy() {
     }
   }
   console.log(num)
-  // console.log(currentSprint)
-
   return (
     <>
-      <h3>Energy level</h3>
-      {}
-      <Slider
-        min={1}
-        max={5}
-        step={1}
-        marks={marks}
-        dots={true}
-        // value={}
+      <h3>My energy level:</h3>
+      <Slider 
+        min={1} max={5} step={1}
+        marks={ marks}
+        dots={ true }
+        // value={} 
         onAfterChange={handleAfterChange}
         // defaultValue={1}
         // startPoint
@@ -77,22 +77,19 @@ function DailyEnergy() {
         }}
         trackStyle={{
           // background: '#f06455',
-          backgroundImage: 'linear-gradient(to right, orange, yellow, green)',
+          backgroundImage: 'linear-gradient(to right, purple, pink)',
         }}
         railStyle={{
           height: 2,
           background: 'white',
         }}
-        dotStyle={
-          {
-            // background: 'none',
-          }
-        }
-        activeDotStyle={
-          {
-            // background: '#f06455',
-          }
-        }
+        dotStyle={{
+          background: 'white',
+        }}
+        activeDotStyle={{
+          background: 'white',
+        }}
+
       />
     </>
   )

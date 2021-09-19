@@ -32,8 +32,8 @@ export const UserProvider = props => {
     getData()
     setShouldRefresh(false)
   }, [userId, shouldRefresh])
-  const login = async (event, formData, setIsError) => {
-    event.preventDefault()
+  const login = async (e, formData, setIsError) => {
+    e.preventDefault()
     try {
       const res = await loginUser(formData)
       setToken(res.data.token)

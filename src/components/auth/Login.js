@@ -14,7 +14,7 @@ function Login() {
   const [isError, setIsError] = React.useState(false)
   const { formData, handleChange } = useForm({
     email: '',
-    passwords: '',
+    password: '',
   })
 
   const handleSubmit = e => login(e, formData, setIsError)
