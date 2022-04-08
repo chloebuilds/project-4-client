@@ -167,7 +167,7 @@ We also used Styled Components for this project. None of us had used it before a
 
 ## Wins
 
-- Without wanting to sound cliche I really feel that the entire project was a win. We took on A LOT, learned a a lot and challenged ourselves a lot - but we did it and we all worked together incredibly well. Each of the challenges above became wins by the end.
+- Without wanting to sound cliche, I really feel that the entire project was a win. We took on A LOT, learned a a lot and challenged ourselves a lot - but we did it and we all worked together incredibly well. Each of the challenges above became wins by the end.
 - UX: We managed to create a seamless user journey from registration through to the end of the sprint. The dashboard is clean, clear and easy to use with instant feedback and visibility to the user about their current sprint.
 - UI: We built a user dashboard that we are proud of and that we each want to use ourselves.
 - We really used React to its advantage with implementation of the deshboard displaying multiple components. The user can interact with each component while on their dashboard. Also, using conditional rendering and the ternary operator I was able to conditionally show parts of a component to the user, giving the illusion of moving from one page to the next while actually staying in the same one. 
